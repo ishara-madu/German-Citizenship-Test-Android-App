@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "219658472200",
+    "project_id": "brgertest-4e5c3",
+    "storage_bucket": "brgertest-4e5c3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:219658472200:android:c69b249a16677dd7eb7abd",
+        "android_client_info": {
+          "package_name": "com.pixeleye.einbuergerungstest.lebenindeutschland"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "219658472200-v8r87dq0jscg30nf3akj9cqp6dfctdg8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pixeleye.einbuergerungstest.lebenindeutschland",
+            "certificate_hash": "e075f2baadae9946a3ce479bcf2b2736fcebc4f3"
+          }
+        },
+        {
+          "client_id": "219658472200-ems22jmci50r532g3dln4mt0rmhv5032.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByoxokAqRNT9GTiieRcFvb9b-b-BjC8P4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "219658472200-ems22jmci50r532g3dln4mt0rmhv5032.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

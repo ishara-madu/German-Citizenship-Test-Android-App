@@ -1,0 +1,188 @@
+<resources>
+    <string name="app_name">Einbürgerungstest 2026</string>
+    
+    <!-- Settings -->
+    <string name="settings_title">Einstellungen</string>
+    <string name="group_app_preferences">App-Einstellungen</string>
+    <string name="group_study_reminders">Lern-Erinnerungen</string>
+    <string name="group_subscription">Abonnement &amp; Konto</string>
+    <string name="group_support">Support &amp; Über</string>
+    
+    <string name="label_theme">Design</string>
+    <string name="label_language">Sprache</string>
+    <string name="label_daily_practice">Tägliche Lern-Erinnerung</string>
+    <string name="label_manage_subscription">Abonnement verwalten</string>
+    <string name="label_restore_purchases">Käufe wiederherstellen</string>
+    <string name="label_contact_support">Support kontaktieren</string>
+    <string name="label_privacy_policy">Datenschutzerklärung</string>
+    <string name="label_app_version">App-Version</string>
+    
+    <!-- Theme Selection -->
+    <string name="theme_system">Systemstandard</string>
+    <string name="theme_light">Hellmodus</string>
+    <string name="theme_dark">Dunkelmodus</string>
+    <string name="theme_select_title">Design auswählen</string>
+    
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Willkommen beim Bürgertest</string>
+    <string name="onboarding_desc_1">Deine Reise zur deutschen Einbürgerung beginnt hier.</string>
+    <string name="onboarding_title_2">Intelligentes Lernen</string>
+    <string name="onboarding_desc_2">Meistere alle 300+ Fragen mit unserer Intervallwiederholung und KI.</string>
+    <string name="onboarding_title_3">Fortschritt verfolgen</string>
+    <string name="onboarding_desc_3">Wisse genau, wann du bereit für die echte Prüfung bist.</string>
+    <string name="onboarding_title_4">Wähle dein Bundesland</string>
+    <string name="onboarding_desc_4">Die Prüfung hat 3 bundeslandspezifische Fragen. In welcher Region lebst du?</string>
+    <string name="btn_get_started">Loslegen</string>
+
+    <!-- Language Selection -->
+    <string name="language_select_title">Sprache auswählen</string>
+    <string name="cancel">Abbrechen</string>
+
+    <!-- Profile & Stats -->
+    <string name="profile_guest">Gast</string>
+    <string name="profile_learner">Lernende/r</string>
+    <string name="level_beginner">Anfänger</string>
+    <string name="level_novice">Neuling</string>
+    <string name="level_student">Schüler</string>
+    <string name="level_researcher">Forscher</string>
+    <string name="level_expert">Experte</string>
+    <string name="level_advanced">Fortgeschritten</string>
+    <string name="level_scholar">Gelehrter</string>
+    <string name="level_master">Meister</string>
+    <string name="level_citizen">Bürger</string>
+    
+    <string name="btn_logout">Abmelden</string>
+    <string name="guest_warning_title">Speichere deinen Fortschritt!</string>
+    <string name="guest_warning_desc">Du nutzt ein Gastkonto. Verknüpfe dein Konto, um deine Statistiken sicher in der Cloud zu speichern.</string>
+    <string name="btn_bind_account">Konto verknüpfen / Anmelden</string>
+    <string name="btn_edit">Bearbeiten</string>
+    
+    <string name="stat_current_streak">Aktueller Streak</string>
+    <string name="stat_total_answered">Beantwortet</string>
+    <string name="stat_mock_exams">Probeprüfungen</string>
+    <string name="stat_avg_score">Ø Punkte</string>
+    <string name="stat_one_day">1 Tag</string>
+    <string name="stat_days">%1$d Tage</string>
+    
+    <string name="subject_mastery">Themenbeherrschung</string>
+    <string name="needs_review">Wiederholung nötig</string>
+    <string name="no_category_data">Noch keine Kategoriedaten verfügbar.</string>
+    <string name="btn_review_now">Jetzt wiederholen</string>
+    <string name="advice_missed">Du hast kürzlich %1$d Fragen in dieser Kategorie falsch beantwortet. Eine kurze Wiederholung hilft dir, dein Wissen zu festigen.</string>
+    <string name="advice_mastery">Deine Beherrschung in dieser Kategorie liegt bei %1$d%%. Eine kurze Wiederholung hilft dir, dein Wissen zu festigen.</string>
+
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">Übersicht</string>
+    <string name="section_learning">Lernen</string>
+    <string name="section_simulator">Simulator</string>
+    <string name="stat_questions">Fragen</string>
+    <string name="stat_mastered">Gelernt</string>
+    <string name="stat_streak">Streak</string>
+    <string name="btn_start_exam">Prüfung starten</string>
+    <string name="btn_flashcards">Lernkarten</string>
+
+    <!-- Learning / Exam -->
+    <string name="btn_explain_ai">KI Erklären</string>
+    <string name="btn_translate">Übersetzen</string>
+    <string name="btn_next">Weiter</string>
+    <string name="btn_finish">Abschließen</string>
+    <string name="loading_ai">KI überlegt…</string>
+    <string name="correct_answer">Richtige Antwort</string>
+    <string name="wrong_answer">Falsche Antwort</string>
+    <string name="downloading_model">Sprachmodell wird heruntergeladen…</string>
+    <string name="download_info">Dies geschieht nur einmal (~30MB)</string>
+    <string name="mistakes">Fehler</string>
+    <string name="review_errors">Fehler überprüfen</string>
+    <string name="bookmarks">Lesezeichen</string>
+    <string name="saved_items">Gespeicherte Elemente</string>
+    <string name="stat_questions_format">%1$d Fragen</string>
+    <string name="translating">Übersetzen…</string>
+    <string name="quiz_finished">Prüfung beendet!</string>
+    <string name="your_score">Deine Punktzahl: %1$d / %2$d</string>
+    <string name="back_to_dashboard">Zurück zur Übersicht</string>
+    
+    <!-- Review & Bookmarks -->
+    <string name="btn_export_pdf">PDF Exportieren</string>
+    <string name="no_mistakes">Keine Fehler gefunden!</string>
+    <string name="no_mistakes_desc">Mach weiter so. Dein Fortschritt ist solide.</string>
+    <string name="questions_to_review">Du hast %1$d Fragen zu wiederholen.</string>
+    <string name="remove_focus_area">Aus dem Fokusbereich entfernen</string>
+    <string name="correct_answer_upper">RICHTIGE ANTWORT</string>
+    <string name="no_bookmarks">Noch keine Lesezeichen</string>
+    <string name="no_bookmarks_desc">Speichere interessante Fragen, um sie später zu wiederholen.</string>
+    <string name="remove_bookmark">Lesezeichen entfernen</string>
+
+    <!-- State Selection -->
+    <string name="select_your_state_title">Bundesland auswählen</string>
+    <string name="state_selection_desc">Übe die 10 spezifischen Fragen für deine Region.</string>
+    <string name="no_states_match">Keine Bundesländer entsprechen deiner Suche</string>
+    <string name="search_state">Bundesland suchen...</string>
+    <string name="btn_start_practice">Übung starten</string>
+
+    <!-- Swipe Flashcards -->
+    <string name="quick_review">Schnelle Wiederholung</string>
+    <string name="swipe_categorized_study">Wische für kategorisiertes Lernen</string>
+    <string name="daily_review_done">Tägliche Wiederholung erledigt!</string>
+    <string name="mastered_questions">Du hast diese Fragen gemeistert.</string>
+    <string name="flashcard_question">Frage</string>
+    <string name="flashcard_answer">Richtige Antwort</string>
+
+    <!-- More Dashboard Strings -->
+    <string name="greeting_morning">Guten Morgen,</string>
+    <string name="quick_review_swipe">Schnelle Wiederholung (Wischen)</string>
+    <string name="daily_flashcard_desc">Tägliche Karteikarten-Kategorisierung</string>
+    <string name="thirty_three_questions">33 Fragen</string>
+    <string name="start_now">JETZT STARTEN</string>
+    <string name="state_specific">Bundeslandspezifisch</string>
+    <string name="progress_title">Fortschritt</string>
+    <string name="smart_tracker">Smarter Tracker</string>
+
+    <!-- Learning Flashcard Details -->
+    <string name="great_job">Großartige Arbeit!</string>
+    <string name="reviewed_all_questions">Du hast alle Fragen wiederholt.</string>
+    <string name="no_questions_found">Keine Fragen gefunden. Bitte starte die App neu.</string>
+    <string name="ai_explanation">KI-Erklärung</string>
+    <string name="no_explanation">Keine Erklärung verfügbar.</string>
+    <string name="got_it">Verstanden!</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Start</string>
+    <string name="nav_learn">Lernen</string>
+    <string name="nav_profile">Profil</string>
+    <string name="nav_settings">Einstellungen</string>
+    
+    <string name="level_format">Level %1$d %2$s</string>
+
+    <!-- Authentication -->
+    <string name="welcome_back">Willkommen zurück</string>
+    <string name="login_desc">Melde dich an, um deinen Fortschritt und deine Streaks zu synchronisieren.</string>
+    <string name="email_address">E-Mail-Adresse</string>
+    <string name="password">Passwort</string>
+    <string name="hide_password">Passwort verbergen</string>
+    <string name="show_password">Passwort anzeigen</string>
+    <string name="forgot_password">Passwort vergessen?</string>
+    <string name="sign_in">Anmelden</string>
+    <string name="dont_have_account">Du hast noch kein Konto?</string>
+    <string name="sign_up"> Registrieren</string>
+    
+    <string name="create_account">Konto erstellen</string>
+    <string name="signup_desc">Wähle einen Avatar und beginne deine Reise.</string>
+    <string name="select_avatar">Avatar auswählen</string>
+    <string name="random_chosen">Zufällig ausgewählt</string>
+    <string name="full_name">Vollständiger Name</string>
+    <string name="already_have_account">Du hast bereits ein Konto?</string>
+    <string name="sign_in_link"> Anmelden</string>
+    
+    <!-- Edit Profile -->
+    <string name="edit_profile">Profil bearbeiten</string>
+    <string name="account_security">Kontosicherheit</string>
+    <string name="send_password_reset">Passwort-Reset-Link senden</string>
+    <string name="password_reset_desc">Wir senden einen Link an deine E-Mail, um dein Passwort sicher zurückzusetzen.</string>
+    <string name="save_changes">Änderungen speichern</string>
+
+    <!-- Profile Category Masteries -->
+    <string name="politics_democracy">Politik in der Demokratie</string>
+    <string name="history_responsibility">Geschichte und Verantwortung</string>
+    <string name="people_society">Mensch und Gesellschaft</string>
+</resources>

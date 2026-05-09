@@ -1,0 +1,171 @@
+<resources>
+    <string name="app_name">Einbürgerungstest 2026</string>
+    
+    <string name="settings_title">Settings</string>
+    <string name="group_app_preferences">App Preferences</string>
+    <string name="group_study_reminders">Study Reminders</string>
+    <string name="group_subscription">Subscription &amp; Account</string>
+    <string name="group_support">Support &amp; About</string>
+    
+    <string name="label_theme">Theme</string>
+    <string name="label_language">Language</string>
+    <string name="label_daily_practice">Daily Study Reminder</string>
+    <string name="label_manage_subscription">Manage Subscription</string>
+    <string name="label_restore_purchases">Restore Purchases</string>
+    <string name="label_contact_support">Contact Support</string>
+    <string name="label_privacy_policy">Privacy Policy</string>
+    <string name="label_app_version">App Version</string>
+    
+    <string name="theme_system">System Default</string>
+    <string name="theme_light">Light Mode</string>
+    <string name="theme_dark">Dark Mode</string>
+    <string name="theme_select_title">Select Theme</string>
+    
+    <string name="onboarding_title_1">Welcome to Citizenship Test</string>
+    <string name="onboarding_desc_1">Your journey to German citizenship begins here.</string>
+    <string name="onboarding_title_2">Smart Learning</string>
+    <string name="onboarding_desc_2">Master all 300+ questions with our spaced repetition and AI.</string>
+    <string name="onboarding_title_3">Track Progress</string>
+    <string name="onboarding_desc_3">Know exactly when you are ready for the real exam.</string>
+    <string name="onboarding_title_4">Choose Your State</string>
+    <string name="onboarding_desc_4">The exam has 3 state-specific questions. Which region do you live in?</string>
+    <string name="btn_get_started">Get Started</string>
+
+    <string name="language_select_title">Select Language</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="profile_guest">Guest</string>
+    <string name="profile_learner">Learner</string>
+    <string name="level_beginner">Beginner</string>
+    <string name="level_novice">Novice</string>
+    <string name="level_student">Student</string>
+    <string name="level_researcher">Researcher</string>
+    <string name="level_expert">Expert</string>
+    <string name="level_advanced">Advanced</string>
+    <string name="level_scholar">Scholar</string>
+    <string name="level_master">Master</string>
+    <string name="level_citizen">Citizen</string>
+    
+    <string name="btn_logout">Log Out</string>
+    <string name="guest_warning_title">Save your progress!</string>
+    <string name="guest_warning_desc">You are using a guest account. Link your account to safely save your statistics in the cloud.</string>
+    <string name="btn_bind_account">Link Account / Sign In</string>
+    <string name="btn_edit">Edit</string>
+    
+    <string name="stat_current_streak">Current Streak</string>
+    <string name="stat_total_answered">Answered</string>
+    <string name="stat_mock_exams">Mock Exams</string>
+    <string name="stat_avg_score">Avg. Score</string>
+    <string name="stat_one_day">1 Day</string>
+    <string name="stat_days">%1$d Days</string>
+    
+    <string name="subject_mastery">Subject Mastery</string>
+    <string name="needs_review">Needs Review</string>
+    <string name="no_category_data">No category data available yet.</string>
+    <string name="btn_review_now">Review Now</string>
+    <string name="advice_missed">You recently answered %1$d questions incorrectly in this category. A quick review will help solidify your knowledge.</string>
+    <string name="advice_mastery">Your mastery in this category is at %1$d%%. A quick review will help solidify your knowledge.</string>
+
+    <string name="dashboard_title">Dashboard</string>
+    <string name="section_learning">Learning</string>
+    <string name="section_simulator">Simulator</string>
+    <string name="stat_questions">Questions</string>
+    <string name="stat_mastered">Mastered</string>
+    <string name="stat_streak">Streak</string>
+    <string name="btn_start_exam">Start Exam</string>
+    <string name="btn_flashcards">Flashcards</string>
+
+    <string name="btn_explain_ai">AI Explain</string>
+    <string name="btn_translate">Translate</string>
+    <string name="btn_next">Next</string>
+    <string name="btn_finish">Finish</string>
+    <string name="loading_ai">AI is thinking…</string>
+    <string name="correct_answer">Correct Answer</string>
+    <string name="wrong_answer">Wrong Answer</string>
+    <string name="downloading_model">Downloading language model…</string>
+    <string name="download_info">This only happens once (~30MB)</string>
+    <string name="mistakes">Mistakes</string>
+    <string name="review_errors">Review Mistakes</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="saved_items">Saved Items</string>
+    <string name="stat_questions_format">%1$d Questions</string>
+    <string name="translating">Translating…</string>
+    <string name="quiz_finished">Exam finished!</string>
+    <string name="your_score">Your score: %1$d / %2$d</string>
+    <string name="back_to_dashboard">Back to Dashboard</string>
+    
+    <string name="btn_export_pdf">Export PDF</string>
+    <string name="no_mistakes">No mistakes found!</string>
+    <string name="no_mistakes_desc">Keep it up. Your progress is solid.</string>
+    <string name="questions_to_review">You have %1$d questions to review.</string>
+    <string name="remove_focus_area">Remove from focus area</string>
+    <string name="correct_answer_upper">CORRECT ANSWER</string>
+    <string name="no_bookmarks">No bookmarks yet</string>
+    <string name="no_bookmarks_desc">Save interesting questions to review them later.</string>
+    <string name="remove_bookmark">Remove bookmark</string>
+
+    <string name="select_your_state_title">Select State</string>
+    <string name="state_selection_desc">Practice the 10 specific questions for your region.</string>
+    <string name="no_states_match">No states match your search</string>
+    <string name="search_state">Search state...</string>
+    <string name="btn_start_practice">Start Practice</string>
+
+    <string name="quick_review">Quick Review</string>
+    <string name="swipe_categorized_study">Swipe for categorized learning</string>
+    <string name="daily_review_done">Daily review done!</string>
+    <string name="mastered_questions">You have mastered these questions.</string>
+    <string name="flashcard_question">Question</string>
+    <string name="flashcard_answer">Correct Answer</string>
+
+    <string name="greeting_morning">Good Morning,</string>
+    <string name="quick_review_swipe">Quick Review (Swipe)</string>
+    <string name="daily_flashcard_desc">Daily Flashcard Categorization</string>
+    <string name="thirty_three_questions">33 Questions</string>
+    <string name="start_now">START NOW</string>
+    <string name="state_specific">State-Specific</string>
+    <string name="progress_title">Progress</string>
+    <string name="smart_tracker">Smart Tracker</string>
+
+    <string name="great_job">Great Job!</string>
+    <string name="reviewed_all_questions">You have reviewed all questions.</string>
+    <string name="no_questions_found">No questions found. Please restart the app.</string>
+    <string name="ai_explanation">AI Explanation</string>
+    <string name="no_explanation">No explanation available.</string>
+    <string name="got_it">Got it!</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_learn">Learn</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_settings">Settings</string>
+    
+    <string name="level_format">Level %1$d %2$s</string>
+
+    <string name="welcome_back">Welcome back</string>
+    <string name="login_desc">Sign in to sync your progress and streaks.</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="hide_password">Hide Password</string>
+    <string name="show_password">Show Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="sign_up"> Sign Up</string>
+    
+    <string name="create_account">Create Account</string>
+    <string name="signup_desc">Choose an avatar and begin your journey.</string>
+    <string name="select_avatar">Select Avatar</string>
+    <string name="random_chosen">Randomly Chosen</string>
+    <string name="full_name">Full Name</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="sign_in_link"> Sign In</string>
+    
+    <string name="edit_profile">Edit Profile</string>
+    <string name="account_security">Account Security</string>
+    <string name="send_password_reset">Send Password Reset Link</string>
+    <string name="password_reset_desc">We will send a link to your email to securely reset your password.</string>
+    <string name="save_changes">Save Changes</string>
+
+    <string name="politics_democracy">Politics in Democracy</string>
+    <string name="history_responsibility">History and Responsibility</string>
+    <string name="people_society">People and Society</string>
+</resources>
