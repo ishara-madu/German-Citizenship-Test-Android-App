@@ -185,4 +185,25 @@
     <string name="politics_democracy">Politik in der Demokratie</string>
     <string name="history_responsibility">Geschichte und Verantwortung</string>
     <string name="people_society">Mensch und Gesellschaft</string>
+    <string name="notification_title">Zeit zum Üben!</string>
+    <string name="notification_message">Halte deinen Streak am Leben und beantworte heute ein paar Fragen.</string>
+    <string name="reminder_time_title">Erinnerungszeit</string>
+    <string name="reminder_time_desc">Wähle die Uhrzeit für deine tägliche Lern-Erinnerung.</string>
+    <string name="btn_confirm">Bestätigen</string>
+    <string name="reminder_time_prefix">Erinnerung um</string>
+
+    <!-- Paywall -->
+    <string name="paywall_title">Premium freischalten</string>
+    <string name="paywall_subtitle">Bestehe die Prüfung mit Sicherheit</string>
+    <string name="benefit_ai">KI-Erklärungen für alle Fragen</string>
+    <string name="benefit_mock">Unbegrenzte Probeprüfungen</string>
+    <string name="benefit_ads">Werbefreie Erfahrung</string>
+    <string name="benefit_stats">Detaillierte Statistiken</string>
+    <string name="plan_monthly">Monatlich</string>
+    <string name="plan_yearly">Jährlich</string>
+    <string name="plan_lifetime">Lebenslang</string>
+    <string name="best_value">Bester Wert</string>
+    <string name="btn_continue">Weiter</string>
+    <string name="restore_purchases">Käufe wiederherstellen</string>
+    <string name="terms_privacy">Nutzungsbedingungen &amp; Datenschutzerklärung</string>
 </resources>

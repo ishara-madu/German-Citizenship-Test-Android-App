@@ -168,4 +168,25 @@
     <string name="politics_democracy">Politics in Democracy</string>
     <string name="history_responsibility">History and Responsibility</string>
     <string name="people_society">People and Society</string>
+    <string name="notification_title">Time to Practice!</string>
+    <string name="notification_message">Keep your streak alive by answering a few questions today.</string>
+    <string name="reminder_time_title">Reminder Time</string>
+    <string name="reminder_time_desc">Choose the time for your daily study reminder.</string>
+    <string name="btn_confirm">Confirm</string>
+    <string name="reminder_time_prefix">Remind at</string>
+
+    <!-- Paywall -->
+    <string name="paywall_title">Unlock Premium</string>
+    <string name="paywall_subtitle">Pass the exam with confidence</string>
+    <string name="benefit_ai">AI Explanations for all questions</string>
+    <string name="benefit_mock">Unlimited Mock Exams</string>
+    <string name="benefit_ads">Ad-free experience</string>
+    <string name="benefit_stats">Advanced Statistics &amp; Analytics</string>
+    <string name="plan_monthly">Monthly</string>
+    <string name="plan_yearly">Yearly</string>
+    <string name="plan_lifetime">Lifetime</string>
+    <string name="best_value">Best Value</string>
+    <string name="btn_continue">Continue</string>
+    <string name="restore_purchases">Restore Purchases</string>
+    <string name="terms_privacy">Terms of Service &amp; Privacy Policy</string>
 </resources>

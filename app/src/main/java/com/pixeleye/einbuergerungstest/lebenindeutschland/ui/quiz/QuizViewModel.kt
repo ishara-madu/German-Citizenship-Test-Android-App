@@ -56,48 +56,30 @@ class QuizViewModel @Inject constructor(
     val uiState: StateFlow<QuizUiState> = _uiState.asStateFlow()
 
 
-    init {
-        syncWithCloud()
-    }
-
-
-
-    private fun syncWithCloud() {
-        viewModelScope.launch {
-            val user = authService.getCurrentUser() ?: return@launch
-            val cloudData = cloudSyncService.getUserProgress(user.uid)
-            
-            if (cloudData != null) {
-                // Sync Bookmarks
-                (cloudData["bookmarks"] as? List<*>)?.filterIsInstance<Long>()?.forEach { id ->
-                    repository.updateBookmarkStatus(id.toInt(), true)
-                }
-                
-                // Sync Mistakes
-                (cloudData["mistakes"] as? List<*>)?.filterIsInstance<Long>()?.forEach { id ->
-                    repository.updateMistakeStatus(id.toInt(), true)
-                }
-            }
-            
-            // Initial push
-            pushSyncData()
-        }
-    }
-
-    private suspend fun pushSyncData() {
+    /**
+     * Pushes the complete user progress to cloud.
+     * Includes all synced fields so that merge works correctly.
+     */
+    private suspend fun pushFullProgressToCloud() {
         val user = authService.getCurrentUser() ?: return
-        
-        // Pull latest IDs directly from repository
-        val bookmarks = repository.getAllQuestionsOnce().filter { it.isBookmarked }.map { it.id }
-        val mistakes = repository.getAllQuestionsOnce().filter { it.isMistake }.map { it.id }
 
-        
-        val syncData = mapOf(
+        val bookmarks = repository.getBookmarkedQuestionsOnce().map { it.id }
+        val mistakes = repository.getMistakeQuestionsOnce().map { it.id }
+
+        val currentState = preferenceManager.getSelectedState() ?: "General"
+
+        val progress = mapOf(
+            "streak" to preferenceManager.getCurrentStreak(),
+            "answered_question_ids" to preferenceManager.getAnsweredQuestionIds().toList(),
+            "mastered_questions" to preferenceManager.getMasteredQuestionIds().toList(),
+            "exams_completed" to preferenceManager.getExamsCompleted(currentState),
+            "total_score_sum" to preferenceManager.getTotalScoreSum(currentState),
+            "selected_state" to currentState,
             "bookmarks" to bookmarks,
             "mistakes" to mistakes,
-            "last_updated_quiz" to com.google.firebase.Timestamp.now()
+            "last_updated" to com.google.firebase.Timestamp.now()
         )
-        cloudSyncService.saveUserProgress(user.uid, syncData)
+        cloudSyncService.saveUserProgress(user.uid, progress)
     }
 
 
@@ -230,7 +212,7 @@ class QuizViewModel @Inject constructor(
                     }
 
                     preferenceManager.incrementTotalAnswered(currentQuestion.id)
-                    pushSyncData()
+                    pushFullProgressToCloud()
                 }
             }
 
@@ -265,7 +247,7 @@ class QuizViewModel @Inject constructor(
                     viewModelScope.launch {
                         val selectedState = preferenceManager.getSelectedState() ?: "General"
                         preferenceManager.addExamResult(currentState.score, selectedState)
-                        pushSyncData()
+                        pushFullProgressToCloud()
                     }
                 }
 
@@ -426,7 +408,7 @@ class QuizViewModel @Inject constructor(
                 currentState.copy(questions = updatedQuestions)
             }
             
-            pushSyncData()
+            pushFullProgressToCloud()
         }
     }
 
@@ -434,7 +416,7 @@ class QuizViewModel @Inject constructor(
     fun toggleMistakeStatus(questionId: Int, isMistake: Boolean) {
         viewModelScope.launch {
             repository.updateMistakeStatus(questionId, isMistake)
-            pushSyncData()
+            pushFullProgressToCloud()
         }
     }
 }

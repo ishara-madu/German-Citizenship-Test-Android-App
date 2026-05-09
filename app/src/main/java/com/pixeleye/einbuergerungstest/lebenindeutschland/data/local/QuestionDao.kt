@@ -22,8 +22,14 @@ interface QuestionDao {
     @Query("SELECT * FROM questions WHERE isBookmarked = 1")
     fun getBookmarkedQuestions(): Flow<List<QuestionEntity>>
 
+    @Query("SELECT * FROM questions WHERE isBookmarked = 1")
+    suspend fun getBookmarkedQuestionsOnce(): List<QuestionEntity>
+
     @Query("SELECT * FROM questions WHERE isMistake = 1")
     fun getMistakeQuestions(): Flow<List<QuestionEntity>>
+
+    @Query("SELECT * FROM questions WHERE isMistake = 1")
+    suspend fun getMistakeQuestionsOnce(): List<QuestionEntity>
 
     @Query("UPDATE questions SET isBookmarked = :isBookmarked WHERE id = :questionId")
     suspend fun updateBookmarkStatus(questionId: Int, isBookmarked: Boolean)

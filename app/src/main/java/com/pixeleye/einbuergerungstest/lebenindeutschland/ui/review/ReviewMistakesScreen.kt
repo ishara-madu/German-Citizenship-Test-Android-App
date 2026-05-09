@@ -12,6 +12,8 @@ import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,13 +36,18 @@ fun ReviewMistakesScreen(
     questions: List<QuestionEntity>,
     onBackClick: () -> Unit = {},
     onRemoveMistake: (Int) -> Unit = {},
-    onExportPdfClick: () -> Unit = {}
+    onExportPdfClick: ((String?) -> Unit) -> Unit = {},
+    onViewDownloadsClick: () -> Unit = {}
 ) {
     val isDark = LocalIsDarkTheme.current
     val bgColor = if (isDark) GamifiedBackgroundDark else GamifiedBackgroundLight
+    val snackbarHostState = androidx.compose.runtime.remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
                 title = {
@@ -60,14 +67,15 @@ fun ReviewMistakesScreen(
                     }
                 },
                 actions = {
-                    IconButton(onClick = onExportPdfClick) {
+                    IconButton(onClick = onViewDownloadsClick) {
                         Icon(
                             imageVector = Icons.Rounded.PictureAsPdf,
-                            contentDescription = "Export PDF",
+                            contentDescription = "View Downloads",
                             tint = YellowAccent
                         )
                     }
                 },
+
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = bgColor
                 )
@@ -76,7 +84,17 @@ fun ReviewMistakesScreen(
         floatingActionButton = {
             if (questions.isNotEmpty()) {
                 ExtendedFloatingActionButton(
-                    onClick = onExportPdfClick,
+                    onClick = {
+                        onExportPdfClick { path ->
+                            scope.launch {
+                                if (path != null) {
+                                    snackbarHostState.showSnackbar("PDF exported to Downloads folder")
+                                } else {
+                                    snackbarHostState.showSnackbar("Failed to export PDF")
+                                }
+                            }
+                        }
+                    },
                     containerColor = PrimaryActionStart,
                     contentColor = Color.White,
                     shape = RoundedCornerShape(20.dp),

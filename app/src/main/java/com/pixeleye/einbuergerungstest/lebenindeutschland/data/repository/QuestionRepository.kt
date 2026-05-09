@@ -30,8 +30,14 @@ class QuestionRepository @Inject constructor(
     fun getBookmarkedQuestions(): Flow<List<QuestionEntity>> = 
         questionDao.getBookmarkedQuestions()
 
+    suspend fun getBookmarkedQuestionsOnce(): List<QuestionEntity> = 
+        questionDao.getBookmarkedQuestionsOnce()
+
     fun getMistakeQuestions(): Flow<List<QuestionEntity>> = 
         questionDao.getMistakeQuestions()
+
+    suspend fun getMistakeQuestionsOnce(): List<QuestionEntity> = 
+        questionDao.getMistakeQuestionsOnce()
 
     suspend fun updateBookmarkStatus(questionId: Int, isBookmarked: Boolean) {
         questionDao.updateBookmarkStatus(questionId, isBookmarked)

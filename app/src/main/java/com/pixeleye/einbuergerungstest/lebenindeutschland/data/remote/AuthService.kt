@@ -2,11 +2,13 @@ package com.pixeleye.einbuergerungstest.lebenindeutschland.data.remote
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 import javax.inject.Singleton
 
 interface AuthService {
+    val userFlow: kotlinx.coroutines.flow.StateFlow<FirebaseUser?>
     suspend fun signInAnonymously(): FirebaseUser?
     suspend fun signInWithEmailAndPassword(email: String, password: String): FirebaseUser?
     suspend fun signUpWithEmailAndPassword(email: String, password: String, name: String): FirebaseUser?
@@ -24,6 +26,15 @@ interface AuthService {
 class AuthServiceImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth
 ) : AuthService {
+
+    private val _userFlow = kotlinx.coroutines.flow.MutableStateFlow(firebaseAuth.currentUser)
+    override val userFlow = _userFlow.asStateFlow()
+
+    init {
+        firebaseAuth.addAuthStateListener { auth ->
+            _userFlow.value = auth.currentUser
+        }
+    }
 
     override suspend fun signInAnonymously(): FirebaseUser? {
         return try {

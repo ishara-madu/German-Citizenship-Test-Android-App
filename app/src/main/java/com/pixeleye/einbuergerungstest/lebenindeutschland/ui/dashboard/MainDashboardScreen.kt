@@ -52,6 +52,7 @@ fun MainDashboardScreen(
     onProfileClick: () -> Unit = {},
     onReviewMistakesClick: () -> Unit = {},
     onBookmarksClick: () -> Unit = {},
+    onPremiumClick: () -> Unit = {},
     mainViewModel: com.pixeleye.einbuergerungstest.lebenindeutschland.ui.MainViewModel = androidx.hilt.navigation.compose.hiltViewModel(),
 
     authViewModel: com.pixeleye.einbuergerungstest.lebenindeutschland.ui.auth.AuthViewModel = androidx.hilt.navigation.compose.hiltViewModel()
@@ -92,7 +93,7 @@ fun MainDashboardScreen(
             Spacer(modifier = Modifier.height(48.dp))
 
             // Top Header Row
-            TopHeaderRow(isDark, streakCount, userName, profileImageUrl, onProfileClick)
+            TopHeaderRow(isDark, streakCount, userName, profileImageUrl, onProfileClick, onPremiumClick)
 
             // Center/Lower Focus: Hero Action Section
             HeroActionCard(
@@ -284,7 +285,7 @@ fun SmallActionCard(
 
 
 @Composable
-fun TopHeaderRow(isDark: Boolean, streakCount: Int, userName: String, profileImageUrl: String?, onProfileClick: () -> Unit) {
+fun TopHeaderRow(isDark: Boolean, streakCount: Int, userName: String, profileImageUrl: String?, onProfileClick: () -> Unit, onPremiumClick: () -> Unit) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -353,30 +354,51 @@ fun TopHeaderRow(isDark: Boolean, streakCount: Int, userName: String, profileIma
             }
         }
 
-        // Daily Streak Badge
-        Surface(
-            shape = RoundedCornerShape(16.dp),
-            color = if (isDark) GamifiedSurfaceDark else GamifiedSurfaceLight,
-            shadowElevation = 4.dp
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Row(
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(6.dp)
+            // Premium Upgrade Badge
+            Surface(
+                shape = CircleShape,
+                color = YellowAccent.copy(alpha = 0.2f),
+                modifier = Modifier
+                    .size(44.dp)
+                    .clickable { onPremiumClick() }
             ) {
                 Icon(
-                    imageVector = Icons.Rounded.LocalFireDepartment,
-                    contentDescription = "Streak",
-                    tint = StreakFlame,
-                    modifier = Modifier.size(20.dp)
+                    imageVector = Icons.Rounded.WorkspacePremium,
+                    contentDescription = "Upgrade to Premium",
+                    tint = YellowAccent,
+                    modifier = Modifier.padding(10.dp)
                 )
-                Text(
-                    text = if (streakCount == 1) stringResource(id = R.string.stat_one_day) else stringResource(id = R.string.stat_days, streakCount),
-                    style = MaterialTheme.typography.labelLarge.copy(
-                        color = StreakFlame,
-                        fontWeight = FontWeight.Bold
+            }
+
+            // Daily Streak Badge
+            Surface(
+                shape = RoundedCornerShape(16.dp),
+                color = if (isDark) GamifiedSurfaceDark else GamifiedSurfaceLight,
+                shadowElevation = 4.dp
+            ) {
+                Row(
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Rounded.LocalFireDepartment,
+                        contentDescription = "Streak",
+                        tint = StreakFlame,
+                        modifier = Modifier.size(20.dp)
                     )
-                )
+                    Text(
+                        text = if (streakCount == 1) stringResource(id = R.string.stat_one_day) else stringResource(id = R.string.stat_days, streakCount),
+                        style = MaterialTheme.typography.labelLarge.copy(
+                            color = StreakFlame,
+                            fontWeight = FontWeight.Bold
+                        )
+                    )
+                }
             }
         }
     }

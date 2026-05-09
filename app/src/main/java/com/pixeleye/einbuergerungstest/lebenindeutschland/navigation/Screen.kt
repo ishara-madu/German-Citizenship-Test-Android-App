@@ -32,7 +32,7 @@ sealed class Screen(val route: String, @StringRes val titleRes: Int? = null, val
 
 
     companion object {
-        val bottomNavItems = listOf(
+        val bottomNavItems get() = listOf(
             Dashboard,
             Learning,
             Settings

@@ -132,18 +132,8 @@ fun ProgressProfileScreen(
         val overallProgress by mainViewModel.overallProgress.collectAsState()
         
         val level = ((overallProgress * 9).toInt() + 1).coerceIn(1, 10)
-        val levelName = when(level) {
-            1 -> stringResource(id = R.string.level_beginner)
-            2 -> stringResource(id = R.string.level_novice)
-            3 -> stringResource(id = R.string.profile_learner)
-            4 -> stringResource(id = R.string.level_student)
-            5 -> stringResource(id = R.string.level_researcher)
-            6 -> stringResource(id = R.string.level_expert)
-            7 -> stringResource(id = R.string.level_advanced)
-            8 -> stringResource(id = R.string.level_scholar)
-            9 -> stringResource(id = R.string.level_master)
-            else -> stringResource(id = R.string.level_citizen)
-        }
+        val levelTitleResId by mainViewModel.currentLevelTitle.collectAsState()
+        val levelName = stringResource(id = levelTitleResId)
 
         val selectedState = mainViewModel.getSelectedState() ?: "Bayern" // Default is Bavaria/Bayern
 
@@ -836,9 +826,19 @@ fun EditProfileDialog(
         "avatar_5", "avatar_6", "avatar_7", "avatar_8"
     )
 
+    // Resolve strings outside AlertDialog to preserve localized context
+    val editProfileText = stringResource(id = R.string.edit_profile)
+    val fullNameText = stringResource(id = R.string.full_name)
+    val selectAvatarText = stringResource(id = R.string.select_avatar)
+    val accountSecurityText = stringResource(id = R.string.account_security)
+    val sendPasswordResetText = stringResource(id = R.string.send_password_reset)
+    val passwordResetDescText = stringResource(id = R.string.password_reset_desc)
+    val saveChangesText = stringResource(id = R.string.save_changes)
+    val cancelText = stringResource(id = R.string.cancel)
+
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(stringResource(id = R.string.edit_profile), fontWeight = FontWeight.Bold) },
+        title = { Text(editProfileText, fontWeight = FontWeight.Bold) },
         text = {
             Column(
                 modifier = Modifier.fillMaxWidth(),
@@ -848,13 +848,13 @@ fun EditProfileDialog(
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = { Text(stringResource(id = R.string.full_name)) },
+                    label = { Text(fullNameText) },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp)
                 )
 
                 // Avatar Picker
-                Text(stringResource(id = R.string.select_avatar), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
+                Text(selectAvatarText, style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
                 androidx.compose.foundation.lazy.LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
@@ -889,7 +889,7 @@ fun EditProfileDialog(
                 // Password Reset (if not guest)
                 if (!isGuest) {
                     HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
-                    Text(stringResource(id = R.string.account_security), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
+                    Text(accountSecurityText, style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
                     OutlinedButton(
                         onClick = onResetPassword,
                         modifier = Modifier.fillMaxWidth(),
@@ -898,10 +898,10 @@ fun EditProfileDialog(
                     ) {
                         Icon(Icons.Filled.LockReset, contentDescription = null)
                         Spacer(Modifier.width(8.dp))
-                        Text(stringResource(id = R.string.send_password_reset))
+                        Text(sendPasswordResetText)
                     }
                     Text(
-                        stringResource(id = R.string.password_reset_desc),
+                        passwordResetDescText,
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                     )
@@ -910,12 +910,12 @@ fun EditProfileDialog(
         },
         confirmButton = {
             Button(onClick = { onConfirm(name, selectedAvatar) }) {
-                Text(stringResource(id = R.string.save_changes))
+                Text(saveChangesText)
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text(stringResource(id = R.string.cancel))
+                Text(cancelText)
             }
         }
     )

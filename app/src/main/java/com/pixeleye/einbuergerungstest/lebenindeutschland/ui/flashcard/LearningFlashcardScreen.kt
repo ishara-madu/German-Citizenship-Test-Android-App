@@ -549,6 +549,12 @@ fun ExplanationBottomSheet(
     isLoading: Boolean,
     onDismiss: () -> Unit
 ) {
+    // Resolve strings outside ModalBottomSheet to preserve localized context
+    val aiExplanationTitle = stringResource(id = R.string.ai_explanation)
+    val loadingAiText = stringResource(id = R.string.loading_ai)
+    val noExplanationText = stringResource(id = R.string.no_explanation)
+    val gotItText = stringResource(id = R.string.got_it)
+
     ModalBottomSheet(
         onDismissRequest = onDismiss,
         sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
@@ -572,7 +578,7 @@ fun ExplanationBottomSheet(
             Spacer(modifier = Modifier.height(16.dp))
             
             Text(
-                text = stringResource(id = R.string.ai_explanation),
+                text = aiExplanationTitle,
                 style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.ExtraBold),
                 color = MaterialTheme.colorScheme.onSurface
             )
@@ -582,10 +588,10 @@ fun ExplanationBottomSheet(
             if (isLoading) {
                 CircularProgressIndicator(color = PrimaryActionStart)
                 Spacer(modifier = Modifier.height(16.dp))
-                Text(stringResource(id = R.string.loading_ai), style = MaterialTheme.typography.bodyMedium)
+                Text(loadingAiText, style = MaterialTheme.typography.bodyMedium)
             } else {
                 Text(
-                    text = explanation ?: stringResource(id = R.string.no_explanation),
+                    text = explanation ?: noExplanationText,
                     style = MaterialTheme.typography.bodyLarge.copy(lineHeight = 24.sp),
                     color = MaterialTheme.colorScheme.onSurface,
                     textAlign = TextAlign.Center
@@ -601,7 +607,7 @@ fun ExplanationBottomSheet(
                 shape = RoundedCornerShape(16.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = PrimaryActionStart)
             ) {
-                Text(stringResource(id = R.string.got_it), fontWeight = FontWeight.Bold)
+                Text(gotItText, fontWeight = FontWeight.Bold)
             }
         }
     }

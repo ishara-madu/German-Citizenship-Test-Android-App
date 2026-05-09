@@ -36,6 +36,10 @@ class PreferenceManager @Inject constructor(
         private const val KEY_TOTAL_SCORE_SUM = "total_score_sum"
         private const val KEY_THEME_MODE = "theme_mode"
         private const val KEY_APP_LANGUAGE = "app_language"
+        private const val KEY_REMINDER_ENABLED = "reminder_enabled"
+        private const val KEY_REMINDER_HOUR = "reminder_hour"
+        private const val KEY_REMINDER_MINUTE = "reminder_minute"
+        private const val KEY_LAST_APP_OPEN_DATE = "last_app_open_date"
     }
 
 
@@ -98,6 +102,12 @@ class PreferenceManager @Inject constructor(
             .apply()
     }
 
+    fun setStreak(streak: Int) {
+        sharedPreferences.edit()
+            .putInt(KEY_CURRENT_STREAK, streak)
+            .apply()
+    }
+
     fun getAnsweredQuestionIds(): Set<String> {
         return sharedPreferences.getStringSet(KEY_ANSWERED_QUESTION_IDS, emptySet()) ?: emptySet()
     }
@@ -140,6 +150,13 @@ class PreferenceManager @Inject constructor(
             .apply()
     }
 
+    fun setExamStats(state: String, count: Int, scoreSum: Int) {
+        sharedPreferences.edit()
+            .putInt("${KEY_EXAMS_COMPLETED}_$state", count)
+            .putInt("${KEY_TOTAL_SCORE_SUM}_$state", scoreSum)
+            .apply()
+    }
+
     fun getAverageScore(state: String = "General"): Int {
         val exams = getExamsCompleted(state)
         if (exams == 0) return 0
@@ -164,7 +181,48 @@ class PreferenceManager @Inject constructor(
         sharedPreferences.edit().putString(KEY_APP_LANGUAGE, language).apply()
         _appLanguage.value = language
     }
+
+    // Daily Reminder Preferences
+    fun isReminderEnabled(): Boolean {
+        return sharedPreferences.getBoolean(KEY_REMINDER_ENABLED, false)
+    }
+
+    fun setReminderEnabled(enabled: Boolean) {
+        sharedPreferences.edit().putBoolean(KEY_REMINDER_ENABLED, enabled).apply()
+    }
+
+    fun getReminderHour(): Int {
+        return sharedPreferences.getInt(KEY_REMINDER_HOUR, 20) // Default: 8 PM
+    }
+
+    fun getReminderMinute(): Int {
+        return sharedPreferences.getInt(KEY_REMINDER_MINUTE, 0)
+    }
+
+    fun setReminderTime(hour: Int, minute: Int) {
+        sharedPreferences.edit()
+            .putInt(KEY_REMINDER_HOUR, hour)
+            .putInt(KEY_REMINDER_MINUTE, minute)
+            .apply()
+    }
+
+    fun recordAppOpenedToday() {
+        val today = java.util.Calendar.getInstance().apply {
+            set(java.util.Calendar.HOUR_OF_DAY, 0)
+            set(java.util.Calendar.MINUTE, 0)
+            set(java.util.Calendar.SECOND, 0)
+            set(java.util.Calendar.MILLISECOND, 0)
+        }.timeInMillis
+        sharedPreferences.edit().putLong(KEY_LAST_APP_OPEN_DATE, today).apply()
+    }
+
+    fun wasAppOpenedToday(): Boolean {
+        val today = java.util.Calendar.getInstance().apply {
+            set(java.util.Calendar.HOUR_OF_DAY, 0)
+            set(java.util.Calendar.MINUTE, 0)
+            set(java.util.Calendar.SECOND, 0)
+            set(java.util.Calendar.MILLISECOND, 0)
+        }.timeInMillis
+        return sharedPreferences.getLong(KEY_LAST_APP_OPEN_DATE, 0L) == today
+    }
 }
-
-
-

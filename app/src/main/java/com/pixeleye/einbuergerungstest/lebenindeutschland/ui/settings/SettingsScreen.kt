@@ -21,6 +21,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.platform.LocalContext
+import android.content.Intent
+import android.net.Uri
+import android.widget.Toast
 import com.pixeleye.einbuergerungstest.lebenindeutschland.R
 import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.theme.*
 
@@ -34,6 +39,10 @@ fun SettingsScreen(
     val themeMode by viewModel.themeMode.collectAsState()
     val appLanguage by viewModel.appLanguage.collectAsState()
     
+    val uriHandler = LocalUriHandler.current
+    val context = LocalContext.current
+    val packageName = context.packageName
+
     var showThemeDialog by remember { mutableStateOf(false) }
     var showLanguageDialog by remember { mutableStateOf(false) }
 
@@ -111,16 +120,35 @@ fun SettingsScreen(
 
             // Group 2: Study Reminders
             SettingsGroup(title = stringResource(id = R.string.group_study_reminders), isDark = isDark) {
-                var isReminderEnabled by remember { mutableStateOf(true) }
+                val isReminderEnabled by viewModel.isReminderEnabled.collectAsState()
+                val savedHour by viewModel.reminderHour.collectAsState()
+                val savedMinute by viewModel.reminderMinute.collectAsState()
+                var showTimePicker by remember { mutableStateOf(false) }
+
                 SettingsRow(
                     icon = Icons.Rounded.Notifications,
                     text = stringResource(id = R.string.label_daily_practice),
+                    subtitle = if (isReminderEnabled) {
+                        stringResource(id = R.string.reminder_time_prefix) + " " + String.format("%02d:%02d", savedHour, savedMinute)
+                    } else null,
                     isDark = isDark,
-                    onClick = { isReminderEnabled = !isReminderEnabled },
+                    onClick = {
+                        if (isReminderEnabled) {
+                            viewModel.disableReminder()
+                        } else {
+                            showTimePicker = true
+                        }
+                    },
                     trailingContent = {
                         Switch(
                             checked = isReminderEnabled,
-                            onCheckedChange = { isReminderEnabled = it },
+                            onCheckedChange = { enabled ->
+                                if (enabled) {
+                                    showTimePicker = true
+                                } else {
+                                    viewModel.disableReminder()
+                                }
+                            },
                             colors = SwitchDefaults.colors(
                                 checkedThumbColor = Color.White,
                                 checkedTrackColor = PrimaryActionStart
@@ -128,7 +156,21 @@ fun SettingsScreen(
                         )
                     }
                 )
+
+                if (showTimePicker) {
+                    ReminderTimePickerDialog(
+                        initialHour = savedHour,
+                        initialMinute = savedMinute,
+                        onConfirm = { hour, minute ->
+                            viewModel.enableReminder(hour, minute)
+                            showTimePicker = false
+                        },
+                        onDismiss = { showTimePicker = false },
+                        isDark = isDark
+                    )
+                }
             }
+
 
 
             // Group 3: Subscription & Account
@@ -138,14 +180,23 @@ fun SettingsScreen(
                     text = stringResource(id = R.string.label_manage_subscription),
                     iconTint = PrimaryActionStart,
                     isDark = isDark,
-                    onClick = { /* Manage Sub */ }
+                    onClick = { 
+                        try {
+                            uriHandler.openUri("https://play.google.com/store/account/subscriptions?package=$packageName")
+                        } catch (e: Exception) {
+                            Toast.makeText(context, "Could not open Play Store", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 )
                 HorizontalDivider(color = getDividerColor(isDark), thickness = 1.dp)
                 SettingsRow(
                     icon = Icons.Rounded.Restore,
                     text = stringResource(id = R.string.label_restore_purchases),
                     isDark = isDark,
-                    onClick = { /* Restore Purchases */ }
+                    onClick = { 
+                        Toast.makeText(context, "Restoring purchases...", Toast.LENGTH_SHORT).show()
+                        // Logic for billing library would go here
+                    }
                 )
             }
 
@@ -156,14 +207,26 @@ fun SettingsScreen(
                     icon = Icons.Rounded.Email,
                     text = stringResource(id = R.string.label_contact_support),
                     isDark = isDark,
-                    onClick = { /* Contact Support */ }
+                    onClick = { 
+                        val intent = Intent(Intent.ACTION_SENDTO).apply {
+                            data = Uri.parse("mailto:support@pixeleye.com")
+                            putExtra(Intent.EXTRA_SUBJECT, "Support: Leben in Deutschland App")
+                        }
+                        try {
+                            context.startActivity(Intent.createChooser(intent, "Send Email"))
+                        } catch (e: Exception) {
+                            Toast.makeText(context, "No email app found", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 )
                 HorizontalDivider(color = getDividerColor(isDark), thickness = 1.dp)
                 SettingsRow(
                     icon = Icons.Rounded.Policy,
                     text = stringResource(id = R.string.label_privacy_policy),
                     isDark = isDark,
-                    onClick = { /* Privacy Policy */ }
+                    onClick = { 
+                        uriHandler.openUri("https://pixeleye.io/privacy-policy")
+                    }
                 )
                 HorizontalDivider(color = getDividerColor(isDark), thickness = 1.dp)
                 SettingsRow(
@@ -171,7 +234,9 @@ fun SettingsScreen(
                     text = stringResource(id = R.string.label_app_version),
                     trailingText = "v1.0.0",
                     isDark = isDark,
-                    onClick = { /* App Version Info */ }
+                    onClick = { 
+                        Toast.makeText(context, "Leben in Deutschland v1.0.0", Toast.LENGTH_SHORT).show()
+                    }
                 )
             }
 
@@ -250,6 +315,7 @@ private fun SettingsRow(
     icon: ImageVector,
     text: String,
     isDark: Boolean,
+    subtitle: String? = null,
     iconTint: Color? = null,
     trailingText: String? = null,
     trailingContent: (@Composable () -> Unit)? = null,
@@ -274,13 +340,22 @@ private fun SettingsRow(
             modifier = Modifier.size(24.dp)
         )
         Spacer(modifier = Modifier.width(16.dp))
-        Text(
-            text = text,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = onSurface,
-            modifier = Modifier.weight(1f)
-        )
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = text,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = onSurface
+            )
+            if (subtitle != null) {
+                Text(
+                    text = subtitle,
+                    fontSize = 13.sp,
+                    color = onSurfaceVariant,
+                    modifier = Modifier.padding(top = 2.dp)
+                )
+            }
+        }
         
         if (trailingText != null) {
             Text(
@@ -414,3 +489,63 @@ private fun LanguageOptionRow(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ReminderTimePickerDialog(
+    initialHour: Int,
+    initialMinute: Int,
+    onConfirm: (Int, Int) -> Unit,
+    onDismiss: () -> Unit,
+    isDark: Boolean
+) {
+    val timePickerState = rememberTimePickerState(
+        initialHour = initialHour,
+        initialMinute = initialMinute,
+        is24Hour = true
+    )
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text(
+                text = stringResource(id = R.string.reminder_time_title),
+                fontWeight = FontWeight.Bold
+            )
+        },
+        text = {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = stringResource(id = R.string.reminder_time_desc),
+                    fontSize = 14.sp,
+                    color = if (isDark) Color(0xFF94A3B8) else Color(0xFF64748B),
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
+                TimeInput(
+                    state = timePickerState,
+                    colors = TimePickerDefaults.colors(
+                        timeSelectorSelectedContainerColor = PrimaryActionStart.copy(alpha = 0.15f),
+                        timeSelectorSelectedContentColor = PrimaryActionStart,
+                        timeSelectorUnselectedContainerColor = if (isDark) Color.White.copy(alpha = 0.05f) else Color.Black.copy(alpha = 0.05f)
+                    )
+                )
+            }
+        },
+        confirmButton = {
+            TextButton(
+                onClick = { onConfirm(timePickerState.hour, timePickerState.minute) }
+            ) {
+                Text(stringResource(id = R.string.btn_confirm), color = PrimaryActionStart, fontWeight = FontWeight.Bold)
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text(stringResource(id = R.string.cancel), color = if (isDark) Color(0xFF94A3B8) else Color(0xFF64748B))
+            }
+        },
+        containerColor = if (isDark) GamifiedSurfaceDark else Color.White,
+        shape = RoundedCornerShape(24.dp)
+    )
+}

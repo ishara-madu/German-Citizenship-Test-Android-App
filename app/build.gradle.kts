@@ -105,6 +105,9 @@ dependencies {
     implementation(libs.mlkit.translate)
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
+    // WorkManager for daily reminders
+    implementation(libs.androidx.work.runtime)
+
 
 
     // Glance Widget

@@ -80,7 +80,8 @@ fun AppNavHost(
                 onQuickReviewClick = { navController.navigate(Screen.TinderFlashcard.route) },
                 onProfileClick = { navController.navigate(Screen.Profile.route) },
                 onReviewMistakesClick = { navController.navigate(Screen.ReviewMistakes.route) },
-                onBookmarksClick = { navController.navigate(Screen.Bookmarks.route) }
+                onBookmarksClick = { navController.navigate(Screen.Bookmarks.route) },
+                onPremiumClick = { navController.navigate(Screen.PremiumPaywall.route) }
             )
         }
 
@@ -117,9 +118,14 @@ fun AppNavHost(
             ReviewMistakesScreen(
                 questions = mistakes,
                 onBackClick = { navController.popBackStack() },
-                onRemoveMistake = { questionId: Int -> mainViewModel.toggleMistake(questionId) }
+                onRemoveMistake = { questionId: Int -> mainViewModel.toggleMistake(questionId) },
+                onExportPdfClick = { callback ->
+                    mainViewModel.exportMistakesToPdf(callback)
+                },
+                onViewDownloadsClick = { mainViewModel.openPdfFolder() }
             )
         }
+
 
         composable(Screen.Bookmarks.route) {
             val bookmarks by mainViewModel.bookmarkedQuestions.collectAsState()

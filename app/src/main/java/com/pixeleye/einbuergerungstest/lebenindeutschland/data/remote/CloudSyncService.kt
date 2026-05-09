@@ -1,6 +1,7 @@
 package com.pixeleye.einbuergerungstest.lebenindeutschland.data.remote
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -11,13 +12,13 @@ class CloudSyncService @Inject constructor(
 ) {
     /**
      * Backs up the user's progress (Score, Streaks, Bookmarks).
-     * We only sync progress metadata, not the entire local question database.
+     * Uses merge to avoid overwriting fields not included in the update.
      */
     suspend fun saveUserProgress(userId: String, progressData: Map<String, Any>) {
         try {
             firestore.collection("users")
                 .document(userId)
-                .set(progressData)
+                .set(progressData, SetOptions.merge())
                 .await()
         } catch (e: Exception) {
             e.printStackTrace()
