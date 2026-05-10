@@ -34,10 +34,13 @@ import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.theme.*
 fun SettingsScreen(
     modifier: Modifier = Modifier,
     viewModel: SettingsViewModel = androidx.hilt.navigation.compose.hiltViewModel(),
-    onBackClick: () -> Unit = {}
+    mainViewModel: com.pixeleye.einbuergerungstest.lebenindeutschland.ui.MainViewModel = androidx.hilt.navigation.compose.hiltViewModel(),
+    onBackClick: () -> Unit = {},
+    onPremiumClick: () -> Unit = {}
 ) {
     val themeMode by viewModel.themeMode.collectAsState()
     val appLanguage by viewModel.appLanguage.collectAsState()
+    val isPremium by mainViewModel.isPremium.collectAsState()
     
     val uriHandler = LocalUriHandler.current
     val context = LocalContext.current
@@ -175,10 +178,43 @@ fun SettingsScreen(
 
             // Group 3: Subscription & Account
             SettingsGroup(title = stringResource(id = R.string.group_subscription), isDark = isDark) {
+                val isCloudSyncEnabled by viewModel.isCloudSyncEnabled.collectAsState()
+                
+                SettingsRow(
+                    icon = Icons.Rounded.CloudUpload,
+                    text = stringResource(id = R.string.label_cloud_backup),
+                    subtitle = stringResource(id = R.string.desc_cloud_backup),
+                    isDark = isDark,
+                    onClick = {
+                        if (isPremium) {
+                            viewModel.toggleCloudSync(!isCloudSyncEnabled)
+                        } else {
+                            onPremiumClick()
+                        }
+                    },
+                    trailingContent = {
+                        Switch(
+                            checked = isCloudSyncEnabled,
+                            onCheckedChange = { enabled ->
+                                if (isPremium) {
+                                    viewModel.toggleCloudSync(enabled)
+                                } else {
+                                    onPremiumClick()
+                                }
+                            },
+                            colors = SwitchDefaults.colors(
+                                checkedThumbColor = Color.White,
+                                checkedTrackColor = PrimaryActionStart
+                            )
+                        )
+                    }
+                )
+                HorizontalDivider(color = getDividerColor(isDark), thickness = 1.dp)
+                
                 SettingsRow(
                     icon = Icons.Rounded.WorkspacePremium,
                     text = stringResource(id = R.string.label_manage_subscription),
-                    iconTint = PrimaryActionStart,
+                    iconTint = YellowAccent,
                     isDark = isDark,
                     onClick = { 
                         try {
@@ -240,7 +276,15 @@ fun SettingsScreen(
                 )
             }
 
+            // Banner Ad
+            if (!isPremium) {
+                Spacer(modifier = Modifier.height(24.dp))
+                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                    com.pixeleye.einbuergerungstest.lebenindeutschland.ads.BannerAdView()
+                }
+            }
 
+            Spacer(modifier = Modifier.height(32.dp))
         }
 
         if (showThemeDialog) {

@@ -62,7 +62,7 @@ fun ProgressProfileScreen(
     val userEmail = if (!isGuestAccount) user?.email ?: "" else ""
     val profileImageUrl = user?.photoUrl?.toString()
 
-
+    val isPremium by mainViewModel.isPremium.collectAsState()
 
     var showEditDialog by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
     var showStateDialog by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
@@ -236,6 +236,13 @@ fun ProgressProfileScreen(
             }
         }
         
+        if (!isPremium) {
+            Spacer(modifier = Modifier.height(24.dp))
+            Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                com.pixeleye.einbuergerungstest.lebenindeutschland.ads.BannerAdView()
+            }
+        }
+
         Spacer(modifier = Modifier.height(48.dp))
     }
 }

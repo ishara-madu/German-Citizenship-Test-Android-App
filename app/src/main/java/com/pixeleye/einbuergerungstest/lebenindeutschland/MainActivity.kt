@@ -45,6 +45,9 @@ class MainActivity : ComponentActivity() {
             }
         }
 
+        // Load Interstitial Ad
+        com.pixeleye.einbuergerungstest.lebenindeutschland.ads.AdManager.loadInterstitial(this)
+
         setContent {
             val settingsViewModel: SettingsViewModel = hiltViewModel()
             val themeMode by settingsViewModel.themeMode.collectAsState()

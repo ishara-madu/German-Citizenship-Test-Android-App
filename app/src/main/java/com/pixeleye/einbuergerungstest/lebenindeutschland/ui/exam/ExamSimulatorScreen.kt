@@ -483,6 +483,8 @@ fun ExamBottomNavigationBar(
 fun QuizResultScreen(quizUiState: QuizUiState, onCloseClick: () -> Unit) {
     val isDark = LocalIsDarkTheme.current
     val bgColor = if (isDark) GamifiedBackgroundDark else GamifiedBackgroundLight
+    val mainViewModel: com.pixeleye.einbuergerungstest.lebenindeutschland.ui.MainViewModel = androidx.hilt.navigation.compose.hiltViewModel()
+    val isPremium by mainViewModel.isPremium.collectAsState()
     
     Column(
         modifier = Modifier.fillMaxSize().background(bgColor).padding(24.dp),
@@ -500,7 +502,15 @@ fun QuizResultScreen(quizUiState: QuizUiState, onCloseClick: () -> Unit) {
             style = MaterialTheme.typography.headlineMedium,
             color = PrimaryActionStart
         )
-        Spacer(modifier = Modifier.height(48.dp))
+        Spacer(modifier = Modifier.height(32.dp))
+
+        if (!isPremium) {
+            Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                com.pixeleye.einbuergerungstest.lebenindeutschland.ads.BannerAdView()
+            }
+            Spacer(modifier = Modifier.height(32.dp))
+        }
+
         Button(
             onClick = onCloseClick,
             modifier = Modifier.fillMaxWidth().height(56.dp),

@@ -29,6 +29,14 @@ class SettingsViewModel @Inject constructor(
     private val _reminderMinute = MutableStateFlow(preferenceManager.getReminderMinute())
     val reminderMinute: StateFlow<Int> = _reminderMinute.asStateFlow()
 
+    private val _isCloudSyncEnabled = MutableStateFlow(preferenceManager.isCloudSyncEnabled())
+    val isCloudSyncEnabled: StateFlow<Boolean> = _isCloudSyncEnabled.asStateFlow()
+
+    fun toggleCloudSync(enabled: Boolean) {
+        preferenceManager.setCloudSyncEnabled(enabled)
+        _isCloudSyncEnabled.value = enabled
+    }
+
     fun setThemeMode(mode: String) {
         preferenceManager.setThemeMode(mode)
     }

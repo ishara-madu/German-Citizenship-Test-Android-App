@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
 import com.pixeleye.einbuergerungstest.lebenindeutschland.data.remote.AuthService
+import com.pixeleye.einbuergerungstest.lebenindeutschland.data.remote.SubscriptionRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -22,7 +23,8 @@ sealed class AuthState {
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    private val authService: AuthService
+    private val authService: AuthService,
+    private val subscriptionRepository: SubscriptionRepository
 ) : ViewModel() {
 
     private val _authState = MutableStateFlow<AuthState>(AuthState.Idle)
@@ -47,6 +49,10 @@ class AuthViewModel @Inject constructor(
     private fun updateUserData(user: FirebaseUser?) {
         _currentUser.value = user
         _isAnonymous.value = user?.isAnonymous ?: true
+        // Sync RevenueCat user with Firebase UID
+        if (user != null && !user.isAnonymous) {
+            subscriptionRepository.loginUser(user.uid)
+        }
     }
 
     fun signInAnonymously() {

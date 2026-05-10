@@ -1,21 +1,21 @@
 package com.pixeleye.einbuergerungstest.lebenindeutschland.navigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Home
-import androidx.compose.material.icons.rounded.Insights
-import androidx.compose.material.icons.rounded.School
-import androidx.compose.material.icons.rounded.Settings
-import androidx.compose.material.icons.rounded.AccountCircle
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.School
+import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.annotation.StringRes
 import com.pixeleye.einbuergerungstest.lebenindeutschland.R
 
 
 sealed class Screen(val route: String, @StringRes val titleRes: Int? = null, val icon: ImageVector? = null) {
-    object Dashboard : Screen("dashboard", R.string.nav_home, Icons.Rounded.Home)
-    object Learning : Screen("learning", R.string.nav_learn, Icons.Rounded.School)
-    object Profile : Screen("profile", R.string.nav_profile, Icons.Rounded.AccountCircle)
-    object Settings : Screen("settings", R.string.nav_settings, Icons.Rounded.Settings)
+    object Dashboard : Screen("dashboard", R.string.nav_home, Icons.Outlined.Home)
+    object Learning : Screen("learning", R.string.nav_learn, Icons.Outlined.School)
+    object Profile : Screen("profile", R.string.nav_profile, Icons.Outlined.AccountCircle)
+    object Settings : Screen("settings", R.string.nav_settings, Icons.Outlined.Settings)
+    object MainContainer : Screen("main_container")
 
     
     object ExamSimulator : Screen("exam_simulator")

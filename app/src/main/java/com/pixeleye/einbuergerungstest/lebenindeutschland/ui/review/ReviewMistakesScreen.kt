@@ -37,7 +37,8 @@ fun ReviewMistakesScreen(
     onBackClick: () -> Unit = {},
     onRemoveMistake: (Int) -> Unit = {},
     onExportPdfClick: ((String?) -> Unit) -> Unit = {},
-    onViewDownloadsClick: () -> Unit = {}
+    onViewDownloadsClick: () -> Unit = {},
+    isPremium: Boolean = false
 ) {
     val isDark = LocalIsDarkTheme.current
     val bgColor = if (isDark) GamifiedBackgroundDark else GamifiedBackgroundLight
@@ -127,6 +128,13 @@ fun ReviewMistakesScreen(
                             isDark = isDark,
                             onRemoveClick = { onRemoveMistake(question.id) }
                         )
+                    }
+                    if (!isPremium) {
+                        item {
+                            Box(modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp), contentAlignment = Alignment.Center) {
+                                com.pixeleye.einbuergerungstest.lebenindeutschland.ads.BannerAdView()
+                            }
+                        }
                     }
                     item {
                         Spacer(modifier = Modifier.height(80.dp))

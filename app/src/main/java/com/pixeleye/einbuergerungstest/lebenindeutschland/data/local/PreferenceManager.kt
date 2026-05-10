@@ -40,6 +40,7 @@ class PreferenceManager @Inject constructor(
         private const val KEY_REMINDER_HOUR = "reminder_hour"
         private const val KEY_REMINDER_MINUTE = "reminder_minute"
         private const val KEY_LAST_APP_OPEN_DATE = "last_app_open_date"
+        private const val KEY_CLOUD_SYNC_ENABLED = "cloud_sync_enabled"
     }
 
 
@@ -224,5 +225,13 @@ class PreferenceManager @Inject constructor(
             set(java.util.Calendar.MILLISECOND, 0)
         }.timeInMillis
         return sharedPreferences.getLong(KEY_LAST_APP_OPEN_DATE, 0L) == today
+    }
+
+    fun isCloudSyncEnabled(): Boolean {
+        return sharedPreferences.getBoolean(KEY_CLOUD_SYNC_ENABLED, false)
+    }
+
+    fun setCloudSyncEnabled(enabled: Boolean) {
+        sharedPreferences.edit().putBoolean(KEY_CLOUD_SYNC_ENABLED, enabled).apply()
     }
 }

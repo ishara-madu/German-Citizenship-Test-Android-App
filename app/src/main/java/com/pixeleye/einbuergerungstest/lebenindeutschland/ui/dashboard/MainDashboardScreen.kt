@@ -40,6 +40,7 @@ import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.theme.*
 
 
 import androidx.compose.material.icons.rounded.ViewCarousel
+import com.pixeleye.einbuergerungstest.lebenindeutschland.ads.findActivity
 
 @Composable
 fun MainDashboardScreen(
@@ -66,6 +67,7 @@ fun MainDashboardScreen(
     val overallProgress by mainViewModel.overallProgress.collectAsState()
     val levelTitleRes by mainViewModel.currentLevelTitle.collectAsState()
     val selectedState = mainViewModel.getSelectedState() ?: "Bavaria"
+    val isPremium by mainViewModel.isPremium.collectAsState()
 
 
     val guestStr = stringResource(id = R.string.profile_guest)
@@ -96,9 +98,23 @@ fun MainDashboardScreen(
             TopHeaderRow(isDark, streakCount, userName, profileImageUrl, onProfileClick, onPremiumClick)
 
             // Center/Lower Focus: Hero Action Section
+            val context = androidx.compose.ui.platform.LocalContext.current
             HeroActionCard(
                 levelTitleRes = levelTitleRes,
-                onClick = onStartExamClick
+                onClick = {
+                    if (!isPremium) {
+                        val activity = context.findActivity()
+                        if (activity != null) {
+                            com.pixeleye.einbuergerungstest.lebenindeutschland.ads.AdManager.showInterstitial(activity) {
+                                onStartExamClick()
+                            }
+                        } else {
+                            onStartExamClick()
+                        }
+                    } else {
+                        onStartExamClick()
+                    }
+                }
             )
 
             // Secondary Actions: Bento Grid
@@ -128,6 +144,7 @@ fun MainDashboardScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
+                val context = androidx.compose.ui.platform.LocalContext.current
                 SmallActionCard(
                     modifier = Modifier.weight(1f),
                     title = stringResource(id = R.string.mistakes),
@@ -135,7 +152,20 @@ fun MainDashboardScreen(
                     icon = Icons.Rounded.ErrorOutline,
                     color = RedAccent,
                     isDark = isDark,
-                    onClick = onReviewMistakesClick
+                    onClick = {
+                        if (!isPremium) {
+                            val activity = context.findActivity()
+                            if (activity != null) {
+                                com.pixeleye.einbuergerungstest.lebenindeutschland.ads.AdManager.showInterstitial(activity) {
+                                    onReviewMistakesClick()
+                                }
+                            } else {
+                                onReviewMistakesClick()
+                            }
+                        } else {
+                            onReviewMistakesClick()
+                        }
+                    }
                 )
                 SmallActionCard(
                     modifier = Modifier.weight(1f),
@@ -147,6 +177,13 @@ fun MainDashboardScreen(
                     onClick = onBookmarksClick
                 )
 
+            }
+
+            if (!isPremium) {
+                Spacer(modifier = Modifier.height(24.dp))
+                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                    com.pixeleye.einbuergerungstest.lebenindeutschland.ads.BannerAdView()
+                }
             }
 
 

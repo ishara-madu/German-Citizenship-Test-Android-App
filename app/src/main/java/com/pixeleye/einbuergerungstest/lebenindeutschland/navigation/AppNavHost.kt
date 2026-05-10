@@ -30,6 +30,7 @@ import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.review.BookmarksScr
 import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.review.ReviewMistakesScreen
 
 import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.quiz.QuizViewModel
+import com.pixeleye.einbuergerungstest.lebenindeutschland.ads.findActivity
 
 @Composable
 fun AppNavHost(
@@ -42,7 +43,7 @@ fun AppNavHost(
     val authViewModel: AuthViewModel = hiltViewModel()
     
     val startDestination = remember {
-        if (mainViewModel.isOnboardingCompleted()) Screen.Dashboard.route else Screen.Onboarding.route
+        if (mainViewModel.isOnboardingCompleted()) Screen.MainContainer.route else Screen.Onboarding.route
     }
 
     NavHost(
@@ -55,7 +56,7 @@ fun AppNavHost(
                 onFinish = { state ->
                     mainViewModel.setSelectedState(state)
                     mainViewModel.setOnboardingCompleted()
-                    navController.navigate(Screen.Dashboard.route) {
+                    navController.navigate(Screen.MainContainer.route) {
                         popUpTo(Screen.Onboarding.route) { inclusive = true }
                     }
                 }
@@ -63,32 +64,12 @@ fun AppNavHost(
         }
 
 
-        composable(Screen.Dashboard.route) {
-            MainDashboardScreen(
-                authViewModel = authViewModel,
+        composable(Screen.MainContainer.route) {
+            MainContainerScreen(
+                rootNavController = navController,
                 mainViewModel = mainViewModel,
-                onStartExamClick = { 
-                    quizViewModel.loadMockExam()
-                    navController.navigate(Screen.ExamSimulator.route) 
-                },
-                onStartTrainingClick = {
-                    quizViewModel.loadAllQuestions()
-                    navController.navigate(Screen.ExamSimulator.route)
-                },
-                onStateSelectionClick = { navController.navigate(Screen.StateSelection.route) },
-                onProgressClick = { navController.navigate(Screen.Profile.route) },
-                onQuickReviewClick = { navController.navigate(Screen.TinderFlashcard.route) },
-                onProfileClick = { navController.navigate(Screen.Profile.route) },
-                onReviewMistakesClick = { navController.navigate(Screen.ReviewMistakes.route) },
-                onBookmarksClick = { navController.navigate(Screen.Bookmarks.route) },
-                onPremiumClick = { navController.navigate(Screen.PremiumPaywall.route) }
-            )
-        }
-
-        
-        composable(Screen.Learning.route) {
-            LearningFlashcardScreen(
-                onBackClick = { navController.popBackStack() }
+                authViewModel = authViewModel,
+                quizViewModel = quizViewModel
             )
         }
         
@@ -115,42 +96,72 @@ fun AppNavHost(
         
         composable(Screen.ReviewMistakes.route) {
             val mistakes by mainViewModel.mistakeQuestions.collectAsState()
+            val isPremium by mainViewModel.isPremium.collectAsState()
             ReviewMistakesScreen(
                 questions = mistakes,
                 onBackClick = { navController.popBackStack() },
-                onRemoveMistake = { questionId: Int -> mainViewModel.toggleMistake(questionId) },
-                onExportPdfClick = { callback ->
-                    mainViewModel.exportMistakesToPdf(callback)
+                onRemoveMistake = { mainViewModel.toggleMistake(it) },
+                onExportPdfClick = { onComplete ->
+                    mainViewModel.exportMistakesToPdf(onComplete)
                 },
-                onViewDownloadsClick = { mainViewModel.openPdfFolder() }
+                onViewDownloadsClick = {
+                    mainViewModel.openPdfFolder()
+                },
+                isPremium = isPremium
             )
         }
 
 
         composable(Screen.Bookmarks.route) {
             val bookmarks by mainViewModel.bookmarkedQuestions.collectAsState()
+            val isPremium by mainViewModel.isPremium.collectAsState()
+            val context = androidx.compose.ui.platform.LocalContext.current
             BookmarksScreen(
                 questions = bookmarks,
-                onBackClick = { navController.popBackStack() },
-                onToggleBookmark = { questionId: Int -> mainViewModel.toggleBookmark(questionId) }
+                onBackClick = {
+                    if (!isPremium) {
+                        val activity = context.findActivity()
+                        if (activity != null) {
+                            com.pixeleye.einbuergerungstest.lebenindeutschland.ads.AdManager.showInterstitial(activity) {
+                                navController.popBackStack()
+                            }
+                        } else {
+                            navController.popBackStack()
+                        }
+                    } else {
+                        navController.popBackStack()
+                    }
+                },
+                onToggleBookmark = { questionId: Int -> mainViewModel.toggleBookmark(questionId) },
+                isPremium = isPremium
             )
         }
 
 
-        composable(Screen.Settings.route) {
-
-            SettingsScreen(
-                onBackClick = { navController.popBackStack() }
-            )
-        }
         
         composable(Screen.ExamSimulator.route) {
             val uiState by quizViewModel.uiState.collectAsState()
+            val isPremium by mainViewModel.isPremium.collectAsState()
+            val context = androidx.compose.ui.platform.LocalContext.current
+
             ExamSimulatorScreen(
                 quizUiState = uiState,
                 onAnswerSelected = { quizViewModel.selectAnswer(it) },
                 onNextClicked = { quizViewModel.nextQuestion() },
-                onCloseClick = { navController.popBackStack() },
+                onCloseClick = {
+                    if (!isPremium) {
+                        val activity = context.findActivity()
+                        if (activity != null) {
+                            com.pixeleye.einbuergerungstest.lebenindeutschland.ads.AdManager.showInterstitial(activity) {
+                                navController.popBackStack()
+                            }
+                        } else {
+                            navController.popBackStack()
+                        }
+                    } else {
+                        navController.popBackStack()
+                    }
+                },
                 onBookmarkToggle = { quizViewModel.toggleBookmark(it) },
                 onTranslateClick = { quizViewModel.toggleTranslation() },
                 onExplainClick = { quizViewModel.getAiExplanation() },
@@ -201,7 +212,7 @@ fun AppNavHost(
                         if (isLinkingMode) {
                             navController.popBackStack()
                         } else {
-                            navController.navigate(Screen.Dashboard.route) {
+                            navController.navigate(Screen.MainContainer.route) {
                                 popUpTo(Screen.Login.route) { inclusive = true }
                             }
                         }
@@ -228,7 +239,7 @@ fun AppNavHost(
             LaunchedEffect(authState) {
                 if (authState is AuthState.Success) {
                     if (!isAnonymous) {
-                        navController.navigate(Screen.Dashboard.route) {
+                        navController.navigate(Screen.MainContainer.route) {
                             popUpTo(Screen.SignUp.route) { inclusive = true }
                             popUpTo(Screen.Login.route) { inclusive = true }
                         }

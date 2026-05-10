@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Einbürgerungstest 2026</string>
+    <string name="app_name">Bürgertest</string>
     
     <!-- Settings -->
     <string name="settings_title">Einstellungen</string>
@@ -16,6 +16,9 @@
     <string name="label_contact_support">Support kontaktieren</string>
     <string name="label_privacy_policy">Datenschutzerklärung</string>
     <string name="label_app_version">App-Version</string>
+    <string name="label_cloud_backup">Cloud-Backup</string>
+    <string name="desc_cloud_backup">Synchronisiere deinen Fortschritt sicher in der Cloud.</string>
+    <string name="premium_upsell_cloud">Verliere nie deinen Fortschritt. Synchronisiere deine Fragen sicher in der Cloud mit Premium.</string>
     
     <!-- Theme Selection -->
     <string name="theme_system">Systemstandard</string>
@@ -199,11 +202,12 @@
     <string name="benefit_mock">Unbegrenzte Probeprüfungen</string>
     <string name="benefit_ads">Werbefreie Erfahrung</string>
     <string name="benefit_stats">Detaillierte Statistiken</string>
+    <string name="benefit_cloud">Sicheres Cloud-Backup &amp; Sync</string>
     <string name="plan_monthly">Monatlich</string>
     <string name="plan_yearly">Jährlich</string>
     <string name="plan_lifetime">Lebenslang</string>
     <string name="best_value">Bester Wert</string>
     <string name="btn_continue">Weiter</string>
     <string name="restore_purchases">Käufe wiederherstellen</string>
-    <string name="terms_privacy">Nutzungsbedingungen &amp; Datenschutzerklärung</string>
+    <string name="terms_privacy">AGB &amp; Datenschutz</string>
 </resources>

@@ -48,9 +48,11 @@ import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.theme.*
 fun LearningFlashcardScreen(
     modifier: Modifier = Modifier,
     onBackClick: () -> Unit = {},
-    viewModel: QuizViewModel = hiltViewModel()
+    viewModel: QuizViewModel = hiltViewModel(),
+    mainViewModel: com.pixeleye.einbuergerungstest.lebenindeutschland.ui.MainViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val isPremium by mainViewModel.isPremium.collectAsState()
     val isDark = LocalIsDarkTheme.current
     val bgColor = if (isDark) GamifiedBackgroundDark else GamifiedBackgroundLight
 
@@ -188,6 +190,11 @@ fun LearningFlashcardScreen(
             }
         }
 
+        if (!isPremium) {
+            Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                com.pixeleye.einbuergerungstest.lebenindeutschland.ads.BannerAdView()
+            }
+        }
         
         Spacer(modifier = Modifier.height(24.dp))
         BottomUtilityBar(

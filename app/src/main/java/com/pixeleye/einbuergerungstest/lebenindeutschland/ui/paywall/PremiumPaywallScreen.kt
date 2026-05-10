@@ -1,5 +1,6 @@
 package com.pixeleye.einbuergerungstest.lebenindeutschland.ui.paywall
 
+import android.app.Activity
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.BorderStroke
@@ -7,7 +8,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -15,44 +15,71 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AutoAwesome
-import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.rounded.Insights
-import androidx.compose.material.icons.rounded.History
 import androidx.compose.material.icons.rounded.Block
-import androidx.compose.material.icons.rounded.RadioButtonUnchecked
+import androidx.compose.material.icons.rounded.CloudUpload
+import androidx.compose.material.icons.rounded.History
+import androidx.compose.material.icons.rounded.Insights
 import androidx.compose.material.icons.rounded.RadioButtonChecked
+import androidx.compose.material.icons.rounded.RadioButtonUnchecked
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.pixeleye.einbuergerungstest.lebenindeutschland.R
 import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.theme.*
+import com.revenuecat.purchases.Package
 
 @Composable
 fun PremiumPaywallScreen(
     onCloseClick: () -> Unit = {},
     onSubscribe: (planId: String) -> Unit = {},
     onRestore: () -> Unit = {},
-    onTermsPrivacyClick: () -> Unit = {}
+    onTermsPrivacyClick: () -> Unit = {},
+    viewModel: PaywallViewModel = hiltViewModel()
 ) {
     val isDark = LocalIsDarkTheme.current
     val bgColor = if (isDark) GamifiedBackgroundDark else GamifiedBackgroundLight
     val surfaceColor = if (isDark) GamifiedSurfaceDark else GamifiedSurfaceLight
     val onSurface = MaterialTheme.colorScheme.onSurface
+
+    val offerings by viewModel.offerings.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
+    val isPremium by viewModel.isPremium.collectAsState()
+    val error by viewModel.error.collectAsState()
+    val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
+
+    // Get available packages from the current offering
+    val packages = offerings?.current?.availablePackages ?: emptyList()
     
-    var selectedPlan by remember { mutableStateOf("yearly") }
+    // Filter to monthly and yearly only
+    val monthlyPkg = packages.firstOrNull { 
+        it.identifier == "\$rc_monthly" || it.identifier.contains("monthly", ignoreCase = true) 
+    }
+    val yearlyPkg = packages.firstOrNull { 
+        it.identifier == "\$rc_annual" || it.identifier.contains("annual", ignoreCase = true) || it.identifier.contains("yearly", ignoreCase = true)
+    }
+
+    var selectedPkgId by remember { mutableStateOf("\$rc_annual") }
+
+    // If user is already premium, close automatically
+    LaunchedEffect(isPremium) {
+        if (isPremium) onCloseClick()
+    }
 
     Box(modifier = Modifier.fillMaxSize().background(bgColor)) {
         // Top Gradient Background
@@ -70,27 +97,15 @@ fun PremiumPaywallScreen(
                 )
         )
 
-        // Close Button
-        IconButton(
-            onClick = onCloseClick,
-            modifier = Modifier
-                .padding(16.dp)
-                .padding(top = 32.dp)
-                .align(Alignment.TopStart)
-                .background(surfaceColor.copy(alpha = 0.7f), CircleShape)
-        ) {
-            Icon(Icons.Filled.Close, contentDescription = "Close", tint = onSurface)
-        }
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 24.dp)
-                .padding(top = 80.dp, bottom = 100.dp), // Bottom padding for fixed button
+                .padding(top = 80.dp, bottom = 100.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Header Icon / Illustration
+            // Header Icon
             Surface(
                 shape = CircleShape,
                 color = PrimaryActionStart.copy(alpha = 0.15f),
@@ -130,33 +145,66 @@ fun PremiumPaywallScreen(
                 BenefitItem(icon = Icons.Filled.AutoAwesome, text = stringResource(id = R.string.benefit_ai), isDark = isDark)
                 BenefitItem(icon = Icons.Rounded.History, text = stringResource(id = R.string.benefit_mock), isDark = isDark)
                 BenefitItem(icon = Icons.Rounded.Insights, text = stringResource(id = R.string.benefit_stats), isDark = isDark)
+                BenefitItem(icon = Icons.Rounded.CloudUpload, text = stringResource(id = R.string.benefit_cloud), isDark = isDark)
                 BenefitItem(icon = Icons.Rounded.Block, text = stringResource(id = R.string.benefit_ads), isDark = isDark)
             }
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            // Subscription Plans
-            Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                SubscriptionPlanCard(
-                    id = "monthly",
-                    title = stringResource(id = R.string.plan_monthly),
-                    price = "€4.99 / mo",
-                    isSelected = selectedPlan == "monthly",
-                    isDark = isDark,
-                    onClick = { selectedPlan = "monthly" }
-                )
-                
-                SubscriptionPlanCard(
-                    id = "yearly",
-                    title = stringResource(id = R.string.plan_yearly),
-                    price = "€29.99 / yr",
-                    tagText = stringResource(id = R.string.best_value),
-                    isSelected = selectedPlan == "yearly",
-                    isDark = isDark,
-                    onClick = { selectedPlan = "yearly" }
+            // Error Message
+            if (error != null) {
+                Text(
+                    text = error ?: "",
+                    color = MaterialTheme.colorScheme.error,
+                    style = MaterialTheme.typography.bodySmall,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(bottom = 16.dp)
                 )
             }
-            
+
+            // Subscription Plans from RevenueCat
+            Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                monthlyPkg?.let { pkg ->
+                    SubscriptionPlanCard(
+                        title = stringResource(id = R.string.plan_monthly),
+                        price = pkg.product.price.formatted,
+                        isSelected = selectedPkgId == pkg.identifier,
+                        isDark = isDark,
+                        onClick = { selectedPkgId = pkg.identifier }
+                    )
+                }
+                
+                yearlyPkg?.let { pkg ->
+                    SubscriptionPlanCard(
+                        title = stringResource(id = R.string.plan_yearly),
+                        price = pkg.product.price.formatted,
+                        tagText = stringResource(id = R.string.best_value),
+                        isSelected = selectedPkgId == pkg.identifier,
+                        isDark = isDark,
+                        onClick = { selectedPkgId = pkg.identifier }
+                    )
+                }
+
+                // Fallback if offerings haven't loaded yet (show hardcoded)
+                if (packages.isEmpty() && !isLoading) {
+                    SubscriptionPlanCard(
+                        title = stringResource(id = R.string.plan_monthly),
+                        price = "€4.99 / mo",
+                        isSelected = selectedPkgId == "monthly",
+                        isDark = isDark,
+                        onClick = { selectedPkgId = "monthly" }
+                    )
+                    SubscriptionPlanCard(
+                        title = stringResource(id = R.string.plan_yearly),
+                        price = "€29.99 / yr",
+                        tagText = stringResource(id = R.string.best_value),
+                        isSelected = selectedPkgId == "\$rc_annual",
+                        isDark = isDark,
+                        onClick = { selectedPkgId = "\$rc_annual" }
+                    )
+                }
+            }
+
             Spacer(modifier = Modifier.height(32.dp))
         }
 
@@ -174,17 +222,34 @@ fun PremiumPaywallScreen(
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Button(
-                    onClick = { onSubscribe(selectedPlan) },
+                    onClick = {
+                        val activity = context.findActivity() ?: return@Button
+                        val selectedPkg = packages.firstOrNull { it.identifier == selectedPkgId }
+                        if (selectedPkg != null) {
+                            viewModel.purchase(activity, selectedPkg) { success ->
+                                if (success) onCloseClick()
+                            }
+                        }
+                    },
                     modifier = Modifier.fillMaxWidth().height(60.dp),
                     shape = RoundedCornerShape(20.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = PrimaryActionStart)
+                    colors = ButtonDefaults.buttonColors(containerColor = PrimaryActionStart),
+                    enabled = !isLoading
                 ) {
-                    Text(
-                        text = stringResource(id = R.string.btn_continue),
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
+                    if (isLoading) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(24.dp),
+                            color = Color.White,
+                            strokeWidth = 2.dp
+                        )
+                    } else {
+                        Text(
+                            text = stringResource(id = R.string.btn_continue),
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White
+                        )
+                    }
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -198,18 +263,40 @@ fun PremiumPaywallScreen(
                         style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold),
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         textDecoration = TextDecoration.Underline,
-                        modifier = Modifier.clickable { onRestore() }.padding(8.dp)
+                        modifier = Modifier
+                            .clickable {
+                                viewModel.restorePurchases { success ->
+                                    if (success) onCloseClick()
+                                }
+                            }
+                            .padding(8.dp)
                     )
-                    
+
                     Text(
                         text = stringResource(id = R.string.terms_privacy),
                         style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold),
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         textDecoration = TextDecoration.Underline,
-                        modifier = Modifier.clickable { onTermsPrivacyClick() }.padding(8.dp)
+                        modifier = Modifier
+                            .clickable { 
+                                uriHandler.openUri("https://pixeleye.io/terms-of-service")
+                            }
+                            .padding(8.dp)
                     )
                 }
             }
+        }
+
+        // Close Button (rendered last to be on top)
+        IconButton(
+            onClick = onCloseClick,
+            modifier = Modifier
+                .padding(16.dp)
+                .padding(top = 32.dp)
+                .align(Alignment.TopStart)
+                .background(surfaceColor.copy(alpha = 0.7f), CircleShape)
+        ) {
+            Icon(Icons.Filled.Close, contentDescription = "Close", tint = onSurface)
         }
     }
 }
@@ -243,7 +330,6 @@ fun BenefitItem(icon: ImageVector, text: String, isDark: Boolean) {
 
 @Composable
 fun SubscriptionPlanCard(
-    id: String,
     title: String,
     price: String,
     tagText: String? = null,
@@ -311,7 +397,7 @@ fun SubscriptionPlanCard(
 
         if (tagText != null) {
             Surface(
-                shape = RoundedCornerShape(topStart = 8.dp, bottomEnd = 8.dp),
+                shape = RoundedCornerShape(topEnd = 8.dp, bottomStart = 8.dp),
                 color = YellowAccent,
                 modifier = Modifier.align(Alignment.TopEnd)
             ) {
@@ -324,4 +410,10 @@ fun SubscriptionPlanCard(
             }
         }
     }
+}
+
+fun android.content.Context.findActivity(): Activity? = when (this) {
+    is Activity -> this
+    is android.content.ContextWrapper -> baseContext.findActivity()
+    else -> null
 }

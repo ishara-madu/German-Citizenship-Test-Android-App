@@ -33,7 +33,8 @@ import com.pixeleye.einbuergerungstest.lebenindeutschland.R
 fun BookmarksScreen(
     questions: List<QuestionEntity>,
     onBackClick: () -> Unit = {},
-    onToggleBookmark: (Int) -> Unit = {}
+    onToggleBookmark: (Int) -> Unit = {},
+    isPremium: Boolean = false
 ) {
     val isDark = LocalIsDarkTheme.current
     val bgColor = if (isDark) GamifiedBackgroundDark else GamifiedBackgroundLight
@@ -84,6 +85,16 @@ fun BookmarksScreen(
                             isDark = isDark,
                             onBookmarkClick = { onToggleBookmark(question.id) }
                         )
+                    }
+                    item {
+                        Spacer(modifier = Modifier.height(16.dp))
+                    }
+                    if (!isPremium) {
+                        item {
+                            Box(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp), contentAlignment = Alignment.Center) {
+                                com.pixeleye.einbuergerungstest.lebenindeutschland.ads.BannerAdView()
+                            }
+                        }
                     }
                     item {
                         Spacer(modifier = Modifier.height(80.dp))

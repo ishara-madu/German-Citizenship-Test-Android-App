@@ -27,6 +27,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import com.pixeleye.einbuergerungstest.lebenindeutschland.data.remote.AuthService
 import com.pixeleye.einbuergerungstest.lebenindeutschland.data.remote.CloudSyncService
+import com.pixeleye.einbuergerungstest.lebenindeutschland.data.remote.SubscriptionRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.StateFlow
@@ -41,8 +42,13 @@ class MainViewModel @Inject constructor(
     private val repository: QuestionRepository,
     private val cloudSyncService: CloudSyncService,
     private val authService: AuthService,
+    private val subscriptionRepository: SubscriptionRepository,
     @ApplicationContext private val context: Context
 ) : ViewModel() {
+
+    /** Whether the user has an active "Bürgertest Pro" entitlement. */
+    val isPremium: StateFlow<Boolean> = subscriptionRepository.isPremium
+    
     
     data class CategoryMastery(
         val name: String,

@@ -14,6 +14,18 @@ android {
     namespace = "com.pixeleye.einbuergerungstest.lebenindeutschland"
     compileSdk = 36
 
+    val localProperties = Properties()
+    val localPropertiesFile = rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        localProperties.load(localPropertiesFile.inputStream())
+    }
+    
+    val groqApiKey = localProperties.getProperty("GROQ_API_KEY") ?: ""
+    val admobAppId = localProperties.getProperty("ADMOB_APP_ID") ?: ""
+    val admobBannerId = localProperties.getProperty("ADMOB_BANNER_ID") ?: ""
+    val admobInterstitialId = localProperties.getProperty("ADMOB_INTERSTITIAL_ID") ?: ""
+    val revenueCatApiKey = localProperties.getProperty("REVENUECAT_API_KEY") ?: ""
+
     defaultConfig {
         applicationId = "com.pixeleye.einbuergerungstest.lebenindeutschland"
         minSdk = 24
@@ -22,15 +34,27 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        
+        manifestPlaceholders["ADMOB_APP_ID"] = admobAppId
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "GROQ_API_KEY", "\"$groqApiKey\"")
+            buildConfigField("String", "ADMOB_BANNER_ID", "\"$admobBannerId\"")
+            buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"$admobInterstitialId\"")
+            buildConfigField("String", "REVENUECAT_API_KEY", "\"$revenueCatApiKey\"")
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "GROQ_API_KEY", "\"$groqApiKey\"")
+            buildConfigField("String", "ADMOB_BANNER_ID", "\"$admobBannerId\"")
+            buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"$admobInterstitialId\"")
+            buildConfigField("String", "REVENUECAT_API_KEY", "\"$revenueCatApiKey\"")
         }
     }
     compileOptions {
@@ -44,25 +68,6 @@ android {
         compose = true
         buildConfig = true
     }
-    
-    val localProperties = Properties()
-
-    val localPropertiesFile = rootProject.file("local.properties")
-    if (localPropertiesFile.exists()) {
-        localProperties.load(localPropertiesFile.inputStream())
-    }
-    val groqApiKey = localProperties.getProperty("GROQ_API_KEY") ?: "YOUR_GROQ_API_KEY_HERE"
-
-    buildTypes {
-        getByName("debug") {
-            buildConfigField("String", "GROQ_API_KEY", "\"$groqApiKey\"")
-        }
-        getByName("release") {
-            buildConfigField("String", "GROQ_API_KEY", "\"$groqApiKey\"")
-        }
-    }
-
-
 }
 
 dependencies {
@@ -104,6 +109,12 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.mlkit.translate)
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+    // RevenueCat
+    implementation("com.revenuecat.purchases:purchases:10.5.0")
+
+    // AdMob
+    implementation("com.google.android.gms:play-services-ads:23.6.0")
 
     // WorkManager for daily reminders
     implementation(libs.androidx.work.runtime)

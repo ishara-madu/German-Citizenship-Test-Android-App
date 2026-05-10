@@ -39,6 +39,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.quiz.QuizViewModel
 import androidx.compose.ui.res.stringResource
 import com.pixeleye.einbuergerungstest.lebenindeutschland.R
+import com.pixeleye.einbuergerungstest.lebenindeutschland.ads.findActivity
 
 
 data class SwipeFlashcard(
@@ -52,12 +53,15 @@ data class SwipeFlashcard(
 @Composable
 fun TinderSwipeFlashcardScreen(
     onBackClick: () -> Unit = {},
-    viewModel: QuizViewModel = hiltViewModel()
+    viewModel: QuizViewModel = hiltViewModel(),
+    mainViewModel: com.pixeleye.einbuergerungstest.lebenindeutschland.ui.MainViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val isPremium by mainViewModel.isPremium.collectAsState()
     val isDark = LocalIsDarkTheme.current
     val bgColor = if (isDark) GamifiedBackgroundDark else GamifiedBackgroundLight
     val onSurface = MaterialTheme.colorScheme.onSurface
+    val context = androidx.compose.ui.platform.LocalContext.current
 
     // Local list to manage swiping animations
     val swipeCards = remember { mutableStateListOf<SwipeFlashcard>() }
@@ -75,13 +79,29 @@ fun TinderSwipeFlashcardScreen(
         viewModel.loadQuickReview(10)
     }
 
+    // Wrap back click to show interstitial when session is complete
+    val handleBackClick: () -> Unit = {
+        if (!isPremium && swipeCards.isEmpty() && !uiState.isLoading) {
+            val activity = context.findActivity()
+            if (activity != null) {
+                com.pixeleye.einbuergerungstest.lebenindeutschland.ads.AdManager.showInterstitial(activity) {
+                    onBackClick()
+                }
+            } else {
+                onBackClick()
+            }
+        } else {
+            onBackClick()
+        }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(bgColor)
     ) {
         // Top Navigation Header
-        StudyTopBar(onBackClick, onSurface)
+        StudyTopBar(handleBackClick, onSurface)
 
         Box(
             modifier = Modifier
