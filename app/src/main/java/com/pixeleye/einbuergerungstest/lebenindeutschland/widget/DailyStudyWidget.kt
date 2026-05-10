@@ -21,6 +21,7 @@ import com.pixeleye.einbuergerungstest.lebenindeutschland.R
 import com.pixeleye.einbuergerungstest.lebenindeutschland.data.local.AppDatabase
 import com.pixeleye.einbuergerungstest.lebenindeutschland.data.local.PreferenceManager
 import com.pixeleye.einbuergerungstest.lebenindeutschland.data.local.QuestionEntity
+import androidx.glance.appwidget.CircularProgressIndicator
 import java.util.Locale
 
 class DailyStudyWidget : GlanceAppWidget() {
@@ -44,9 +45,9 @@ class DailyStudyWidget : GlanceAppWidget() {
         val onboardingCompleted = pref.isOnboardingCompleted()
         val dataInitialized = pref.isDataInitialized()
         
-        if (!onboardingCompleted || !dataInitialized) {
+        if (!dataInitialized || !onboardingCompleted) {
             provideContent {
-                EmptyState(germanContext)
+                LoadingState(germanContext, !dataInitialized)
             }
             return
         }
@@ -88,7 +89,7 @@ class DailyStudyWidget : GlanceAppWidget() {
     }
 
     @Composable
-    private fun EmptyState(context: Context) {
+    private fun LoadingState(context: Context, isInitialDataLoad: Boolean) {
         val action = actionStartActivity<MainActivity>()
         Box(
             modifier = GlanceModifier
@@ -99,15 +100,24 @@ class DailyStudyWidget : GlanceAppWidget() {
                 .clickable(action),
             contentAlignment = Alignment.Center
         ) {
-            Text(
-                text = context.getString(R.string.widget_setup_message),
-                style = TextStyle(
-                    color = ColorProvider(Color(0xFF1E293B)),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalAlignment = Alignment.Vertical.CenterVertically
+            ) {
+                CircularProgressIndicator(
+                    color = ColorProvider(Color(0xFF6366F1))
                 )
-            )
+                Spacer(modifier = GlanceModifier.height(12.dp))
+                Text(
+                    text = if (isInitialDataLoad) "Wird geladen..." else context.getString(R.string.widget_setup_message),
+                    style = TextStyle(
+                        color = ColorProvider(Color(0xFF1E293B)),
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center
+                    )
+                )
+            }
         }
     }
 
