@@ -203,5 +203,8 @@
     <string name="premium_required_pdf_desc">PDF export is a Premium feature. Upgrade to export your mistakes as a PDF and study offline.</string>
     <string name="btn_upgrade_premium">Unlock Premium</string>
     <string name="ai_uses_remaining">%1$d AI explanations left today</string>
-    <string name="translation_uses_remaining">%1$d translations left today</string>
+    <string name="translation_uses_remaining">%1$d translations remaining today</string>
+
+
+
 </resources>

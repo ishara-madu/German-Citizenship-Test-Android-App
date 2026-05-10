@@ -204,4 +204,11 @@
     <string name="btn_upgrade_premium">فتح النسخة المميزة</string>
     <string name="ai_uses_remaining">يتبقى %1$d شروحات ذكاء اصطناعي اليوم</string>
     <string name="translation_uses_remaining">يتبقى %1$d ترجمات اليوم</string>
+
+    <!-- Widget -->
+    <string name="widget_question_of_day">سؤال اليوم</string>
+    <string name="widget_tap_to_open">انقر للفتح</string>
+    <string name="widget_setup_message">افتح التطبيق لإعداد خطة الدراسة</string>
+    <string name="widget_start_studying">ابدأ الدراسة</string>
+    <string name="widget_streak_format">سلسلة أيام %1$d!</string>
 </resources>

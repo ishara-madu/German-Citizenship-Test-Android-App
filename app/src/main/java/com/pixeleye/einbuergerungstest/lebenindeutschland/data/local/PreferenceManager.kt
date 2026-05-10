@@ -7,11 +7,15 @@ import javax.inject.Singleton
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import androidx.glance.appwidget.updateAll
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Dispatchers
 
 
 @Singleton
 class PreferenceManager @Inject constructor(
-    @dagger.hilt.android.qualifiers.ApplicationContext context: Context
+    @dagger.hilt.android.qualifiers.ApplicationContext private val context: Context
 ) {
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("bürgertest_prefs", Context.MODE_PRIVATE)
@@ -54,7 +58,16 @@ class PreferenceManager @Inject constructor(
     }
 
     fun setOnboardingCompleted(completed: Boolean) {
-        sharedPreferences.edit().putBoolean(KEY_ONBOARDING_COMPLETED, completed).apply()
+        sharedPreferences.edit().putBoolean(KEY_ONBOARDING_COMPLETED, completed).commit()
+        
+        // Update widget instantly
+        try {
+            GlobalScope.launch(Dispatchers.IO) {
+                kotlinx.coroutines.delay(500)
+                com.pixeleye.einbuergerungstest.lebenindeutschland.widget.DailyStudyWidget()
+                    .updateAll(context)
+            }
+        } catch (e: Exception) {}
     }
 
     fun isDataInitialized(): Boolean {
@@ -62,7 +75,16 @@ class PreferenceManager @Inject constructor(
     }
 
     fun setDataInitialized(initialized: Boolean) {
-        sharedPreferences.edit().putBoolean(KEY_DATA_INITIALIZED, initialized).apply()
+        sharedPreferences.edit().putBoolean(KEY_DATA_INITIALIZED, initialized).commit()
+        
+        // Update widget instantly
+        try {
+            GlobalScope.launch(Dispatchers.IO) {
+                kotlinx.coroutines.delay(500)
+                com.pixeleye.einbuergerungstest.lebenindeutschland.widget.DailyStudyWidget()
+                    .updateAll(context)
+            }
+        } catch (e: Exception) {}
     }
 
     fun getSelectedState(): String? {
@@ -185,6 +207,17 @@ class PreferenceManager @Inject constructor(
     fun setAppLanguage(language: String) {
         sharedPreferences.edit().putString(KEY_APP_LANGUAGE, language).apply()
         _appLanguage.value = language
+        
+        // Update widget language instantly
+        try {
+            kotlinx.coroutines.GlobalScope.launch(kotlinx.coroutines.Dispatchers.IO) {
+                kotlinx.coroutines.delay(500)
+                com.pixeleye.einbuergerungstest.lebenindeutschland.widget.DailyStudyWidget()
+                    .updateAll(context)
+            }
+        } catch (e: Exception) {
+            // Glance might not be initialized or available in all contexts
+        }
     }
 
     // Daily Reminder Preferences

@@ -32,15 +32,15 @@
         </activity>
         
         <receiver
-            android:name=".widget.DailyStudyWidgetReceiver"
+            android:name=".widget.DailyStudyWidgetProvider"
             android:exported="true"
-            android:label="Daily Study Widget">
+            android:label="Täglicher Lern-Widget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/daily_study_widget_info" />
+                android:resource="@xml/daily_study_widget_info_v2" />
         </receiver>
 
         <!-- AdMob App ID (Test ID) -->
