@@ -191,6 +191,8 @@
     <string name="best_value">En İyi Değer</string>
     <string name="btn_continue">Devam Et</string>
     <string name="restore_purchases">Satın Alımları Geri Yükle</string>
+    <string name="label_terms">Şartlar</string>
+    <string name="label_privacy">Gizlilik</string>
     <string name="terms_privacy">Şartlar &amp; Gizlilik</string>
 
     <string name="premium_limit_ai_title">Günlük Sınıra Ulaşıldı</string>

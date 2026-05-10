@@ -191,6 +191,8 @@
     <string name="best_value">بهترین ارزش</string>
     <string name="btn_continue">ادامه</string>
     <string name="restore_purchases">بازیابی خریدها</string>
+    <string name="label_terms">شرایط</string>
+    <string name="label_privacy">حریم خصوصی</string>
     <string name="terms_privacy">شرایط و حریم خصوصی</string>
 
     <string name="premium_limit_ai_title">به محدودیت روزانه رسیدید</string>

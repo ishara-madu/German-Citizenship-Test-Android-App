@@ -191,6 +191,8 @@
     <string name="best_value">Best Value</string>
     <string name="btn_continue">Continue</string>
     <string name="restore_purchases">Restore Purchases</string>
+    <string name="label_terms">Terms</string>
+    <string name="label_privacy">Privacy</string>
     <string name="terms_privacy">Terms &amp; Privacy</string>
 
     <string name="premium_limit_ai_title">Daily Limit Reached</string>

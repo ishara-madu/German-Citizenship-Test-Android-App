@@ -191,6 +191,8 @@
     <string name="best_value">أفضل قيمة</string>
     <string name="btn_continue">متابعة</string>
     <string name="restore_purchases">استعادة المشتريات</string>
+    <string name="label_terms">الشروط</string>
+    <string name="label_privacy">الخصوصية</string>
     <string name="terms_privacy">الشروط والخصوصية</string>
 
     <string name="premium_limit_ai_title">تم الوصول للحد اليومي</string>
