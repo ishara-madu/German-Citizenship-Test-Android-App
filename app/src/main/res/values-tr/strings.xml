@@ -1,0 +1,205 @@
+<resources>
+    <string name="app_name">Vatandaşlık Testi</string>
+    
+    <string name="settings_title">Ayarlar</string>
+    <string name="group_app_preferences">Uygulama Tercihleri</string>
+    <string name="group_study_reminders">Çalışma Hatırlatıcıları</string>
+    <string name="group_subscription">Abonelik &amp; Hesap</string>
+    <string name="group_support">Destek &amp; Hakkında</string>
+    
+    <string name="label_theme">Tema</string>
+    <string name="label_language">Dil</string>
+    <string name="label_daily_practice">Günlük Çalışma Hatırlatıcısı</string>
+    <string name="label_manage_subscription">Aboneliği Yönet</string>
+    <string name="label_restore_purchases">Satın Alımları Geri Yükle</string>
+    <string name="label_contact_support">Destekle İletişime Geç</string>
+    <string name="label_privacy_policy">Gizlilik Politikası</string>
+    <string name="label_app_version">Uygulama Sürümü</string>
+    <string name="label_cloud_backup">Bulut Yedekleme</string>
+    <string name="desc_cloud_backup">İlerlemeni güvenli bir şekilde bulutla senkronize et.</string>
+    <string name="premium_upsell_cloud">İlerlemeni asla kaybetme. Premium ile sorularını buluta güvenle senkronize et.</string>
+    
+    <string name="theme_system">Sistem Varsayılanı</string>
+    <string name="theme_light">Aydınlık Mod</string>
+    <string name="theme_dark">Karanlık Mod</string>
+    <string name="theme_select_title">Tema Seç</string>
+    
+    <string name="onboarding_title_1">Vatandaşlık Testine Hoş Geldiniz</string>
+    <string name="onboarding_desc_1">Alman vatandaşlığına giden yolculuğunuz burada başlıyor.</string>
+    <string name="onboarding_title_2">Akıllı Öğrenme</string>
+    <string name="onboarding_desc_2">Aralıklı tekrar ve yapay zeka ile 300\'den fazla sorunun tamamında ustalaşın.</string>
+    <string name="onboarding_title_3">İlerlemeyi Takip Et</string>
+    <string name="onboarding_desc_3">Gerçek sınava ne zaman hazır olduğunuzu tam olarak bilin.</string>
+    <string name="onboarding_title_4">Eyaletinizi Seçin</string>
+    <string name="onboarding_desc_4">Sınavda eyalete özgü 3 soru bulunmaktadır. Hangi bölgede yaşıyorsunuz?</string>
+    <string name="btn_get_started">Başla</string>
+
+    <string name="language_select_title">Dil Seç</string>
+    <string name="cancel">İptal</string>
+
+    <string name="profile_guest">Misafir</string>
+    <string name="profile_learner">Öğrenci</string>
+    <string name="level_beginner">Başlangıç</string>
+    <string name="level_novice">Acemi</string>
+    <string name="level_student">Öğrenci</string>
+    <string name="level_researcher">Araştırmacı</string>
+    <string name="level_expert">Uzman</string>
+    <string name="level_advanced">İleri Düzey</string>
+    <string name="level_scholar">Bilgin</string>
+    <string name="level_master">Usta</string>
+    <string name="level_citizen">Vatandaş</string>
+    
+    <string name="btn_logout">Çıkış Yap</string>
+    <string name="guest_warning_title">İlerlemeni kaydet!</string>
+    <string name="guest_warning_desc">Misafir hesabı kullanıyorsun. İstatistiklerini güvenle buluta kaydetmek için hesabını bağla.</string>
+    <string name="btn_bind_account">Hesap Bağla / Giriş Yap</string>
+    <string name="btn_edit">Düzenle</string>
+    
+    <string name="stat_current_streak">Mevcut Seri</string>
+    <string name="stat_total_answered">Yanıtlandı</string>
+    <string name="stat_mock_exams">Deneme Sınavları</string>
+    <string name="stat_avg_score">Ort. Puan</string>
+    <string name="stat_one_day">1 Gün</string>
+    <string name="stat_days">%1$d Gün</string>
+    
+    <string name="subject_mastery">Konu Hakimiyeti</string>
+    <string name="needs_review">Tekrar Gerekiyor</string>
+    <string name="no_category_data">Henüz kategori verisi yok.</string>
+    <string name="btn_review_now">Şimdi Tekrarla</string>
+    <string name="advice_missed">Yakın zamanda bu kategorideki %1$d soruyu yanlış yanıtladın. Kısa bir tekrar bilgini pekiştirmene yardımcı olacaktır.</string>
+    <string name="advice_mastery">Bu kategorideki hakimiyetin %%%1$d. Kısa bir tekrar bilgini pekiştirmene yardımcı olacaktır.</string>
+
+    <string name="dashboard_title">Özet</string>
+    <string name="section_learning">Öğrenim</string>
+    <string name="section_simulator">Simülatör</string>
+    <string name="stat_questions">Sorular</string>
+    <string name="stat_mastered">Öğrenildi</string>
+    <string name="stat_streak">Seri</string>
+    <string name="btn_start_exam">Gerçek sınav simülatörünü başlat</string>
+    <string name="btn_flashcards">Bilgi Kartları</string>
+
+    <string name="btn_explain_ai">YZ ile Açıkla</string>
+    <string name="btn_translate">Çevir</string>
+    <string name="btn_next">İleri</string>
+    <string name="btn_finish">Bitir</string>
+    <string name="loading_ai">Yapay zeka düşünüyor…</string>
+    <string name="correct_answer">Doğru Cevap</string>
+    <string name="wrong_answer">Yanlış Cevap</string>
+    <string name="downloading_model">Dil modeli indiriliyor…</string>
+    <string name="download_info">Bu yalnızca bir kez gerçekleşir (~30MB)</string>
+    <string name="mistakes">Hatalar</string>
+    <string name="review_errors">Hataları İncele</string>
+    <string name="bookmarks">Yer İmleri</string>
+    <string name="saved_items">Kaydedilen Öğeler</string>
+    <string name="stat_questions_format">%1$d Soru</string>
+    <string name="translating">Çevriliyor…</string>
+    <string name="quiz_finished">Sınav Bitti!</string>
+    <string name="your_score">Puanın: %1$d / %2$d</string>
+    <string name="back_to_dashboard">Özete Dön</string>
+    
+    <string name="btn_export_pdf">PDF Olarak Dışa Aktar</string>
+    <string name="no_mistakes">Hata bulunamadı!</string>
+    <string name="no_mistakes_desc">Böyle devam et. İlerlemen çok iyi.</string>
+    <string name="questions_to_review">Tekrarlaman gereken %1$d soru var.</string>
+    <string name="remove_focus_area">Odak Alanından Çıkar</string>
+    <string name="correct_answer_upper">DOĞRU CEVAP</string>
+    <string name="no_bookmarks">Henüz yer imi yok</string>
+    <string name="no_bookmarks_desc">İlginç bulduğun soruları daha sonra incelemek üzere kaydet.</string>
+    <string name="remove_bookmark">Yer İmini Kaldır</string>
+
+    <string name="select_your_state_title">Eyalet Seçin</string>
+    <string name="state_selection_desc">Bölgeniz için hazırlanan 10 özel soruyu pratik yapın.</string>
+    <string name="no_states_match">Aramanızla eşleşen eyalet yok</string>
+    <string name="search_state">Eyalet ara...</string>
+    <string name="btn_start_practice">Pratiğe Başla</string>
+
+    <string name="quick_review">Hızlı Tekrar</string>
+    <string name="swipe_categorized_study">Kategorize öğrenim için kaydır</string>
+    <string name="daily_review_done">Günlük tekrar tamamlandı!</string>
+    <string name="mastered_questions">Bu sorularda ustalaştın.</string>
+    <string name="flashcard_question">Soru</string>
+    <string name="flashcard_answer">Doğru Cevap</string>
+
+    <string name="greeting_morning">Günaydın,</string>
+    <string name="quick_review_swipe">Hızlı Tekrar (Kaydır)</string>
+    <string name="daily_flashcard_desc">Günlük Bilgi Kartı Kategorizasyonu</string>
+    <string name="thirty_three_questions">33 Soru</string>
+    <string name="start_now">ŞİMDİ BAŞLA</string>
+    <string name="state_specific">Eyalete Özgü</string>
+    <string name="progress_title">İlerleme</string>
+    <string name="smart_tracker">Akıllı Takip</string>
+
+    <string name="great_job">Harika İş!</string>
+    <string name="reviewed_all_questions">Tüm soruları inceledin.</string>
+    <string name="no_questions_found">Soru bulunamadı. Lütfen uygulamayı yeniden başlatın.</string>
+    <string name="ai_explanation">Yapay Zeka Açıklaması</string>
+    <string name="no_explanation">Açıklama mevcut değil.</string>
+    <string name="got_it">Anladım!</string>
+
+    <string name="nav_home">Ana Sayfa</string>
+    <string name="nav_learn">Öğren</string>
+    <string name="nav_profile">Profil</string>
+    <string name="nav_settings">Ayarlar</string>
+    
+    <string name="level_format">Seviye %1$d %2$s</string>
+
+    <string name="welcome_back">Tekrar Hoş Geldiniz</string>
+    <string name="login_desc">İlerlemenizi ve serilerinizi senkronize etmek için giriş yapın.</string>
+    <string name="email_address">E-posta Adresi</string>
+    <string name="password">Şifre</string>
+    <string name="hide_password">Şifreyi Gizle</string>
+    <string name="show_password">Şifreyi Göster</string>
+    <string name="forgot_password">Şifrenizi mi unuttunuz?</string>
+    <string name="sign_in">Giriş Yap</string>
+    <string name="dont_have_account">Hesabınız yok mu?</string>
+    <string name="sign_up"> Kayıt Ol</string>
+    
+    <string name="create_account">Hesap Oluştur</string>
+    <string name="signup_desc">Bir avatar seçin ve yolculuğunuza başlayın.</string>
+    <string name="select_avatar">Avatar Seç</string>
+    <string name="random_chosen">Rastgele Seçilen</string>
+    <string name="full_name">Ad Soyad</string>
+    <string name="already_have_account">Zaten bir hesabınız var mı?</string>
+    <string name="sign_in_link"> Giriş Yap</string>
+    
+    <string name="edit_profile">Profili Düzenle</string>
+    <string name="account_security">Hesap Güvenliği</string>
+    <string name="send_password_reset">Şifre Sıfırlama Bağlantısı Gönder</string>
+    <string name="password_reset_desc">Şifrenizi güvenli bir şekilde sıfırlamanız için e-postanıza bir bağlantı göndereceğiz.</string>
+    <string name="save_changes">Değişiklikleri Kaydet</string>
+
+    <string name="politics_democracy">Demokraside Siyaset</string>
+    <string name="history_responsibility">Tarih ve Sorumluluk</string>
+    <string name="people_society">İnsan ve Toplum</string>
+    <string name="notification_title">Pratik Yapma Zamanı!</string>
+    <string name="notification_message">Serini canlı tut ve bugün birkaç soruyu yanıtla.</string>
+    <string name="reminder_time_title">Hatırlatma Zamanı</string>
+    <string name="reminder_time_desc">Günlük çalışma hatırlatıcınız için zamanı seçin.</string>
+    <string name="btn_confirm">Onayla</string>
+    <string name="reminder_time_prefix">Hatırlatma saati</string>
+
+    <string name="paywall_title">Premium\'u Aç</string>
+    <string name="paywall_subtitle">Sınavı güvenle geçin</string>
+    <string name="benefit_ai">Tüm sorular için yapay zeka açıklamaları</string>
+    <string name="benefit_mock">Sınırsız Deneme Sınavları</string>
+    <string name="benefit_ads">Reklamsız deneyim</string>
+    <string name="benefit_stats">Ayrıntılı İstatistikler</string>
+    <string name="benefit_cloud">Güvenli Bulut Yedekleme &amp; Senkronizasyon</string>
+    <string name="plan_monthly">Aylık</string>
+    <string name="plan_yearly">Yıllık</string>
+    <string name="plan_lifetime">Ömür Boyu</string>
+    <string name="best_value">En İyi Değer</string>
+    <string name="btn_continue">Devam Et</string>
+    <string name="restore_purchases">Satın Alımları Geri Yükle</string>
+    <string name="terms_privacy">Şartlar &amp; Gizlilik</string>
+
+    <string name="premium_limit_ai_title">Günlük Sınıra Ulaşıldı</string>
+    <string name="premium_limit_ai_desc">Bugün ücretsiz olan 3 yapay zeka açıklamasının tümünü kullandın. Sınırsız YZ yardımı için Premium al!</string>
+    <string name="premium_limit_translate_title">Çeviri Sınırına Ulaşıldı</string>
+    <string name="premium_limit_translate_desc">Bugün ücretsiz olan 3 çevirinin tümünü kullandın. Sınırsız çeviri için Premium al!</string>
+    <string name="premium_required_pdf_title">Premium Özelliği</string>
+    <string name="premium_required_pdf_desc">PDF dışa aktarımı bir Premium özelliğidir. Hatalarınızı PDF olarak kaydetmek ve çevrimdışı çalışmak için yükseltin.</string>
+    <string name="btn_upgrade_premium">Premium\'u Aç</string>
+    <string name="ai_uses_remaining">Bugün kalan YZ açıklaması: %1$d</string>
+    <string name="translation_uses_remaining">Bugün kalan çeviri: %1$d</string>
+</resources>

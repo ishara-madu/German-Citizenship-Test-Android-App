@@ -107,7 +107,8 @@ fun AppNavHost(
                 onViewDownloadsClick = {
                     mainViewModel.openPdfFolder()
                 },
-                isPremium = isPremium
+                isPremium = isPremium,
+                onPremiumClick = { navController.navigate(Screen.PremiumPaywall.route) }
             )
         }
 
@@ -163,8 +164,20 @@ fun AppNavHost(
                     }
                 },
                 onBookmarkToggle = { quizViewModel.toggleBookmark(it) },
-                onTranslateClick = { quizViewModel.toggleTranslation() },
-                onExplainClick = { quizViewModel.getAiExplanation() },
+                onTranslateClick = {
+                    if (isPremium || quizViewModel.canUseTranslation()) {
+                        quizViewModel.toggleTranslation()
+                    } else {
+                        navController.navigate(Screen.PremiumPaywall.route)
+                    }
+                },
+                onExplainClick = {
+                    if (isPremium || quizViewModel.canUseAiExplanation()) {
+                        quizViewModel.getAiExplanation()
+                    } else {
+                        navController.navigate(Screen.PremiumPaywall.route)
+                    }
+                },
                 onDismissExplanation = { quizViewModel.dismissExplanation() }
             )
 

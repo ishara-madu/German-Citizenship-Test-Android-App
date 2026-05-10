@@ -82,7 +82,7 @@
     <string name="stat_questions">Fragen</string>
     <string name="stat_mastered">Gelernt</string>
     <string name="stat_streak">Streak</string>
-    <string name="btn_start_exam">Prüfung starten</string>
+    <string name="btn_start_exam">Starten Sie den echten Prüfungssimulator</string>
     <string name="btn_flashcards">Lernkarten</string>
 
     <!-- Learning / Exam -->
@@ -210,4 +210,15 @@
     <string name="btn_continue">Weiter</string>
     <string name="restore_purchases">Käufe wiederherstellen</string>
     <string name="terms_privacy">AGB &amp; Datenschutz</string>
+
+    <!-- Premium Upsell Messages -->
+    <string name="premium_limit_ai_title">Tägliches Limit erreicht</string>
+    <string name="premium_limit_ai_desc">Du hast heute alle 3 kostenlosen KI-Erklärungen verbraucht. Hol dir Premium für unbegrenzte KI-Hilfe!</string>
+    <string name="premium_limit_translate_title">Übersetzungslimit erreicht</string>
+    <string name="premium_limit_translate_desc">Du hast heute alle 3 kostenlosen Übersetzungen verbraucht. Hol dir Premium für unbegrenzte Übersetzungen!</string>
+    <string name="premium_required_pdf_title">Premium-Funktion</string>
+    <string name="premium_required_pdf_desc">PDF-Export ist eine Premium-Funktion. Upgraden, um deine Fehler als PDF zu exportieren und offline zu lernen.</string>
+    <string name="btn_upgrade_premium">Premium freischalten</string>
+    <string name="ai_uses_remaining">%1$d KI-Erklärungen heute übrig</string>
+    <string name="translation_uses_remaining">%1$d Übersetzungen heute übrig</string>
 </resources>

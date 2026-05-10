@@ -1,0 +1,205 @@
+<resources>
+    <string name="app_name">آزمون شهروندی</string>
+    
+    <string name="settings_title">تنظیمات</string>
+    <string name="group_app_preferences">تنظیمات برنامه</string>
+    <string name="group_study_reminders">یادآورهای مطالعه</string>
+    <string name="group_subscription">اشتراک و حساب کاربری</string>
+    <string name="group_support">پشتیبانی و درباره ما</string>
+    
+    <string name="label_theme">پوسته</string>
+    <string name="label_language">زبان</string>
+    <string name="label_daily_practice">یادآور روزانه مطالعه</string>
+    <string name="label_manage_subscription">مدیریت اشتراک</string>
+    <string name="label_restore_purchases">بازیابی خریدها</string>
+    <string name="label_contact_support">تماس با پشتیبانی</string>
+    <string name="label_privacy_policy">سیاست حفظ حریم خصوصی</string>
+    <string name="label_app_version">نسخه برنامه</string>
+    <string name="label_cloud_backup">پشتیبان‌گیری ابری</string>
+    <string name="desc_cloud_backup">پیشرفت خود را با امنیت بالا در فضای ابری همگام‌سازی کنید.</string>
+    <string name="premium_upsell_cloud">هرگز پیشرفت خود را از دست ندهید. سوالات خود را با امنیت بالا در فضای ابری با نسخه پریمیوم همگام‌سازی کنید.</string>
+    
+    <string name="theme_system">پیش‌فرض سیستم</string>
+    <string name="theme_light">حالت روشن</string>
+    <string name="theme_dark">حالت تاریک</string>
+    <string name="theme_select_title">انتخاب پوسته</string>
+    
+    <string name="onboarding_title_1">به آزمون شهروندی خوش آمدید</string>
+    <string name="onboarding_desc_1">سفر شما برای دریافت تابعیت آلمان از اینجا آغاز می‌شود.</string>
+    <string name="onboarding_title_2">یادگیری هوشمند</string>
+    <string name="onboarding_desc_2">به تمامی ۳۰۰+ سوال با تکرار فاصله‌دار و هوش مصنوعی مسلط شوید.</string>
+    <string name="onboarding_title_3">پیگیری پیشرفت</string>
+    <string name="onboarding_desc_3">دقیقاً بدانید چه زمانی برای آزمون واقعی آماده هستید.</string>
+    <string name="onboarding_title_4">ایالت خود را انتخاب کنید</string>
+    <string name="onboarding_desc_4">آزمون دارای ۳ سوال مختص ایالت است. شما در کدام منطقه زندگی می‌کنید؟</string>
+    <string name="btn_get_started">شروع کنید</string>
+
+    <string name="language_select_title">انتخاب زبان</string>
+    <string name="cancel">لغو</string>
+
+    <string name="profile_guest">مهمان</string>
+    <string name="profile_learner">یادگیرنده</string>
+    <string name="level_beginner">مبتدی</string>
+    <string name="level_novice">تازه‌کار</string>
+    <string name="level_student">دانش‌آموز</string>
+    <string name="level_researcher">محقق</string>
+    <string name="level_expert">متخصص</string>
+    <string name="level_advanced">پیشرفته</string>
+    <string name="level_scholar">دانشمند</string>
+    <string name="level_master">استاد</string>
+    <string name="level_citizen">شهروند</string>
+    
+    <string name="btn_logout">خروج از حساب</string>
+    <string name="guest_warning_title">پیشرفت خود را ذخیره کنید!</string>
+    <string name="guest_warning_desc">شما از حساب مهمان استفاده می‌کنید. حساب خود را برای ذخیره امن آمار در فضای ابری متصل کنید.</string>
+    <string name="btn_bind_account">اتصال حساب / ورود</string>
+    <string name="btn_edit">ویرایش</string>
+    
+    <string name="stat_current_streak">روند فعلی</string>
+    <string name="stat_total_answered">پاسخ داده شده</string>
+    <string name="stat_mock_exams">آزمون‌های آزمایشی</string>
+    <string name="stat_avg_score">میانگین امتیاز</string>
+    <string name="stat_one_day">۱ روز</string>
+    <string name="stat_days">%1$d روز</string>
+    
+    <string name="subject_mastery">تسلط بر موضوع</string>
+    <string name="needs_review">نیاز به مرور</string>
+    <string name="no_category_data">هنوز داده‌ای برای دسته‌بندی وجود ندارد.</string>
+    <string name="btn_review_now">اکنون مرور کنید</string>
+    <string name="advice_missed">شما اخیراً به %1$d سوال در این دسته‌بندی اشتباه پاسخ داده‌اید. یک مرور سریع به تثبیت دانش شما کمک می‌کند.</string>
+    <string name="advice_mastery">میزان تسلط شما در این دسته‌بندی %1$d%% است. یک مرور سریع به تثبیت دانش شما کمک می‌کند.</string>
+
+    <string name="dashboard_title">داشبورد</string>
+    <string name="section_learning">یادگیری</string>
+    <string name="section_simulator">شبیه‌ساز</string>
+    <string name="stat_questions">سوالات</string>
+    <string name="stat_mastered">مسلط شده</string>
+    <string name="stat_streak">روند (Streak)</string>
+    <string name="btn_start_exam">شروع شبیه‌ساز آزمون واقعی</string>
+    <string name="btn_flashcards">فلش‌کارت‌ها</string>
+
+    <string name="btn_explain_ai">توضیح با هوش مصنوعی</string>
+    <string name="btn_translate">ترجمه</string>
+    <string name="btn_next">بعدی</string>
+    <string name="btn_finish">پایان</string>
+    <string name="loading_ai">هوش مصنوعی در حال فکر کردن است…</string>
+    <string name="correct_answer">پاسخ صحیح</string>
+    <string name="wrong_answer">پاسخ اشتباه</string>
+    <string name="downloading_model">در حال دانلود مدل زبان…</string>
+    <string name="download_info">این کار فقط یک بار انجام می‌شود (~30MB)</string>
+    <string name="mistakes">اشتباهات</string>
+    <string name="review_errors">مرور اشتباهات</string>
+    <string name="bookmarks">نشان‌شده‌ها</string>
+    <string name="saved_items">موارد ذخیره‌شده</string>
+    <string name="stat_questions_format">%1$d سوال</string>
+    <string name="translating">در حال ترجمه…</string>
+    <string name="quiz_finished">آزمون به پایان رسید!</string>
+    <string name="your_score">امتیاز شما: %1$d / %2$d</string>
+    <string name="back_to_dashboard">بازگشت به داشبورد</string>
+    
+    <string name="btn_export_pdf">خروجی PDF</string>
+    <string name="no_mistakes">هیچ اشتباهی یافت نشد!</string>
+    <string name="no_mistakes_desc">به همین روند ادامه دهید. پیشرفت شما عالی است.</string>
+    <string name="questions_to_review">شما %1$d سوال برای مرور دارید.</string>
+    <string name="remove_focus_area">حذف از ناحیه تمرکز</string>
+    <string name="correct_answer_upper">پاسخ صحیح</string>
+    <string name="no_bookmarks">هنوز نشان‌شده‌ای وجود ندارد</string>
+    <string name="no_bookmarks_desc">سوالات جالب را برای مرور در آینده ذخیره کنید.</string>
+    <string name="remove_bookmark">حذف نشان</string>
+
+    <string name="select_your_state_title">انتخاب ایالت</string>
+    <string name="state_selection_desc">۱۰ سوال مخصوص منطقه خود را تمرین کنید.</string>
+    <string name="no_states_match">هیچ ایالتی با جستجوی شما مطابقت ندارد</string>
+    <string name="search_state">جستجوی ایالت...</string>
+    <string name="btn_start_practice">شروع تمرین</string>
+
+    <string name="quick_review">مرور سریع</string>
+    <string name="swipe_categorized_study">برای یادگیری دسته‌بندی‌شده بکشید (Swipe)</string>
+    <string name="daily_review_done">مرور روزانه انجام شد!</string>
+    <string name="mastered_questions">شما بر این سوالات مسلط شده‌اید.</string>
+    <string name="flashcard_question">سوال</string>
+    <string name="flashcard_answer">پاسخ صحیح</string>
+
+    <string name="greeting_morning">صبح بخیر،</string>
+    <string name="quick_review_swipe">مرور سریع (کشیدن)</string>
+    <string name="daily_flashcard_desc">دسته‌بندی روزانه فلش‌کارت‌ها</string>
+    <string name="thirty_three_questions">۳۳ سوال</string>
+    <string name="start_now">اکنون شروع کنید</string>
+    <string name="state_specific">مخصوص ایالت</string>
+    <string name="progress_title">پیشرفت</string>
+    <string name="smart_tracker">ردیاب هوشمند</string>
+
+    <string name="great_job">کارتان عالی بود!</string>
+    <string name="reviewed_all_questions">شما تمام سوالات را مرور کردید.</string>
+    <string name="no_questions_found">سوالی یافت نشد. لطفاً برنامه را مجدداً راه‌اندازی کنید.</string>
+    <string name="ai_explanation">توضیحات هوش مصنوعی</string>
+    <string name="no_explanation">هیچ توضیحی در دسترس نیست.</string>
+    <string name="got_it">متوجه شدم!</string>
+
+    <string name="nav_home">خانه</string>
+    <string name="nav_learn">یادگیری</string>
+    <string name="nav_profile">پروفایل</string>
+    <string name="nav_settings">تنظیمات</string>
+    
+    <string name="level_format">سطح %1$d %2$s</string>
+
+    <string name="welcome_back">خوش برگشتید</string>
+    <string name="login_desc">برای همگام‌سازی پیشرفت و روندهای خود وارد شوید.</string>
+    <string name="email_address">آدرس ایمیل</string>
+    <string name="password">رمز عبور</string>
+    <string name="hide_password">پنهان کردن رمز عبور</string>
+    <string name="show_password">نمایش رمز عبور</string>
+    <string name="forgot_password">رمز عبور را فراموش کرده‌اید؟</string>
+    <string name="sign_in">ورود</string>
+    <string name="dont_have_account">حساب کاربری ندارید؟</string>
+    <string name="sign_up"> ثبت‌نام</string>
+    
+    <string name="create_account">ایجاد حساب کاربری</string>
+    <string name="signup_desc">یک آواتار انتخاب کنید و سفر خود را آغاز کنید.</string>
+    <string name="select_avatar">انتخاب آواتار</string>
+    <string name="random_chosen">انتخاب تصادفی</string>
+    <string name="full_name">نام و نام خانوادگی</string>
+    <string name="already_have_account">از قبل حساب کاربری دارید؟</string>
+    <string name="sign_in_link"> ورود</string>
+    
+    <string name="edit_profile">ویرایش پروفایل</string>
+    <string name="account_security">امنیت حساب</string>
+    <string name="send_password_reset">ارسال لینک بازیابی رمز عبور</string>
+    <string name="password_reset_desc">ما لینکی به ایمیل شما ارسال می‌کنیم تا رمز عبور خود را به طور امن تغییر دهید.</string>
+    <string name="save_changes">ذخیره تغییرات</string>
+
+    <string name="politics_democracy">سیاست در یک دموکراسی</string>
+    <string name="history_responsibility">تاریخ و مسئولیت‌پذیری</string>
+    <string name="people_society">مردم و جامعه</string>
+    <string name="notification_title">زمان تمرین است!</string>
+    <string name="notification_message">روند خود را زنده نگه دارید و امروز به چند سوال پاسخ دهید.</string>
+    <string name="reminder_time_title">زمان یادآور</string>
+    <string name="reminder_time_desc">زمان یادآوری روزانه مطالعه خود را انتخاب کنید.</string>
+    <string name="btn_confirm">تایید</string>
+    <string name="reminder_time_prefix">یادآوری در</string>
+
+    <string name="paywall_title">باز کردن پریمیوم</string>
+    <string name="paywall_subtitle">با اطمینان در آزمون قبول شوید</string>
+    <string name="benefit_ai">توضیحات هوش مصنوعی برای تمام سوالات</string>
+    <string name="benefit_mock">آزمون‌های آزمایشی نامحدود</string>
+    <string name="benefit_ads">تجربه بدون تبلیغات</string>
+    <string name="benefit_stats">آمار دقیق</string>
+    <string name="benefit_cloud">پشتیبان‌گیری ابری و همگام‌سازی امن</string>
+    <string name="plan_monthly">ماهانه</string>
+    <string name="plan_yearly">سالانه</string>
+    <string name="plan_lifetime">مادام‌العمر</string>
+    <string name="best_value">بهترین ارزش</string>
+    <string name="btn_continue">ادامه</string>
+    <string name="restore_purchases">بازیابی خریدها</string>
+    <string name="terms_privacy">شرایط و حریم خصوصی</string>
+
+    <string name="premium_limit_ai_title">به محدودیت روزانه رسیدید</string>
+    <string name="premium_limit_ai_desc">شما امروز از هر ۳ توضیح رایگان هوش مصنوعی استفاده کرده‌اید. برای دریافت کمک نامحدود هوش مصنوعی پریمیوم تهیه کنید!</string>
+    <string name="premium_limit_translate_title">به محدودیت ترجمه رسیدید</string>
+    <string name="premium_limit_translate_desc">شما امروز از هر ۳ ترجمه رایگان استفاده کرده‌اید. برای ترجمه نامحدود پریمیوم تهیه کنید!</string>
+    <string name="premium_required_pdf_title">ویژگی پریمیوم</string>
+    <string name="premium_required_pdf_desc">خروجی PDF یک ویژگی پریمیوم است. ارتقا دهید تا اشتباهات خود را به صورت PDF دریافت کرده و آفلاین مطالعه کنید.</string>
+    <string name="btn_upgrade_premium">باز کردن پریمیوم</string>
+    <string name="ai_uses_remaining">%1$d توضیح هوش مصنوعی برای امروز باقی مانده است</string>
+    <string name="translation_uses_remaining">%1$d ترجمه برای امروز باقی مانده است</string>
+</resources>

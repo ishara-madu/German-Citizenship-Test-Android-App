@@ -31,19 +31,21 @@ fun MainContainerScreen(
 
     Scaffold(
         bottomBar = {
-            AnimatedBottomNavBar(
-                items = Screen.bottomNavItems,
-                currentRoute = currentDestination?.route,
-                onItemClick = { screen ->
-                    nestedNavController.navigate(screen.route) {
-                        popUpTo(nestedNavController.graph.findStartDestination().id) {
-                            saveState = true
+            if (currentDestination?.route != Screen.Learning.route) {
+                AnimatedBottomNavBar(
+                    items = Screen.bottomNavItems,
+                    currentRoute = currentDestination?.route,
+                    onItemClick = { screen ->
+                        nestedNavController.navigate(screen.route) {
+                            popUpTo(nestedNavController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
                         }
-                        launchSingleTop = true
-                        restoreState = true
                     }
-                }
-            )
+                )
+            }
         }
     ) { innerPadding ->
         NavHost(
@@ -80,7 +82,8 @@ fun MainContainerScreen(
                         nestedNavController.navigate(Screen.Dashboard.route) {
                             popUpTo(nestedNavController.graph.findStartDestination().id) { inclusive = false }
                         }
-                    }
+                    },
+                    onPremiumClick = { rootNavController.navigate(Screen.PremiumPaywall.route) }
                 )
             }
 

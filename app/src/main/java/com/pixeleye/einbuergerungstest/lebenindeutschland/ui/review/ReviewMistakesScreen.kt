@@ -38,7 +38,8 @@ fun ReviewMistakesScreen(
     onRemoveMistake: (Int) -> Unit = {},
     onExportPdfClick: ((String?) -> Unit) -> Unit = {},
     onViewDownloadsClick: () -> Unit = {},
-    isPremium: Boolean = false
+    isPremium: Boolean = false,
+    onPremiumClick: () -> Unit = {}
 ) {
     val isDark = LocalIsDarkTheme.current
     val bgColor = if (isDark) GamifiedBackgroundDark else GamifiedBackgroundLight
@@ -86,20 +87,29 @@ fun ReviewMistakesScreen(
             if (questions.isNotEmpty()) {
                 ExtendedFloatingActionButton(
                     onClick = {
-                        onExportPdfClick { path ->
-                            scope.launch {
-                                if (path != null) {
-                                    snackbarHostState.showSnackbar("PDF exported to Downloads folder")
-                                } else {
-                                    snackbarHostState.showSnackbar("Failed to export PDF")
+                        if (isPremium) {
+                            onExportPdfClick { path ->
+                                scope.launch {
+                                    if (path != null) {
+                                        snackbarHostState.showSnackbar("PDF exported to Downloads folder")
+                                    } else {
+                                        snackbarHostState.showSnackbar("Failed to export PDF")
+                                    }
                                 }
                             }
+                        } else {
+                            onPremiumClick()
                         }
                     },
-                    containerColor = PrimaryActionStart,
-                    contentColor = Color.White,
+                    containerColor = if (isPremium) PrimaryActionStart else YellowAccent,
+                    contentColor = if (isPremium) Color.White else Color.Black,
                     shape = RoundedCornerShape(20.dp),
-                    icon = { Icon(Icons.Rounded.Download, contentDescription = null) },
+                    icon = { 
+                        Icon(
+                            if (isPremium) Icons.Rounded.Download else Icons.Rounded.WorkspacePremium, 
+                            contentDescription = null
+                        ) 
+                    },
                     text = { Text(stringResource(id = R.string.btn_export_pdf), fontWeight = FontWeight.Bold) }
                 )
 

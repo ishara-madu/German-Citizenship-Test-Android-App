@@ -48,6 +48,7 @@ import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.theme.*
 fun LearningFlashcardScreen(
     modifier: Modifier = Modifier,
     onBackClick: () -> Unit = {},
+    onPremiumClick: () -> Unit = {},
     viewModel: QuizViewModel = hiltViewModel(),
     mainViewModel: com.pixeleye.einbuergerungstest.lebenindeutschland.ui.MainViewModel = hiltViewModel()
 ) {
@@ -199,7 +200,13 @@ fun LearningFlashcardScreen(
         Spacer(modifier = Modifier.height(24.dp))
         BottomUtilityBar(
             onNextClick = { viewModel.nextQuestion() },
-            onExplainClick = { viewModel.getAiExplanation() },
+            onExplainClick = {
+                if (isPremium || viewModel.canUseAiExplanation()) {
+                    viewModel.getAiExplanation()
+                } else {
+                    onPremiumClick()
+                }
+            },
             isNextEnabled = uiState.isAnswerChecked,
             current = uiState.currentQuestionIndex + 1,
             total = uiState.questions.size

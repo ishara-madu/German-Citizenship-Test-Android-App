@@ -262,6 +262,9 @@ class QuizViewModel @Inject constructor(
         
         if (currentState.explanationText != null || currentState.isExplanationLoading) return
 
+        // Track daily usage for free users
+        preferenceManager.incrementDailyAiUsage()
+
         viewModelScope.launch {
             _uiState.update { it.copy(isExplanationLoading = true) }
             
@@ -317,6 +320,22 @@ class QuizViewModel @Inject constructor(
         }
     }
 
+    fun canUseAiExplanation(): Boolean {
+        return preferenceManager.getDailyAiUsageCount() < 3
+    }
+
+    fun getRemainingAiUses(): Int {
+        return (3 - preferenceManager.getDailyAiUsageCount()).coerceAtLeast(0)
+    }
+
+    fun canUseTranslation(): Boolean {
+        return preferenceManager.getDailyTranslationUsageCount() < 3
+    }
+
+    fun getRemainingTranslationUses(): Int {
+        return (3 - preferenceManager.getDailyTranslationUsageCount()).coerceAtLeast(0)
+    }
+
 
     fun dismissExplanation() {
         _uiState.update { it.copy(explanationText = null, isExplanationLoading = false) }
@@ -331,6 +350,9 @@ class QuizViewModel @Inject constructor(
             _uiState.update { it.copy(isTranslated = false) }
             return
         }
+
+        // Track daily usage for free users
+        preferenceManager.incrementDailyTranslationUsage()
 
         // Need to translate
         viewModelScope.launch {

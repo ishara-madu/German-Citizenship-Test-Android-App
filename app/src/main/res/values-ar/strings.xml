@@ -1,0 +1,205 @@
+<resources>
+    <string name="app_name">اختبار المواطنة</string>
+    
+    <string name="settings_title">الإعدادات</string>
+    <string name="group_app_preferences">تفضيلات التطبيق</string>
+    <string name="group_study_reminders">تذكيرات الدراسة</string>
+    <string name="group_subscription">الاشتراك والحساب</string>
+    <string name="group_support">الدعم وحول التطبيق</string>
+    
+    <string name="label_theme">السمة</string>
+    <string name="label_language">اللغة</string>
+    <string name="label_daily_practice">تذكير الدراسة اليومي</string>
+    <string name="label_manage_subscription">إدارة الاشتراك</string>
+    <string name="label_restore_purchases">استعادة المشتريات</string>
+    <string name="label_contact_support">التواصل مع الدعم</string>
+    <string name="label_privacy_policy">سياسة الخصوصية</string>
+    <string name="label_app_version">إصدار التطبيق</string>
+    <string name="label_cloud_backup">النسخ الاحتياطي السحابي</string>
+    <string name="desc_cloud_backup">قم بمزامنة تقدمك بأمان في السحابة.</string>
+    <string name="premium_upsell_cloud">لا تفقد تقدمك أبداً. قم بمزامنة أسئلتك بأمان في السحابة مع الإصدار المميز (Premium).</string>
+    
+    <string name="theme_system">النظام الافتراضي</string>
+    <string name="theme_light">الوضع الفاتح</string>
+    <string name="theme_dark">الوضع الداكن</string>
+    <string name="theme_select_title">اختر السمة</string>
+    
+    <string name="onboarding_title_1">مرحباً بك في اختبار المواطنة</string>
+    <string name="onboarding_desc_1">رحلتك نحو التجنس الألماني تبدأ هنا.</string>
+    <string name="onboarding_title_2">التعلم الذكي</string>
+    <string name="onboarding_desc_2">أتقن جميع الأسئلة التي يزيد عددها عن 300 سؤال باستخدام التكرار المتباعد والذكاء الاصطناعي.</string>
+    <string name="onboarding_title_3">تتبع التقدم</string>
+    <string name="onboarding_desc_3">اعرف بالضبط متى تكون جاهزاً للامتحان الحقيقي.</string>
+    <string name="onboarding_title_4">اختر ولايتك الاتحادية</string>
+    <string name="onboarding_desc_4">يحتوي الامتحان على 3 أسئلة خاصة بالولاية. في أي منطقة تعيش؟</string>
+    <string name="btn_get_started">ابدأ الآن</string>
+
+    <string name="language_select_title">اختر اللغة</string>
+    <string name="cancel">إلغاء</string>
+
+    <string name="profile_guest">ضيف</string>
+    <string name="profile_learner">متعلم</string>
+    <string name="level_beginner">مبتدئ</string>
+    <string name="level_novice">حديث العهد</string>
+    <string name="level_student">طالب</string>
+    <string name="level_researcher">باحث</string>
+    <string name="level_expert">خبير</string>
+    <string name="level_advanced">متقدم</string>
+    <string name="level_scholar">عالم</string>
+    <string name="level_master">متمكن</string>
+    <string name="level_citizen">مواطن</string>
+    
+    <string name="btn_logout">تسجيل الخروج</string>
+    <string name="guest_warning_title">احفظ تقدمك!</string>
+    <string name="guest_warning_desc">أنت تستخدم حساب ضيف. اربط حسابك لحفظ إحصائياتك بأمان في السحابة.</string>
+    <string name="btn_bind_account">ربط الحساب / تسجيل الدخول</string>
+    <string name="btn_edit">تعديل</string>
+    
+    <string name="stat_current_streak">السلسلة الحالية</string>
+    <string name="stat_total_answered">تمت الإجابة</string>
+    <string name="stat_mock_exams">الامتحانات التجريبية</string>
+    <string name="stat_avg_score">متوسط النقاط</string>
+    <string name="stat_one_day">يوم واحد</string>
+    <string name="stat_days">%1$d أيام</string>
+    
+    <string name="subject_mastery">إتقان الموضوع</string>
+    <string name="needs_review">بحاجة للمراجعة</string>
+    <string name="no_category_data">لا تتوفر بيانات الفئة بعد.</string>
+    <string name="btn_review_now">راجع الآن</string>
+    <string name="advice_missed">لقد أجبت مؤخراً بشكل غير صحيح على %1$d أسئلة في هذه الفئة. ستساعدك مراجعة سريعة على ترسيخ معرفتك.</string>
+    <string name="advice_mastery">إتقانك في هذه الفئة يبلغ %1$d%%. ستساعدك مراجعة سريعة على ترسيخ معرفتك.</string>
+
+    <string name="dashboard_title">لوحة التحكم</string>
+    <string name="section_learning">التعلم</string>
+    <string name="section_simulator">المحاكي</string>
+    <string name="stat_questions">الأسئلة</string>
+    <string name="stat_mastered">تم إتقانها</string>
+    <string name="stat_streak">السلسلة</string>
+    <string name="btn_start_exam">بدء محاكي الامتحان الحقيقي</string>
+    <string name="btn_flashcards">البطاقات التعليمية</string>
+
+    <string name="btn_explain_ai">شرح باستخدام الذكاء الاصطناعي</string>
+    <string name="btn_translate">ترجمة</string>
+    <string name="btn_next">التالي</string>
+    <string name="btn_finish">إنهاء</string>
+    <string name="loading_ai">الذكاء الاصطناعي يفكر…</string>
+    <string name="correct_answer">الإجابة الصحيحة</string>
+    <string name="wrong_answer">الإجابة الخاطئة</string>
+    <string name="downloading_model">يتم تنزيل نموذج اللغة…</string>
+    <string name="download_info">يحدث هذا مرة واحدة فقط (~30MB)</string>
+    <string name="mistakes">الأخطاء</string>
+    <string name="review_errors">مراجعة الأخطاء</string>
+    <string name="bookmarks">الإشارات المرجعية</string>
+    <string name="saved_items">العناصر المحفوظة</string>
+    <string name="stat_questions_format">%1$d أسئلة</string>
+    <string name="translating">يتم الترجمة…</string>
+    <string name="quiz_finished">انتهى الامتحان!</string>
+    <string name="your_score">نتيجتك: %1$d / %2$d</string>
+    <string name="back_to_dashboard">العودة إلى لوحة التحكم</string>
+    
+    <string name="btn_export_pdf">تصدير PDF</string>
+    <string name="no_mistakes">لم يتم العثور على أخطاء!</string>
+    <string name="no_mistakes_desc">استمر في العمل الجيد. تقدمك ممتاز.</string>
+    <string name="questions_to_review">لديك %1$d أسئلة لمراجعتها.</string>
+    <string name="remove_focus_area">إزالة من منطقة التركيز</string>
+    <string name="correct_answer_upper">الإجابة الصحيحة</string>
+    <string name="no_bookmarks">لا توجد إشارات مرجعية بعد</string>
+    <string name="no_bookmarks_desc">احفظ الأسئلة المثيرة للاهتمام لمراجعتها لاحقاً.</string>
+    <string name="remove_bookmark">إزالة الإشارة المرجعية</string>
+
+    <string name="select_your_state_title">اختر الولاية الاتحادية</string>
+    <string name="state_selection_desc">تدرب على الأسئلة العشرة الخاصة بمنطقتك.</string>
+    <string name="no_states_match">لا توجد ولايات اتحادية تتطابق مع بحثك</string>
+    <string name="search_state">البحث عن ولاية...</string>
+    <string name="btn_start_practice">بدء التدريب</string>
+
+    <string name="quick_review">مراجعة سريعة</string>
+    <string name="swipe_categorized_study">اسحب للتعلم المصنف</string>
+    <string name="daily_review_done">تمت المراجعة اليومية!</string>
+    <string name="mastered_questions">لقد أتقنت هذه الأسئلة.</string>
+    <string name="flashcard_question">السؤال</string>
+    <string name="flashcard_answer">الإجابة الصحيحة</string>
+
+    <string name="greeting_morning">صباح الخير،</string>
+    <string name="quick_review_swipe">مراجعة سريعة (سحب)</string>
+    <string name="daily_flashcard_desc">تصنيف البطاقات التعليمية اليومي</string>
+    <string name="thirty_three_questions">33 سؤال</string>
+    <string name="start_now">ابدأ الآن</string>
+    <string name="state_specific">خاص بالولاية</string>
+    <string name="progress_title">التقدم</string>
+    <string name="smart_tracker">المتعقب الذكي</string>
+
+    <string name="great_job">عمل رائع!</string>
+    <string name="reviewed_all_questions">لقد قمت بمراجعة جميع الأسئلة.</string>
+    <string name="no_questions_found">لم يتم العثور على أسئلة. يرجى إعادة تشغيل التطبيق.</string>
+    <string name="ai_explanation">شرح الذكاء الاصطناعي</string>
+    <string name="no_explanation">لا يوجد شرح متاح.</string>
+    <string name="got_it">فهمت!</string>
+
+    <string name="nav_home">الرئيسية</string>
+    <string name="nav_learn">التعلم</string>
+    <string name="nav_profile">الملف الشخصي</string>
+    <string name="nav_settings">الإعدادات</string>
+    
+    <string name="level_format">المستوى %1$d %2$s</string>
+
+    <string name="welcome_back">مرحباً بعودتك</string>
+    <string name="login_desc">سجل الدخول لمزامنة تقدمك وسلسلتك.</string>
+    <string name="email_address">البريد الإلكتروني</string>
+    <string name="password">كلمة المرور</string>
+    <string name="hide_password">إخفاء كلمة المرور</string>
+    <string name="show_password">إظهار كلمة المرور</string>
+    <string name="forgot_password">نسيت كلمة المرور؟</string>
+    <string name="sign_in">تسجيل الدخول</string>
+    <string name="dont_have_account">ليس لديك حساب؟</string>
+    <string name="sign_up"> إنشاء حساب</string>
+    
+    <string name="create_account">إنشاء حساب</string>
+    <string name="signup_desc">اختر صورة رمزية وابدأ رحلتك.</string>
+    <string name="select_avatar">اختيار الصورة الرمزية</string>
+    <string name="random_chosen">اختيار عشوائي</string>
+    <string name="full_name">الاسم الكامل</string>
+    <string name="already_have_account">لديك حساب بالفعل؟</string>
+    <string name="sign_in_link"> تسجيل الدخول</string>
+    
+    <string name="edit_profile">تعديل الملف الشخصي</string>
+    <string name="account_security">أمان الحساب</string>
+    <string name="send_password_reset">إرسال رابط إعادة تعيين كلمة المرور</string>
+    <string name="password_reset_desc">سنرسل رابطاً إلى بريدك الإلكتروني لإعادة تعيين كلمة المرور بأمان.</string>
+    <string name="save_changes">حفظ التغييرات</string>
+
+    <string name="politics_democracy">السياسة في الديمقراطية</string>
+    <string name="history_responsibility">التاريخ والمسؤولية</string>
+    <string name="people_society">الناس والمجتمع</string>
+    <string name="notification_title">حان وقت التدريب!</string>
+    <string name="notification_message">حافظ على سلسلتك مستمرة وأجب على بضعة أسئلة اليوم.</string>
+    <string name="reminder_time_title">وقت التذكير</string>
+    <string name="reminder_time_desc">اختر وقت تذكير الدراسة اليومي الخاص بك.</string>
+    <string name="btn_confirm">تأكيد</string>
+    <string name="reminder_time_prefix">التذكير في</string>
+
+    <string name="paywall_title">فتح النسخة المميزة</string>
+    <string name="paywall_subtitle">اجتز الامتحان بثقة</string>
+    <string name="benefit_ai">شروحات الذكاء الاصطناعي لجميع الأسئلة</string>
+    <string name="benefit_mock">امتحانات تجريبية غير محدودة</string>
+    <string name="benefit_ads">تجربة خالية من الإعلانات</string>
+    <string name="benefit_stats">إحصائيات مفصلة</string>
+    <string name="benefit_cloud">نسخ احتياطي ومزامنة سحابية آمنة</string>
+    <string name="plan_monthly">شهرياً</string>
+    <string name="plan_yearly">سنوياً</string>
+    <string name="plan_lifetime">مدى الحياة</string>
+    <string name="best_value">أفضل قيمة</string>
+    <string name="btn_continue">متابعة</string>
+    <string name="restore_purchases">استعادة المشتريات</string>
+    <string name="terms_privacy">الشروط والخصوصية</string>
+
+    <string name="premium_limit_ai_title">تم الوصول للحد اليومي</string>
+    <string name="premium_limit_ai_desc">لقد استخدمت جميع شروحات الذكاء الاصطناعي المجانية الثلاثة اليوم. احصل على النسخة المميزة لمساعدة غير محدودة!</string>
+    <string name="premium_limit_translate_title">تم الوصول لجد الترجمة</string>
+    <string name="premium_limit_translate_desc">لقد استخدمت جميع الترجمات المجانية الثلاثة اليوم. احصل على النسخة المميزة لترجمات غير محدودة!</string>
+    <string name="premium_required_pdf_title">ميزة مميزة</string>
+    <string name="premium_required_pdf_desc">تصدير PDF هي ميزة مميزة. قم بالترقية لتصدير أخطائك كملف PDF والدراسة دون اتصال.</string>
+    <string name="btn_upgrade_premium">فتح النسخة المميزة</string>
+    <string name="ai_uses_remaining">يتبقى %1$d شروحات ذكاء اصطناعي اليوم</string>
+    <string name="translation_uses_remaining">يتبقى %1$d ترجمات اليوم</string>
+</resources>

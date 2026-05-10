@@ -95,7 +95,7 @@ fun MainDashboardScreen(
             Spacer(modifier = Modifier.height(48.dp))
 
             // Top Header Row
-            TopHeaderRow(isDark, streakCount, userName, profileImageUrl, onProfileClick, onPremiumClick)
+            TopHeaderRow(isDark, streakCount, userName, profileImageUrl, isPremium, onProfileClick, onPremiumClick)
 
             // Center/Lower Focus: Hero Action Section
             val context = androidx.compose.ui.platform.LocalContext.current
@@ -322,7 +322,15 @@ fun SmallActionCard(
 
 
 @Composable
-fun TopHeaderRow(isDark: Boolean, streakCount: Int, userName: String, profileImageUrl: String?, onProfileClick: () -> Unit, onPremiumClick: () -> Unit) {
+fun TopHeaderRow(
+    isDark: Boolean,
+    streakCount: Int,
+    userName: String,
+    profileImageUrl: String?,
+    isPremium: Boolean,
+    onProfileClick: () -> Unit,
+    onPremiumClick: () -> Unit
+) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -396,19 +404,21 @@ fun TopHeaderRow(isDark: Boolean, streakCount: Int, userName: String, profileIma
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             // Premium Upgrade Badge
-            Surface(
-                shape = CircleShape,
-                color = YellowAccent.copy(alpha = 0.2f),
-                modifier = Modifier
-                    .size(44.dp)
-                    .clickable { onPremiumClick() }
-            ) {
-                Icon(
-                    imageVector = Icons.Rounded.WorkspacePremium,
-                    contentDescription = "Upgrade to Premium",
-                    tint = YellowAccent,
-                    modifier = Modifier.padding(10.dp)
-                )
+            if (!isPremium) {
+                Surface(
+                    shape = CircleShape,
+                    color = YellowAccent.copy(alpha = 0.2f),
+                    modifier = Modifier
+                        .size(44.dp)
+                        .clickable { onPremiumClick() }
+                ) {
+                    Icon(
+                        imageVector = Icons.Rounded.WorkspacePremium,
+                        contentDescription = "Upgrade to Premium",
+                        tint = YellowAccent,
+                        modifier = Modifier.padding(10.dp)
+                    )
+                }
             }
 
             // Daily Streak Badge

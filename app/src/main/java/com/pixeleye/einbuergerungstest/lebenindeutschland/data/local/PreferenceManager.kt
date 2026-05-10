@@ -41,6 +41,10 @@ class PreferenceManager @Inject constructor(
         private const val KEY_REMINDER_MINUTE = "reminder_minute"
         private const val KEY_LAST_APP_OPEN_DATE = "last_app_open_date"
         private const val KEY_CLOUD_SYNC_ENABLED = "cloud_sync_enabled"
+        private const val KEY_AI_USAGE_COUNT = "ai_usage_count"
+        private const val KEY_AI_USAGE_DATE = "ai_usage_date"
+        private const val KEY_TRANSLATION_USAGE_COUNT = "translation_usage_count"
+        private const val KEY_TRANSLATION_USAGE_DATE = "translation_usage_date"
     }
 
 
@@ -233,5 +237,50 @@ class PreferenceManager @Inject constructor(
 
     fun setCloudSyncEnabled(enabled: Boolean) {
         sharedPreferences.edit().putBoolean(KEY_CLOUD_SYNC_ENABLED, enabled).apply()
+    }
+
+    private fun getTodayString(): String {
+        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.US)
+        return sdf.format(java.util.Date())
+    }
+
+    fun getDailyAiUsageCount(): Int {
+        val savedDate = sharedPreferences.getString(KEY_AI_USAGE_DATE, "") ?: ""
+        val today = getTodayString()
+        if (savedDate != today) return 0
+        return sharedPreferences.getInt(KEY_AI_USAGE_COUNT, 0)
+    }
+
+    fun incrementDailyAiUsage() {
+        val today = getTodayString()
+        val savedDate = sharedPreferences.getString(KEY_AI_USAGE_DATE, "") ?: ""
+        val currentCount = if (savedDate == today) {
+            sharedPreferences.getInt(KEY_AI_USAGE_COUNT, 0)
+        } else 0
+
+        sharedPreferences.edit()
+            .putString(KEY_AI_USAGE_DATE, today)
+            .putInt(KEY_AI_USAGE_COUNT, currentCount + 1)
+            .apply()
+    }
+
+    fun getDailyTranslationUsageCount(): Int {
+        val savedDate = sharedPreferences.getString(KEY_TRANSLATION_USAGE_DATE, "") ?: ""
+        val today = getTodayString()
+        if (savedDate != today) return 0
+        return sharedPreferences.getInt(KEY_TRANSLATION_USAGE_COUNT, 0)
+    }
+
+    fun incrementDailyTranslationUsage() {
+        val today = getTodayString()
+        val savedDate = sharedPreferences.getString(KEY_TRANSLATION_USAGE_DATE, "") ?: ""
+        val currentCount = if (savedDate == today) {
+            sharedPreferences.getInt(KEY_TRANSLATION_USAGE_COUNT, 0)
+        } else 0
+
+        sharedPreferences.edit()
+            .putString(KEY_TRANSLATION_USAGE_DATE, today)
+            .putInt(KEY_TRANSLATION_USAGE_COUNT, currentCount + 1)
+            .apply()
     }
 }
