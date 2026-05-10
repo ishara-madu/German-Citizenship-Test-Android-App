@@ -53,7 +53,7 @@ fun ExamSimulatorScreen(
     val isDark = LocalIsDarkTheme.current
     val bgColor = if (isDark) GamifiedBackgroundDark else GamifiedBackgroundLight
 
-    if (quizUiState.isLoading) {
+    if (quizUiState.isLoading || (quizUiState.questions.isEmpty() && !quizUiState.isQuizFinished)) {
         Box(modifier = Modifier.fillMaxSize().background(bgColor), contentAlignment = Alignment.Center) {
             CircularProgressIndicator(color = PrimaryActionStart)
         }

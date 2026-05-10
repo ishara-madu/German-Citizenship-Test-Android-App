@@ -42,9 +42,7 @@ fun AppNavHost(
     val quizViewModel: QuizViewModel = hiltViewModel()
     val authViewModel: AuthViewModel = hiltViewModel()
     
-    val startDestination = remember {
-        if (mainViewModel.isOnboardingCompleted()) Screen.MainContainer.route else Screen.Onboarding.route
-    }
+    val startDestination = if (mainViewModel.isOnboardingCompleted()) Screen.MainContainer.route else Screen.Onboarding.route
 
     NavHost(
         navController = navController,
@@ -195,7 +193,13 @@ fun AppNavHost(
         
         composable(Screen.PremiumPaywall.route) {
             PremiumPaywallScreen(
-                onCloseClick = { navController.popBackStack() }
+                onCloseClick = { 
+                    if (!navController.popBackStack()) {
+                        navController.navigate(Screen.MainContainer.route) {
+                            popUpTo(0) { inclusive = true }
+                        }
+                    }
+                }
             )
         }
 

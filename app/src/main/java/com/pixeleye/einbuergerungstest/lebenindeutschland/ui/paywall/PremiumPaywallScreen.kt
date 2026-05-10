@@ -77,8 +77,14 @@ fun PremiumPaywallScreen(
     var selectedPkgId by remember { mutableStateOf("\$rc_annual") }
 
     // If user is already premium, close automatically
+    var hasClosed by remember { mutableStateOf(false) }
     LaunchedEffect(isPremium) {
-        if (isPremium) onCloseClick()
+        if (isPremium && !hasClosed) {
+            hasClosed = true
+            // Small delay to allow billing dialog to fully dismiss
+            kotlinx.coroutines.delay(500)
+            onCloseClick()
+        }
     }
 
     Box(modifier = Modifier.fillMaxSize().background(bgColor)) {

@@ -8,13 +8,25 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.rememberNavController
 import com.pixeleye.einbuergerungstest.lebenindeutschland.data.local.PreferenceManager
-import com.pixeleye.einbuergerungstest.lebenindeutschland.navigation.MainNavigationScreen
+import com.pixeleye.einbuergerungstest.lebenindeutschland.navigation.AppNavHost
 import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.settings.SettingsViewModel
 import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.theme.BürgertestTheme
 import com.pixeleye.einbuergerungstest.lebenindeutschland.util.LocaleHelper
@@ -53,6 +65,8 @@ class MainActivity : ComponentActivity() {
             val themeMode by settingsViewModel.themeMode.collectAsState()
             val appLanguage by settingsViewModel.appLanguage.collectAsState()
             
+            val navController = rememberNavController()
+            
             // Handle Theme
             val darkTheme = when (themeMode) {
                 "light" -> false
@@ -68,10 +82,21 @@ class MainActivity : ComponentActivity() {
 
             // Wrap the app in the localized context and theme
             CompositionLocalProvider(
-                androidx.compose.ui.platform.LocalContext provides localeContext
+                LocalContext provides localeContext
             ) {
                 BürgertestTheme(darkTheme = darkTheme) {
-                    MainNavigationScreen()
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colorScheme.background
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .systemBarsPadding()
+                        ) {
+                            AppNavHost(navController = navController)
+                        }
+                    }
                 }
             }
         }
