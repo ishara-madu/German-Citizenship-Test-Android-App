@@ -209,6 +209,8 @@
     <string name="best_value">Bester Wert</string>
     <string name="btn_continue">Weiter</string>
     <string name="restore_purchases">Käufe wiederherstellen</string>
+    <string name="label_terms">AGB</string>
+    <string name="label_privacy">Datenschutz</string>
     <string name="terms_privacy">AGB &amp; Datenschutz</string>
 
     <!-- Premium Upsell Messages -->

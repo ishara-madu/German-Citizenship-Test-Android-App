@@ -245,7 +245,7 @@ fun SettingsScreen(
                     isDark = isDark,
                     onClick = { 
                         val intent = Intent(Intent.ACTION_SENDTO).apply {
-                            data = Uri.parse("mailto:support@pixeleye.com")
+                            data = Uri.parse("mailto:ishara.m.official@gmail.com")
                             putExtra(Intent.EXTRA_SUBJECT, "Support: Leben in Deutschland App")
                         }
                         try {
@@ -261,7 +261,7 @@ fun SettingsScreen(
                     text = stringResource(id = R.string.label_privacy_policy),
                     isDark = isDark,
                     onClick = { 
-                        uriHandler.openUri("https://pixeleye.io/privacy-policy")
+                        uriHandler.openUri("https://ishara-madu.github.io/German-Citizenship-Test-Android-App/privacy-policy.html")
                     }
                 )
                 HorizontalDivider(color = getDividerColor(isDark), thickness = 1.dp)

@@ -273,13 +273,25 @@ fun PremiumPaywallScreen(
                     )
 
                     Text(
-                        text = stringResource(id = R.string.terms_privacy),
+                        text = stringResource(id = R.string.label_terms),
                         style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold),
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         textDecoration = TextDecoration.Underline,
                         modifier = Modifier
                             .clickable { 
-                                uriHandler.openUri("https://pixeleye.io/terms-of-service")
+                                uriHandler.openUri("https://ishara-madu.github.io/German-Citizenship-Test-Android-App/terms-conditions.html")
+                            }
+                            .padding(8.dp)
+                    )
+
+                    Text(
+                        text = stringResource(id = R.string.label_privacy),
+                        style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold),
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        textDecoration = TextDecoration.Underline,
+                        modifier = Modifier
+                            .clickable { 
+                                uriHandler.openUri("https://ishara-madu.github.io/German-Citizenship-Test-Android-App/privacy-policy.html")
                             }
                             .padding(8.dp)
                     )
