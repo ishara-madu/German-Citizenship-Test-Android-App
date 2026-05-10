@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">اختبار المواطنة</string>
+    <string name="app_name">Bürgertest</string>
     
     <string name="settings_title">الإعدادات</string>
     <string name="group_app_preferences">تفضيلات التطبيق</string>

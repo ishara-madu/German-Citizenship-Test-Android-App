@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Vatandaşlık Testi</string>
+    <string name="app_name">Bürgertest</string>
     
     <string name="settings_title">Ayarlar</string>
     <string name="group_app_preferences">Uygulama Tercihleri</string>

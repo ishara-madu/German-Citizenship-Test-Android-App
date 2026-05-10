@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Citizen Test</string>
+    <string name="app_name">Bürgertest</string>
     
     <string name="settings_title">Settings</string>
     <string name="group_app_preferences">App Preferences</string>
