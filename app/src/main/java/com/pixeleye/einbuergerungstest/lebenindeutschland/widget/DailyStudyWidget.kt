@@ -37,17 +37,26 @@ class DailyStudyWidget : GlanceAppWidget() {
         val db = AppDatabase.getDatabase(context)
         val pref = PreferenceManager(context)
         
-        // Force German for the widget content
+        val appLanguage = pref.getAppLanguage()
+        val locale = when (appLanguage) {
+            "English" -> Locale("en")
+            "Turkish" -> Locale("tr")
+            "Arabic" -> Locale("ar")
+            "Persian" -> Locale("fa")
+            else -> Locale.GERMAN
+        }
+
+        // Force selected language for the widget content
         val config = android.content.res.Configuration(context.resources.configuration)
-        config.setLocale(Locale.GERMAN)
-        val germanContext = context.createConfigurationContext(config)
+        config.setLocale(locale)
+        val localizedContext = context.createConfigurationContext(config)
         
         val onboardingCompleted = pref.isOnboardingCompleted()
         val dataInitialized = pref.isDataInitialized()
         
         if (!dataInitialized || !onboardingCompleted) {
             provideContent {
-                LoadingState(germanContext, !dataInitialized)
+                LoadingState(localizedContext, !dataInitialized)
             }
             return
         }
@@ -80,11 +89,11 @@ class DailyStudyWidget : GlanceAppWidget() {
             9 -> R.string.level_master
             else -> R.string.level_citizen
         }
-        val levelTitle = germanContext.getString(levelResId)
+        val levelTitle = localizedContext.getString(levelResId)
 
         provideContent {
             val size = LocalSize.current
-            WidgetMainContent(size, germanContext, streak, levelTitle, dailyQuestion)
+            WidgetMainContent(size, localizedContext, streak, levelTitle, dailyQuestion)
         }
     }
 

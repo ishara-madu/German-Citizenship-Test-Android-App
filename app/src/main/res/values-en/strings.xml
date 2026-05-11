@@ -205,6 +205,11 @@
     <string name="ai_uses_remaining">%1$d AI explanations left today</string>
     <string name="translation_uses_remaining">%1$d translations remaining today</string>
 
-
+    <!-- Widget Strings -->
+    <string name="widget_question_of_day">QUESTION OF THE DAY</string>
+    <string name="widget_tap_to_open">Tap to open</string>
+    <string name="widget_setup_message">Open app to set up study plan</string>
+    <string name="widget_start_studying">Start studying!</string>
+    <string name="widget_streak_format">%1$d Day Streak!</string>
 
 </resources>
