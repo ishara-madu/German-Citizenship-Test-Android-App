@@ -89,15 +89,12 @@ fun LoginScreen(
             Surface(
                 modifier = Modifier.size(80.dp),
                 shape = CircleShape,
-                color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f)
+                shadowElevation = 8.dp
             ) {
-                Icon(
-                    imageVector = Icons.Rounded.Security,
+                androidx.compose.foundation.Image(
+                    painter = androidx.compose.ui.res.painterResource(id = R.mipmap.ic_launcher),
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(20.dp)
+                    modifier = Modifier.fillMaxSize()
                 )
             }
 

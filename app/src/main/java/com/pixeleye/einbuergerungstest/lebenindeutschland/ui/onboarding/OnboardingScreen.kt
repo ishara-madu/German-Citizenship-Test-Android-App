@@ -83,12 +83,12 @@ fun OnboardingScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 24.dp, vertical = 32.dp),
+                    .padding(horizontal = 24.dp, vertical = 12.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 // Dot Indicator
                 Row(
-                    modifier = Modifier.padding(bottom = 32.dp),
+                    modifier = Modifier.padding(bottom = 12.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     repeat(pages.size) { index ->
@@ -187,56 +187,63 @@ fun OnboardingPageContent(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(24.dp),
+            .padding(horizontal = 16.dp, vertical = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Surface(
-            modifier = Modifier.size(200.dp),
-            shape = CircleShape,
-            color = page.color.copy(alpha = 0.1f)
-        ) {
-            Icon(
-                imageVector = page.icon,
-                contentDescription = null,
-                tint = page.color,
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(48.dp)
-            )
-        }
+        if (!page.isStateSelection) {
+            Surface(
+                modifier = Modifier.size(200.dp),
+                shape = CircleShape,
+                color = page.color.copy(alpha = 0.1f)
+            ) {
+                Icon(
+                    imageVector = page.icon,
+                    contentDescription = null,
+                    tint = page.color,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(48.dp)
+                )
+            }
 
-        Spacer(modifier = Modifier.height(64.dp))
+            Spacer(modifier = Modifier.height(64.dp))
+        } else {
+            // Keep UI ultra compact on low height devices for state selection
+            Spacer(modifier = Modifier.height(8.dp))
+        }
 
         Text(
             text = page.title,
             style = MaterialTheme.typography.displayLarge.copy(
-                fontSize = 32.sp,
+                fontSize = if (page.isStateSelection) 22.sp else 32.sp,
                 fontWeight = FontWeight.ExtraBold,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center
             )
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(12.dp))
 
         Text(
             text = page.description,
             style = MaterialTheme.typography.bodyLarge.copy(
-                fontSize = 18.sp,
+                fontSize = if (page.isStateSelection) 14.sp else 18.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,
-                lineHeight = 28.sp
+                lineHeight = if (page.isStateSelection) 20.sp else 28.sp
             ),
-            modifier = Modifier.padding(horizontal = 24.dp)
+            modifier = Modifier.padding(horizontal = 8.dp)
         )
 
         if (page.isStateSelection) {
-            Spacer(modifier = Modifier.height(32.dp))
-            StateSelectionGrid(
-                selectedState = selectedState,
-                onStateSelected = onStateSelected
-            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Box(modifier = Modifier.weight(1f).fillMaxWidth()) {
+                StateSelectionGrid(
+                    selectedState = selectedState,
+                    onStateSelected = onStateSelected
+                )
+            }
         }
     }
 }
@@ -255,11 +262,9 @@ fun StateSelectionGrid(
     
     androidx.compose.foundation.lazy.grid.LazyVerticalGrid(
         columns = androidx.compose.foundation.lazy.grid.GridCells.Fixed(2),
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(320.dp)
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+        modifier = Modifier.fillMaxSize()
     ) {
         items(states.size) { index ->
             val state = states[index]
@@ -267,20 +272,21 @@ fun StateSelectionGrid(
             
             Surface(
                 onClick = { onStateSelected(state) },
-                shape = RoundedCornerShape(16.dp),
+                shape = RoundedCornerShape(14.dp),
                 color = if (isSelected) PrimaryActionStart else MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
                 border = androidx.compose.foundation.BorderStroke(
                     width = 2.dp,
                     color = if (isSelected) PrimaryActionStart else Color.Transparent
                 ),
-                modifier = Modifier.height(60.dp)
+                modifier = Modifier.height(54.dp)
             ) {
-                Box(contentAlignment = Alignment.Center, modifier = Modifier.padding(8.dp)) {
+                Box(contentAlignment = Alignment.Center, modifier = Modifier.padding(4.dp)) {
                     Text(
                         text = getLocalizedStateName(state),
                         color = if (isSelected) Color.White else MaterialTheme.colorScheme.onSurface,
-                        style = MaterialTheme.typography.labelLarge,
-                        textAlign = TextAlign.Center
+                        style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
+                        textAlign = TextAlign.Center,
+                        maxLines = 2
                     )
                 }
             }

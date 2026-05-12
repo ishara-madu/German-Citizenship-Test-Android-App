@@ -92,6 +92,21 @@ fun SignUpScreen(
         ) {
             Spacer(modifier = Modifier.height(20.dp))
 
+            // Logo Header
+            Surface(
+                modifier = Modifier.size(80.dp),
+                shape = CircleShape,
+                shadowElevation = 8.dp
+            ) {
+                androidx.compose.foundation.Image(
+                    painter = androidx.compose.ui.res.painterResource(id = R.mipmap.ic_launcher),
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
+
+            Spacer(modifier = Modifier.height(32.dp))
+
             // Hero Text
             Text(
                 text = stringResource(id = R.string.create_account),

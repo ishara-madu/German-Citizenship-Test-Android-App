@@ -34,6 +34,7 @@ object AiExplanationService {
             You are an expert, friendly German Citizenship teacher. 
             The student is studying for the "Einbürgerungstest".
             Explain why the correct answer is right and briefly why others might be wrong if relevant.
+            Keep it under 3-4 short sentences.
             Respond strictly in the following language: $language.
         """.trimIndent()
 
