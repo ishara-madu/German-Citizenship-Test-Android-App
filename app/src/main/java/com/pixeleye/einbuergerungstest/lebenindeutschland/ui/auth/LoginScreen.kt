@@ -50,10 +50,14 @@ fun LoginScreen(
         onResetState()
     }
 
+    val isDark = LocalIsDarkTheme.current
+    val bgColor = if (isDark) GamifiedBackgroundDark else GamifiedBackgroundLight
+
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
             .imePadding(),
+        containerColor = bgColor,
         topBar = {
             TopAppBar(
                 title = {},
@@ -189,26 +193,6 @@ fun LoginScreen(
                 CircularProgressIndicator(
                     modifier = Modifier.padding(vertical = 16.dp),
                     color = MaterialTheme.colorScheme.primary
-                )
-            }
-
-            if (authState is AuthState.ActionSuccess) {
-                Text(
-                    text = (authState as AuthState.ActionSuccess).message,
-                    color = Color(0xFF2E7D32), // Success Green
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.padding(vertical = 8.dp),
-                    textAlign = TextAlign.Center
-                )
-            }
-
-            if (authState is AuthState.Error) {
-                Text(
-                    text = (authState as AuthState.Error).message,
-                    color = MaterialTheme.colorScheme.error,
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.padding(vertical = 8.dp),
-                    textAlign = TextAlign.Center
                 )
             }
 

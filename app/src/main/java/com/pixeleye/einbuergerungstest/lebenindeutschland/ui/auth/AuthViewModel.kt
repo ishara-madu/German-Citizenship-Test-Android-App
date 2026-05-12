@@ -1,11 +1,15 @@
 package com.pixeleye.einbuergerungstest.lebenindeutschland.ui.auth
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
+import com.pixeleye.einbuergerungstest.lebenindeutschland.R
 import com.pixeleye.einbuergerungstest.lebenindeutschland.data.remote.AuthService
 import com.pixeleye.einbuergerungstest.lebenindeutschland.data.remote.SubscriptionRepository
+import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.components.SnackbarManager
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,6 +27,7 @@ sealed class AuthState {
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
+    @ApplicationContext private val context: Context,
     private val authService: AuthService,
     private val subscriptionRepository: SubscriptionRepository
 ) : ViewModel() {
@@ -70,7 +75,9 @@ class AuthViewModel @Inject constructor(
 
     fun signInWithEmail(email: String, pass: String) {
         if (email.isBlank() || pass.isBlank()) {
-            _authState.value = AuthState.Error("Please fill in all fields")
+            val msg = context.getString(R.string.err_fill_all_fields)
+            SnackbarManager.showWarning(messageResId = R.string.err_fill_all_fields)
+            _authState.value = AuthState.Error(msg)
             return
         }
         viewModelScope.launch {
@@ -78,20 +85,27 @@ class AuthViewModel @Inject constructor(
             val user = authService.signInWithEmailAndPassword(email, pass)
             if (user != null) {
                 updateUserData(user)
+                SnackbarManager.showSuccess(messageResId = R.string.success_signed_in)
                 _authState.value = AuthState.Success
             } else {
-                _authState.value = AuthState.Error("Sign in failed. Please check your credentials.")
+                val msg = context.getString(R.string.err_sign_in_failed)
+                SnackbarManager.showError(messageResId = R.string.err_sign_in_failed)
+                _authState.value = AuthState.Error(msg)
             }
         }
     }
 
     fun signUpWithEmail(email: String, password: String, name: String, avatar: String? = null) {
         if (email.isBlank() || password.isBlank() || name.isBlank()) {
-            _authState.value = AuthState.Error("Please fill in all fields")
+            val msg = context.getString(R.string.err_fill_all_fields)
+            SnackbarManager.showWarning(messageResId = R.string.err_fill_all_fields)
+            _authState.value = AuthState.Error(msg)
             return
         }
         if (password.length < 6) {
-            _authState.value = AuthState.Error("Password must be at least 6 characters")
+            val msg = context.getString(R.string.err_password_length)
+            SnackbarManager.showWarning(messageResId = R.string.err_password_length)
+            _authState.value = AuthState.Error(msg)
             return
         }
 
@@ -125,38 +139,46 @@ class AuthViewModel @Inject constructor(
             }
 
             if (user != null) {
-                updateUserData(user)
                 authService.sendEmailVerification() // Send confirmation email
-                _authState.value = AuthState.Success
-                _authState.value = AuthState.ActionSuccess("Account created! Please check your email for a confirmation link.")
+                authService.signOut()
+                updateUserData(null)
+                val msg = context.getString(R.string.success_account_created)
+                SnackbarManager.showSuccess(messageResId = R.string.success_account_created)
+                _authState.value = AuthState.ActionSuccess(msg)
             } else {
-                _authState.value = AuthState.Error("Sign up failed. Email might be in use or connection error.")
+                val msg = context.getString(R.string.err_sign_up_failed)
+                SnackbarManager.showError(messageResId = R.string.err_sign_up_failed)
+                _authState.value = AuthState.Error(msg)
             }
-
         }
     }
-
-
 
     fun signOut() {
         viewModelScope.launch {
             authService.signOut()
+            SnackbarManager.showInfo(messageResId = R.string.success_signed_out)
             signInAnonymously() // Re-sign in as guest
         }
     }
 
     fun sendPasswordResetEmail(email: String) {
         if (email.isBlank()) {
-            _authState.value = AuthState.Error("Please enter your email address")
+            val msg = context.getString(R.string.err_enter_email)
+            SnackbarManager.showWarning(messageResId = R.string.err_enter_email)
+            _authState.value = AuthState.Error(msg)
             return
         }
         viewModelScope.launch {
             _authState.value = AuthState.Loading
             val success = authService.sendPasswordResetEmail(email)
             if (success) {
-                _authState.value = AuthState.ActionSuccess("Password reset email sent!")
+                val msg = context.getString(R.string.success_reset_email_sent)
+                SnackbarManager.showSuccess(messageResId = R.string.success_reset_email_sent)
+                _authState.value = AuthState.ActionSuccess(msg)
             } else {
-                _authState.value = AuthState.Error("Failed to send reset email. Please check the email address.")
+                val msg = context.getString(R.string.err_reset_email_failed)
+                SnackbarManager.showError(messageResId = R.string.err_reset_email_failed)
+                _authState.value = AuthState.Error(msg)
             }
         }
     }
@@ -172,25 +194,35 @@ class AuthViewModel @Inject constructor(
             
             if (success) {
                 updateUserData(authService.getCurrentUser())
-                _authState.value = AuthState.ActionSuccess("Profile updated successfully!")
+                val msg = context.getString(R.string.success_profile_updated)
+                SnackbarManager.showSuccess(messageResId = R.string.success_profile_updated)
+                _authState.value = AuthState.ActionSuccess(msg)
             } else {
-                _authState.value = AuthState.Error("Failed to update profile.")
+                val msg = context.getString(R.string.err_profile_update_failed)
+                SnackbarManager.showError(messageResId = R.string.err_profile_update_failed)
+                _authState.value = AuthState.Error(msg)
             }
         }
     }
 
     fun updatePassword(newPassword: String) {
         if (newPassword.length < 6) {
-            _authState.value = AuthState.Error("Password must be at least 6 characters")
+            val msg = context.getString(R.string.err_password_length)
+            SnackbarManager.showWarning(messageResId = R.string.err_password_length)
+            _authState.value = AuthState.Error(msg)
             return
         }
         viewModelScope.launch {
             _authState.value = AuthState.Loading
             val success = authService.updatePassword(newPassword)
             if (success) {
-                _authState.value = AuthState.ActionSuccess("Password changed successfully!")
+                val msg = context.getString(R.string.success_password_changed)
+                SnackbarManager.showSuccess(messageResId = R.string.success_password_changed)
+                _authState.value = AuthState.ActionSuccess(msg)
             } else {
-                _authState.value = AuthState.Error("Failed to change password. You may need to re-login.")
+                val msg = context.getString(R.string.err_password_change_failed)
+                SnackbarManager.showError(messageResId = R.string.err_password_change_failed)
+                _authState.value = AuthState.Error(msg)
             }
         }
     }

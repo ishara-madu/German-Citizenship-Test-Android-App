@@ -233,4 +233,28 @@
     <string name="state_schleswig_holstein">Schleswig-Holstein</string>
     <string name="state_thueringen">Thuringia</string>
 
+    <!-- Snackbar & Auth Feedback -->
+    <string name="snackbar_success_title">Success</string>
+    <string name="snackbar_error_title">Error</string>
+    <string name="snackbar_info_title">Info</string>
+    <string name="snackbar_warning_title">Warning</string>
+    <string name="err_fill_all_fields">Please fill in all fields</string>
+    <string name="success_signed_in">Successfully signed in!</string>
+    <string name="err_sign_in_failed">Sign in failed. Please check your credentials.</string>
+    <string name="err_password_length">Password must be at least 6 characters</string>
+    <string name="success_account_created">Account created! Please sign in with your credentials.</string>
+    <string name="err_sign_up_failed">Sign up failed. Email might be in use or connection error.</string>
+    <string name="success_signed_out">Successfully signed out</string>
+    <string name="err_enter_email">Please enter your email address</string>
+    <string name="success_reset_email_sent">Password reset email sent!</string>
+    <string name="err_reset_email_failed">Failed to send reset email. Please check the email address.</string>
+    <string name="success_profile_updated">Profile updated successfully!</string>
+    <string name="err_profile_update_failed">Failed to update profile.</string>
+    <string name="success_password_changed">Password changed successfully!</string>
+    <string name="err_password_change_failed">Failed to change password.</string>
+    <string name="err_open_play_store">Could not open Play Store</string>
+    <string name="info_restoring_purchases">Restoring purchases...</string>
+    <string name="err_no_email_app">No email app found</string>
+    <string name="info_app_version_msg">Leben in Deutschland v1.0.0</string>
+
 </resources>

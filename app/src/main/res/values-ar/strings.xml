@@ -233,4 +233,28 @@
     <string name="state_schleswig_holstein">شليسفيغ-هولشتاين</string>
     <string name="state_thueringen">تورينغن</string>
 
+    <!-- Snackbar & Auth Feedback -->
+    <string name="snackbar_success_title">نجاح</string>
+    <string name="snackbar_error_title">خطأ</string>
+    <string name="snackbar_info_title">معلومات</string>
+    <string name="snackbar_warning_title">تحذير</string>
+    <string name="err_fill_all_fields">يرجى ملء جميع الحقول</string>
+    <string name="success_signed_in">تم تسجيل الدخول بنجاح!</string>
+    <string name="err_sign_in_failed">فشل تسجيل الدخول. يرجى التحقق من بيانات الاعتماد الخاصة بك.</string>
+    <string name="err_password_length">يجب أن تتكون كلمة المرور من 6 أحرف على الأقل</string>
+    <string name="success_account_created">تم إنشاء الحساب! يرجى تسجيل الدخول ببياناتك.</string>
+    <string name="err_sign_up_failed">فشل التسجيل. قد يكون البريد الإلكتروني قيد الاستخدام أو هناك خطأ في الاتصال.</string>
+    <string name="success_signed_out">تم تسجيل الخروج بنجاح</string>
+    <string name="err_enter_email">يرجى إدخال عنوان بريدك الإلكتروني</string>
+    <string name="success_reset_email_sent">تم إرسال رابط إعادة تعيين كلمة المرور!</string>
+    <string name="err_reset_email_failed">فشل الإرسال. يرجى التحقق من عنوان البريد الإلكتروني.</string>
+    <string name="success_profile_updated">تم تحديث الملف الشخصي بنجاح!</string>
+    <string name="err_profile_update_failed">فشل تحديث الملف الشخصي.</string>
+    <string name="success_password_changed">تم تغيير كلمة المرور بنجاح!</string>
+    <string name="err_password_change_failed">فشل تغيير كلمة المرور.</string>
+    <string name="err_open_play_store">تعذر فتح متجر Play</string>
+    <string name="info_restoring_purchases">جاري استعادة المشتريات...</string>
+    <string name="err_no_email_app">لم يتم العثور على تطبيق بريد إلكتروني</string>
+    <string name="info_app_version_msg">Leben in Deutschland v1.0.0</string>
+
 </resources>

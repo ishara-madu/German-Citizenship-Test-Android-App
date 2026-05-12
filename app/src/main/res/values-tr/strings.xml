@@ -233,4 +233,28 @@
     <string name="state_schleswig_holstein">Schleswig-Holstein</string>
     <string name="state_thueringen">Türingiya</string>
 
+    <!-- Snackbar & Auth Feedback -->
+    <string name="snackbar_success_title">Başarılı</string>
+    <string name="snackbar_error_title">Hata</string>
+    <string name="snackbar_info_title">Bilgi</string>
+    <string name="snackbar_warning_title">Uyarı</string>
+    <string name="err_fill_all_fields">Lütfen tüm alanları doldurun</string>
+    <string name="success_signed_in">Başarıyla giriş yapıldı!</string>
+    <string name="err_sign_in_failed">Giriş başarısız. Lütfen bilgilerinizi kontrol edin.</string>
+    <string name="err_password_length">Şifre en az 6 karakter olmalıdır</string>
+    <string name="success_account_created">Hesap oluşturuldu! Lütfen bilgilerinizle giriş yapın.</string>
+    <string name="err_sign_up_failed">Kayıt başarısız. E-posta kullanımda veya bağlantı hatası olabilir.</string>
+    <string name="success_signed_out">Başarıyla çıkış yapıldı</string>
+    <string name="err_enter_email">Lütfen e-posta adresinizi girin</string>
+    <string name="success_reset_email_sent">Şifre sıfırlama bağlantısı gönderildi!</string>
+    <string name="err_reset_email_failed">Gönderim başarısız. Lütfen e-posta adresini kontrol edin.</string>
+    <string name="success_profile_updated">Profil başarıyla güncellendi!</string>
+    <string name="err_profile_update_failed">Profil güncellenemedi.</string>
+    <string name="success_password_changed">Şifre başarıyla değiştirildi!</string>
+    <string name="err_password_change_failed">Şifre değiştirilemedi.</string>
+    <string name="err_open_play_store">Play Store açılamadı</string>
+    <string name="info_restoring_purchases">Satın alımlar geri yükleniyor...</string>
+    <string name="err_no_email_app">E-posta uygulaması bulunamadı</string>
+    <string name="info_app_version_msg">Leben in Deutschland v1.0.0</string>
+
 </resources>

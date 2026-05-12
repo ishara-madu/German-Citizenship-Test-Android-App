@@ -61,6 +61,7 @@ class QuizViewModel @Inject constructor(
      * Includes all synced fields so that merge works correctly.
      */
     private suspend fun pushFullProgressToCloud() {
+        if (!preferenceManager.isCloudSyncEnabled()) return
         val user = authService.getCurrentUser() ?: return
 
         val bookmarks = repository.getBookmarkedQuestionsOnce().map { it.id }

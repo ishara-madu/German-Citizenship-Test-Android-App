@@ -254,12 +254,12 @@ fun AppNavHost(
             val isAnonymous by authViewModel.isAnonymous.collectAsState()
             
             LaunchedEffect(authState) {
-                if (authState is AuthState.Success) {
-                    if (!isAnonymous) {
-                        navController.navigate(Screen.MainContainer.route) {
-                            popUpTo(Screen.SignUp.route) { inclusive = true }
-                            popUpTo(Screen.Login.route) { inclusive = true }
-                        }
+                if (authState is AuthState.ActionSuccess) {
+                    navController.popBackStack()
+                } else if (authState is AuthState.Success && !isAnonymous) {
+                    navController.navigate(Screen.MainContainer.route) {
+                        popUpTo(Screen.SignUp.route) { inclusive = true }
+                        popUpTo(Screen.Login.route) { inclusive = true }
                     }
                 }
             }

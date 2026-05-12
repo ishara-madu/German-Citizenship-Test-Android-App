@@ -49,7 +49,8 @@ fun PremiumPaywallScreen(
     onSubscribe: (planId: String) -> Unit = {},
     onRestore: () -> Unit = {},
     onTermsPrivacyClick: () -> Unit = {},
-    viewModel: PaywallViewModel = hiltViewModel()
+    viewModel: PaywallViewModel = hiltViewModel(),
+    mainViewModel: com.pixeleye.einbuergerungstest.lebenindeutschland.ui.MainViewModel = hiltViewModel()
 ) {
     val isDark = LocalIsDarkTheme.current
     val bgColor = if (isDark) GamifiedBackgroundDark else GamifiedBackgroundLight
@@ -233,7 +234,10 @@ fun PremiumPaywallScreen(
                         val selectedPkg = packages.firstOrNull { it.identifier == selectedPkgId }
                         if (selectedPkg != null) {
                             viewModel.purchase(activity, selectedPkg) { success ->
-                                if (success) onCloseClick()
+                                if (success) {
+                                    mainViewModel.triggerCloudSync()
+                                    onCloseClick()
+                                }
                             }
                         }
                     },
@@ -272,7 +276,10 @@ fun PremiumPaywallScreen(
                         modifier = Modifier
                             .clickable {
                                 viewModel.restorePurchases { success ->
-                                    if (success) onCloseClick()
+                                    if (success) {
+                                        mainViewModel.triggerCloudSync()
+                                        onCloseClick()
+                                    }
                                 }
                             }
                             .padding(8.dp)

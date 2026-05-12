@@ -240,6 +240,10 @@ class MainViewModel @Inject constructor(
 
 
 
+    fun triggerCloudSync() {
+        syncWithCloud()
+    }
+
     private fun syncWithCloud() {
         viewModelScope.launch {
             val user = authService.getCurrentUser() ?: return@launch
@@ -247,6 +251,9 @@ class MainViewModel @Inject constructor(
             // 1. Try to pull latest from cloud
             val cloudData = cloudSyncService.getUserProgress(user.uid)
             if (cloudData != null) {
+                // Automatically turn on sync toggle locally if an existing backup is restored
+                preferenceManager.setCloudSyncEnabled(true)
+                
                 // Restore Selected State
                 (cloudData["selected_state"] as? String)?.let { preferenceManager.setSelectedState(it) }
                 
@@ -297,6 +304,7 @@ class MainViewModel @Inject constructor(
         }
     }
     private suspend fun pushProgressToCloud() {
+        if (!preferenceManager.isCloudSyncEnabled()) return
         val user = authService.getCurrentUser() ?: return
         
         // Fetch Bookmarks and Mistakes from local DB

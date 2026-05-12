@@ -27,6 +27,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.pixeleye.einbuergerungstest.lebenindeutschland.data.local.PreferenceManager
 import com.pixeleye.einbuergerungstest.lebenindeutschland.navigation.AppNavHost
+import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.components.GlobalSnackbarOverlay
 import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.settings.SettingsViewModel
 import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.theme.BürgertestTheme
 import com.pixeleye.einbuergerungstest.lebenindeutschland.util.LocaleHelper
@@ -95,6 +96,7 @@ class MainActivity : ComponentActivity() {
                                 .systemBarsPadding()
                         ) {
                             AppNavHost(navController = navController)
+                            GlobalSnackbarOverlay()
                         }
                     }
                 }

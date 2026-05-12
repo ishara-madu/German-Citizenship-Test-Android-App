@@ -10,7 +10,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PaywallViewModel @Inject constructor(
-    private val subscriptionRepository: SubscriptionRepository
+    private val subscriptionRepository: SubscriptionRepository,
+    private val preferenceManager: com.pixeleye.einbuergerungstest.lebenindeutschland.data.local.PreferenceManager
 ) : ViewModel() {
 
     val isPremium: StateFlow<Boolean> = subscriptionRepository.isPremium
@@ -23,11 +24,21 @@ class PaywallViewModel @Inject constructor(
     }
 
     fun purchase(activity: Activity, pkg: Package, onComplete: (Boolean) -> Unit) {
-        subscriptionRepository.purchase(activity, pkg, onComplete)
+        subscriptionRepository.purchase(activity, pkg) { success ->
+            if (success) {
+                preferenceManager.setCloudSyncEnabled(true)
+            }
+            onComplete(success)
+        }
     }
 
     fun restorePurchases(onComplete: (Boolean) -> Unit) {
-        subscriptionRepository.restorePurchases(onComplete)
+        subscriptionRepository.restorePurchases { success ->
+            if (success) {
+                preferenceManager.setCloudSyncEnabled(true)
+            }
+            onComplete(success)
+        }
     }
 
     fun clearError() {

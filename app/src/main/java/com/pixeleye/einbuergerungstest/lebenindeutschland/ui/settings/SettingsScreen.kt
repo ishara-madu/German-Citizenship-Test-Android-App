@@ -25,7 +25,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.LocalContext
 import android.content.Intent
 import android.net.Uri
-import android.widget.Toast
+import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.components.SnackbarManager
 import com.pixeleye.einbuergerungstest.lebenindeutschland.R
 import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.theme.*
 
@@ -187,7 +187,11 @@ fun SettingsScreen(
                     isDark = isDark,
                     onClick = {
                         if (isPremium) {
-                            viewModel.toggleCloudSync(!isCloudSyncEnabled)
+                            val nextState = !isCloudSyncEnabled
+                            viewModel.toggleCloudSync(nextState)
+                            if (nextState) {
+                                mainViewModel.triggerCloudSync()
+                            }
                         } else {
                             onPremiumClick()
                         }
@@ -198,6 +202,9 @@ fun SettingsScreen(
                             onCheckedChange = { enabled ->
                                 if (isPremium) {
                                     viewModel.toggleCloudSync(enabled)
+                                    if (enabled) {
+                                        mainViewModel.triggerCloudSync()
+                                    }
                                 } else {
                                     onPremiumClick()
                                 }
@@ -220,7 +227,7 @@ fun SettingsScreen(
                         try {
                             uriHandler.openUri("https://play.google.com/store/account/subscriptions?package=$packageName")
                         } catch (e: Exception) {
-                            Toast.makeText(context, "Could not open Play Store", Toast.LENGTH_SHORT).show()
+                            SnackbarManager.showError(messageResId = R.string.err_open_play_store)
                         }
                     }
                 )
@@ -230,7 +237,7 @@ fun SettingsScreen(
                     text = stringResource(id = R.string.label_restore_purchases),
                     isDark = isDark,
                     onClick = { 
-                        Toast.makeText(context, "Restoring purchases...", Toast.LENGTH_SHORT).show()
+                        SnackbarManager.showInfo(messageResId = R.string.info_restoring_purchases)
                         // Logic for billing library would go here
                     }
                 )
@@ -251,7 +258,7 @@ fun SettingsScreen(
                         try {
                             context.startActivity(Intent.createChooser(intent, "Send Email"))
                         } catch (e: Exception) {
-                            Toast.makeText(context, "No email app found", Toast.LENGTH_SHORT).show()
+                            SnackbarManager.showError(messageResId = R.string.err_no_email_app)
                         }
                     }
                 )
@@ -271,7 +278,7 @@ fun SettingsScreen(
                     trailingText = "v1.0.0",
                     isDark = isDark,
                     onClick = { 
-                        Toast.makeText(context, "Leben in Deutschland v1.0.0", Toast.LENGTH_SHORT).show()
+                        SnackbarManager.showInfo(messageResId = R.string.info_app_version_msg)
                     }
                 )
             }

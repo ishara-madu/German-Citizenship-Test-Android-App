@@ -252,4 +252,28 @@
     <string name="state_schleswig_holstein">Schleswig-Holstein</string>
     <string name="state_thueringen">Thüringen</string>
 
+    <!-- Snackbar & Auth Feedback -->
+    <string name="snackbar_success_title">Erfolg</string>
+    <string name="snackbar_error_title">Fehler</string>
+    <string name="snackbar_info_title">Info</string>
+    <string name="snackbar_warning_title">Warnung</string>
+    <string name="err_fill_all_fields">Bitte füllen Sie alle Felder aus</string>
+    <string name="success_signed_in">Erfolgreich angemeldet!</string>
+    <string name="err_sign_in_failed">Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Zugangsdaten.</string>
+    <string name="err_password_length">Das Passwort muss mindestens 6 Zeichen lang sein</string>
+    <string name="success_account_created">Konto erstellt! Bitte melden Sie sich mit Ihren Daten an.</string>
+    <string name="err_sign_up_failed">Registrierung fehlgeschlagen. Die E-Mail wird eventuell bereits verwendet.</string>
+    <string name="success_signed_out">Erfolgreich abgemeldet</string>
+    <string name="err_enter_email">Bitte geben Sie Ihre E-Mail-Adresse ein</string>
+    <string name="success_reset_email_sent">E-Mail zum Zurücksetzen des Passworts gesendet!</string>
+    <string name="err_reset_email_failed">Fehler beim Senden. Bitte überprüfen Sie die E-Mail-Adresse.</string>
+    <string name="success_profile_updated">Profil erfolgreich aktualisiert!</string>
+    <string name="err_profile_update_failed">Fehler beim Aktualisieren des Profils.</string>
+    <string name="success_password_changed">Passwort erfolgreich geändert!</string>
+    <string name="err_password_change_failed">Fehler beim Ändern des Passworts.</string>
+    <string name="err_open_play_store">Play Store konnte nicht geöffnet werden</string>
+    <string name="info_restoring_purchases">Käufe werden wiederhergestellt...</string>
+    <string name="err_no_email_app">Keine E-Mail-App gefunden</string>
+    <string name="info_app_version_msg">Leben in Deutschland v1.0.0</string>
+
 </resources>

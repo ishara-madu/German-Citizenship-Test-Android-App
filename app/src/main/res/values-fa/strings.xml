@@ -233,4 +233,28 @@
     <string name="state_schleswig_holstein">شلسویگ-هولشتاین</string>
     <string name="state_thueringen">تورینگن</string>
 
+    <!-- Snackbar & Auth Feedback -->
+    <string name="snackbar_success_title">موفقیت</string>
+    <string name="snackbar_error_title">خطا</string>
+    <string name="snackbar_info_title">اطلاعات</string>
+    <string name="snackbar_warning_title">هشدار</string>
+    <string name="err_fill_all_fields">لطفاً همه فیلدها را پر کنید</string>
+    <string name="success_signed_in">با موفقیت وارد شدید!</string>
+    <string name="err_sign_in_failed">ورود ناموفق بود. لطفاً اطلاعات خود را بررسی کنید.</string>
+    <string name="err_password_length">رمز عبور باید حداقل ۶ کاراکتر باشد</string>
+    <string name="success_account_created">حساب ایجاد شد! لطفاً با اطلاعات خود وارد شوید.</string>
+    <string name="err_sign_up_failed">ثبت‌نام ناموفق بود. ممکن است ایمیل تکراری بوده یا خطای اتصال رخ داده باشد.</string>
+    <string name="success_signed_out">با موفقیت خارج شدید</string>
+    <string name="err_enter_email">لطفاً آدرس ایمیل خود را وارد کنید</string>
+    <string name="success_reset_email_sent">لینک بازنشانی رمز عبور ارسال شد!</string>
+    <string name="err_reset_email_failed">ارسال ناموفق بود. لطفاً آدرس ایمیل را بررسی کنید.</string>
+    <string name="success_profile_updated">پروفایل با موفقیت به‌روزرسانی شد!</string>
+    <string name="err_profile_update_failed">به‌روزرسانی پروفایل ناموفق بود.</string>
+    <string name="success_password_changed">رمز عبور با موفقیت تغییر کرد!</string>
+    <string name="err_password_change_failed">تغییر رمز عبور ناموفق بود.</string>
+    <string name="err_open_play_store">فروشگاه Play باز نشد</string>
+    <string name="info_restoring_purchases">در حال بازیابی خریدها...</string>
+    <string name="err_no_email_app">برنامه ایمیلی یافت نشد</string>
+    <string name="info_app_version_msg">Leben in Deutschland v1.0.0</string>
+
 </resources>

@@ -57,10 +57,14 @@ fun SignUpScreen(
         onResetState()
     }
 
+    val isDark = LocalIsDarkTheme.current
+    val bgColor = if (isDark) GamifiedBackgroundDark else GamifiedBackgroundLight
+
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
             .imePadding(),
+        containerColor = bgColor,
         topBar = {
             TopAppBar(
                 title = {},
@@ -252,16 +256,6 @@ fun SignUpScreen(
                 CircularProgressIndicator(
                     modifier = Modifier.padding(vertical = 16.dp),
                     color = MaterialTheme.colorScheme.primary
-                )
-            }
-
-            if (authState is AuthState.Error) {
-                Text(
-                    text = (authState as AuthState.Error).message,
-                    color = MaterialTheme.colorScheme.error,
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.padding(vertical = 8.dp),
-                    textAlign = TextAlign.Center
                 )
             }
 
