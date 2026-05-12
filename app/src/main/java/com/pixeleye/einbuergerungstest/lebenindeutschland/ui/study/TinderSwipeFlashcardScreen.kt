@@ -413,9 +413,9 @@ fun CardContent(
                     contentDescription = "Question Image",
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(140.dp)
+                        .wrapContentHeight()
                         .clip(RoundedCornerShape(16.dp)),
-                    contentScale = androidx.compose.ui.layout.ContentScale.Fit
+                    contentScale = androidx.compose.ui.layout.ContentScale.FillWidth
                 )
                 Spacer(modifier = Modifier.height(16.dp))
             }

@@ -165,9 +165,9 @@ fun BookmarkCard(
                         contentDescription = "Question Image",
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(150.dp)
+                            .wrapContentHeight()
                             .clip(RoundedCornerShape(16.dp)),
-                        contentScale = ContentScale.Fit
+                        contentScale = ContentScale.FillWidth
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                 }

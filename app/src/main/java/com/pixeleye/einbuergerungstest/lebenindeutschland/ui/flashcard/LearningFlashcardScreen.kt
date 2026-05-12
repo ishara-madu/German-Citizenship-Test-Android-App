@@ -8,6 +8,8 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -120,97 +122,107 @@ fun LearningFlashcardScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(bgColor)
-            .padding(horizontal = 24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .background(bgColor),
     ) {
-        Spacer(modifier = Modifier.height(16.dp))
-        TopNavigationAndProgress(
-            current = uiState.currentQuestionIndex + 1,
-            total = uiState.questions.size,
-            isBookmarked = currentQuestion?.isBookmarked ?: false,
-            isTranslated = uiState.isTranslated,
-            onBookmarkToggle = { currentQuestion?.id?.let { viewModel.toggleBookmark(it) } },
-            onTranslateToggle = { viewModel.toggleTranslation() },
-            onBackClick = onBackClick
-        )
-
-
-        Spacer(modifier = Modifier.height(32.dp))
-        
-        if (uiState.isQuizFinished) {
-            Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(
-                        text = stringResource(id = R.string.great_job),
-                        style = MaterialTheme.typography.displaySmall,
-                        color = PrimaryActionStart
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(
-                        text = stringResource(id = R.string.reviewed_all_questions),
-                        style = MaterialTheme.typography.bodyLarge
-                    )
-                    Spacer(modifier = Modifier.height(24.dp))
-                    Button(onClick = onBackClick) {
-                        Text(stringResource(id = R.string.back_to_dashboard))
-                    }
-                }
-
-            }
-        } else if (currentQuestion != null) {
-            FlashcardHeroArea(
-                modifier = Modifier.weight(1f),
-                question = currentQuestion.questionText,
-                imageResName = currentQuestion.imageResName,
-                options = listOf(currentQuestion.optionA, currentQuestion.optionB, currentQuestion.optionC, currentQuestion.optionD),
-                correctAnswer = currentQuestion.correctAnswer,
-                selectedAnswer = uiState.selectedAnswer,
-                isAnswerChecked = uiState.isAnswerChecked,
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Spacer(modifier = Modifier.height(16.dp))
+            TopNavigationAndProgress(
+                current = uiState.currentQuestionIndex + 1,
+                total = uiState.questions.size,
+                isBookmarked = currentQuestion?.isBookmarked ?: false,
                 isTranslated = uiState.isTranslated,
-                translatedQuestion = uiState.translatedQuestion,
-                translatedOptions = uiState.translatedOptions,
-                onAnswerSelected = { viewModel.selectAnswer(it) }
+                onBookmarkToggle = { currentQuestion?.id?.let { viewModel.toggleBookmark(it) } },
+                onTranslateToggle = { viewModel.toggleTranslation() },
+                onBackClick = onBackClick
             )
 
-            // AI Explanation Sheet
-            if (uiState.explanationText != null || uiState.isExplanationLoading) {
-                ExplanationBottomSheet(
-                    explanation = uiState.explanationText,
-                    isLoading = uiState.isExplanationLoading,
-                    onDismiss = { viewModel.dismissExplanation() }
+
+            Spacer(modifier = Modifier.height(32.dp))
+            
+            if (uiState.isQuizFinished) {
+                Box(modifier = Modifier.fillMaxWidth().padding(vertical = 32.dp), contentAlignment = Alignment.Center) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            text = stringResource(id = R.string.great_job),
+                            style = MaterialTheme.typography.displaySmall,
+                            color = PrimaryActionStart
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = stringResource(id = R.string.reviewed_all_questions),
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                        Spacer(modifier = Modifier.height(24.dp))
+                        Button(onClick = onBackClick) {
+                            Text(stringResource(id = R.string.back_to_dashboard))
+                        }
+                    }
+
+                }
+            } else if (currentQuestion != null) {
+                FlashcardHeroArea(
+                    modifier = Modifier.fillMaxWidth(),
+                    question = currentQuestion.questionText,
+                    imageResName = currentQuestion.imageResName,
+                    options = listOf(currentQuestion.optionA, currentQuestion.optionB, currentQuestion.optionC, currentQuestion.optionD),
+                    correctAnswer = currentQuestion.correctAnswer,
+                    selectedAnswer = uiState.selectedAnswer,
+                    isAnswerChecked = uiState.isAnswerChecked,
+                    isTranslated = uiState.isTranslated,
+                    translatedQuestion = uiState.translatedQuestion,
+                    translatedOptions = uiState.translatedOptions,
+                    onAnswerSelected = { viewModel.selectAnswer(it) }
                 )
 
+                // AI Explanation Sheet
+                if (uiState.explanationText != null || uiState.isExplanationLoading) {
+                    ExplanationBottomSheet(
+                        explanation = uiState.explanationText,
+                        isLoading = uiState.isExplanationLoading,
+                        onDismiss = { viewModel.dismissExplanation() }
+                    )
+
+                }
+
+
+
+            } else if (!uiState.isLoading && uiState.questions.isEmpty()) {
+                Box(modifier = Modifier.fillMaxWidth().padding(vertical = 32.dp), contentAlignment = Alignment.Center) {
+                    Text(stringResource(id = R.string.no_questions_found), textAlign = TextAlign.Center)
+                }
             }
 
-
-
-        } else if (!uiState.isLoading && uiState.questions.isEmpty()) {
-            Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
-                Text(stringResource(id = R.string.no_questions_found), textAlign = TextAlign.Center)
-            }
+            Spacer(modifier = Modifier.height(24.dp))
         }
 
         if (!isPremium) {
-            Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+            Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp), contentAlignment = Alignment.Center) {
                 com.pixeleye.einbuergerungstest.lebenindeutschland.ads.BannerAdView()
             }
+            Spacer(modifier = Modifier.height(12.dp))
         }
         
-        Spacer(modifier = Modifier.height(24.dp))
-        BottomUtilityBar(
-            onNextClick = { viewModel.nextQuestion() },
-            onExplainClick = {
-                if (isPremium || viewModel.canUseAiExplanation()) {
-                    viewModel.getAiExplanation()
-                } else {
-                    onPremiumClick()
-                }
-            },
-            isNextEnabled = uiState.isAnswerChecked,
-            current = uiState.currentQuestionIndex + 1,
-            total = uiState.questions.size
-        )
+        Box(modifier = Modifier.padding(horizontal = 24.dp)) {
+            BottomUtilityBar(
+                onNextClick = { viewModel.nextQuestion() },
+                onExplainClick = {
+                    if (isPremium || viewModel.canUseAiExplanation()) {
+                        viewModel.getAiExplanation()
+                    } else {
+                        onPremiumClick()
+                    }
+                },
+                isNextEnabled = uiState.isAnswerChecked,
+                current = uiState.currentQuestionIndex + 1,
+                total = uiState.questions.size
+            )
+        }
 
 
         Spacer(modifier = Modifier.height(32.dp))
@@ -317,7 +329,7 @@ fun FlashcardHeroArea(
     ) {
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
                 .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -333,9 +345,9 @@ fun FlashcardHeroArea(
                         contentDescription = "Question Image",
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(160.dp)
+                            .wrapContentHeight()
                             .clip(RoundedCornerShape(16.dp)),
-                        contentScale = androidx.compose.ui.layout.ContentScale.Fit
+                        contentScale = androidx.compose.ui.layout.ContentScale.FillWidth
                     )
                     Spacer(modifier = Modifier.height(24.dp))
                 }
@@ -354,8 +366,10 @@ fun FlashcardHeroArea(
                 ),
 
 
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.fillMaxWidth()
             )
+
+            Spacer(modifier = Modifier.height(24.dp))
 
 
             // Answers

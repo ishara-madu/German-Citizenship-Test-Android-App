@@ -273,9 +273,9 @@ fun ExamQuestionCard(
                         contentDescription = "Question Image",
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(180.dp)
+                            .wrapContentHeight()
                             .clip(RoundedCornerShape(16.dp)),
-                        contentScale = ContentScale.Fit
+                        contentScale = ContentScale.FillWidth
                     )
                     Spacer(modifier = Modifier.height(24.dp))
                 }
