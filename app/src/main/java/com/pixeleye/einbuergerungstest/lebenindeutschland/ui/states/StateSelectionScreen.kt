@@ -244,6 +244,7 @@ fun StateCard(
                 "Nordrhein-Westfalen" to "state_north_rhine_westphalia",
                 "Rheinland-Pfalz" to "state_rhineland_palatinate",
                 "Sachsen" to "state_saxony",
+                "Sachsen-Anhalt" to "state_saxony_anhalt",
                 "Thüringen" to "state_thuringia"
             )
             val resName = resNameMap[name] ?: ("state_" + name.lowercase()
