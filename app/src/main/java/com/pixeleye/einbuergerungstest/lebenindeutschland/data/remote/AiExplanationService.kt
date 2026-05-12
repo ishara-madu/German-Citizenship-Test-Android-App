@@ -1,5 +1,6 @@
 package com.pixeleye.einbuergerungstest.lebenindeutschland.data.remote
 
+import androidx.annotation.Keep
 import com.google.gson.Gson
 import com.pixeleye.einbuergerungstest.lebenindeutschland.BuildConfig
 import kotlinx.coroutines.Dispatchers
@@ -33,7 +34,6 @@ object AiExplanationService {
             You are an expert, friendly German Citizenship teacher. 
             The student is studying for the "Einbürgerungstest".
             Explain why the correct answer is right and briefly why others might be wrong if relevant.
-            Keep it under 3-4 short sentences.
             Respond strictly in the following language: $language.
         """.trimIndent()
 
@@ -83,14 +83,17 @@ object AiExplanationService {
         }
     }
 
+    @Keep
     private data class GroqResponse(
         val choices: List<Choice>
     )
 
+    @Keep
     private data class Choice(
         val message: Message
     )
 
+    @Keep
     private data class Message(
         val content: String
     )

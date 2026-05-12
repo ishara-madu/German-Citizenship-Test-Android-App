@@ -171,6 +171,9 @@
     <string name="politics_democracy">Demokraside Siyaset</string>
     <string name="history_responsibility">Tarih ve Sorumluluk</string>
     <string name="people_society">İnsan ve Toplum</string>
+    <string name="economy_society">Ekonomi ve Toplum</string>
+    <string name="geography">Coğrafya</string>
+    <string name="law_rights">Hukuk ve Haklar</string>
     <string name="notification_title">Pratik Yapma Zamanı!</string>
     <string name="notification_message">Serini canlı tut ve bugün birkaç soruyu yanıtla.</string>
     <string name="reminder_time_title">Hatırlatma Zamanı</string>
@@ -211,4 +214,23 @@
     <string name="widget_setup_message">Çalışma planını kurmak için uygulamayı açın</string>
     <string name="widget_start_studying">Çalışmaya Başla!</string>
     <string name="widget_streak_format">%1$d Günlük Seri!</string>
+
+    <!-- States -->
+    <string name="state_baden_wurttemberg">Baden-Württemberg</string>
+    <string name="state_bayern">Bavyera</string>
+    <string name="state_berlin">Berlin</string>
+    <string name="state_brandenburg">Brandenburg</string>
+    <string name="state_bremen">Bremen</string>
+    <string name="state_hamburg">Hamburg</string>
+    <string name="state_hessen">Hessen</string>
+    <string name="state_mecklenburg_vorpommern">Mecklenburg-Vorpommern</string>
+    <string name="state_niedersachsen">Aşağı Saksonya</string>
+    <string name="state_nordrhein_westfalen">Kuzey Ren-Vestfalya</string>
+    <string name="state_rheinland_pfalz">Renanya-Palatina</string>
+    <string name="state_saarland">Saarland</string>
+    <string name="state_sachsen">Saksonya</string>
+    <string name="state_sachsen_anhalt">Saksonya-Anhalt</string>
+    <string name="state_schleswig_holstein">Schleswig-Holstein</string>
+    <string name="state_thueringen">Türingiya</string>
+
 </resources>

@@ -171,6 +171,9 @@
     <string name="politics_democracy">السياسة في الديمقراطية</string>
     <string name="history_responsibility">التاريخ والمسؤولية</string>
     <string name="people_society">الناس والمجتمع</string>
+    <string name="economy_society">الاقتصاد والمجتمع</string>
+    <string name="geography">الجغرافيا</string>
+    <string name="law_rights">القانون والحقوق</string>
     <string name="notification_title">حان وقت التدريب!</string>
     <string name="notification_message">حافظ على سلسلتك مستمرة وأجب على بضعة أسئلة اليوم.</string>
     <string name="reminder_time_title">وقت التذكير</string>
@@ -211,4 +214,23 @@
     <string name="widget_setup_message">افتح التطبيق لإعداد خطة الدراسة</string>
     <string name="widget_start_studying">ابدأ الدراسة</string>
     <string name="widget_streak_format">سلسلة أيام %1$d!</string>
+
+    <!-- States -->
+    <string name="state_baden_wurttemberg">بادن-فورتمبيرغ</string>
+    <string name="state_bayern">بافاريا</string>
+    <string name="state_berlin">برلين</string>
+    <string name="state_brandenburg">براندنبورغ</string>
+    <string name="state_bremen">بريمن</string>
+    <string name="state_hamburg">هامبورغ</string>
+    <string name="state_hessen">هسن</string>
+    <string name="state_mecklenburg_vorpommern">مكلنبورغ-فوربومرن</string>
+    <string name="state_niedersachsen">سكسونيا السفلى</string>
+    <string name="state_nordrhein_westfalen">شمال الراين-وستفاليا</string>
+    <string name="state_rheinland_pfalz">راينلند بالاتينات</string>
+    <string name="state_saarland">سارلاند</string>
+    <string name="state_sachsen">سكسونيا</string>
+    <string name="state_sachsen_anhalt">سكسونيا-أنهالت</string>
+    <string name="state_schleswig_holstein">شليسفيغ-هولشتاين</string>
+    <string name="state_thueringen">تورينغن</string>
+
 </resources>

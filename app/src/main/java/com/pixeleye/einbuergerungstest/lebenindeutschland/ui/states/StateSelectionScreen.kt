@@ -43,6 +43,7 @@ import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.MainViewModel
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.ui.res.stringResource
 import com.pixeleye.einbuergerungstest.lebenindeutschland.R
+import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.profile.getLocalizedStateName
 
 
 @Composable
@@ -60,15 +61,21 @@ fun StateSelectionScreen(
     var searchQuery by remember { mutableStateOf("") }
 
     val germanStates = listOf(
-        "Baden-Württemberg", "Bavaria", "Berlin", "Brandenburg",
-        "Bremen", "Hamburg", "Hessen", "Lower Saxony",
-        "Mecklenburg-Vorpommern", "North Rhine-Westphalia", "Rhineland-Palatinate", "Saarland",
-        "Saxony", "Saxony-Anhalt", "Schleswig-Holstein", "Thuringia"
+        "Baden-Württemberg", "Bayern", "Berlin", "Brandenburg",
+        "Bremen", "Hamburg", "Hessen", "Mecklenburg-Vorpommern",
+        "Niedersachsen", "Nordrhein-Westfalen", "Rheinland-Pfalz", "Saarland",
+        "Sachsen", "Sachsen-Anhalt", "Schleswig-Holstein", "Thüringen"
     )
 
-    val filteredStates = remember(searchQuery) {
+    // Pre-resolve localized names in the Composable scope
+    val localizedStateMap = germanStates.associateWith { getLocalizedStateName(it) }
+
+    val filteredStates = remember(searchQuery, localizedStateMap) {
         if (searchQuery.isEmpty()) germanStates
-        else germanStates.filter { it.contains(searchQuery, ignoreCase = true) }
+        else germanStates.filter { state ->
+            state.contains(searchQuery, ignoreCase = true) ||
+            (localizedStateMap[state]?.contains(searchQuery, ignoreCase = true) == true)
+        }
     }
 
     Box(
@@ -231,10 +238,18 @@ fun StateCard(
         Box(modifier = Modifier.fillMaxSize()) {
             // State Image as Background
             val context = LocalContext.current
-            val resName = "state_" + name.lowercase()
+            val resNameMap = mapOf(
+                "Bayern" to "state_bavaria",
+                "Niedersachsen" to "state_lower_saxony",
+                "Nordrhein-Westfalen" to "state_north_rhine_westphalia",
+                "Rheinland-Pfalz" to "state_rhineland_palatinate",
+                "Sachsen" to "state_saxony",
+                "Thüringen" to "state_thuringia"
+            )
+            val resName = resNameMap[name] ?: ("state_" + name.lowercase()
                 .replace("-", "_")
                 .replace(" ", "_")
-                .replace("ü", "u")
+                .replace("ü", "u"))
             
             val imageResId = context.resources.getIdentifier(resName, "drawable", context.packageName)
             
@@ -275,7 +290,7 @@ fun StateCard(
 
             // State Name Overlay
             Text(
-                text = name,
+                text = getLocalizedStateName(name),
                 style = MaterialTheme.typography.titleMedium.copy(
                     fontWeight = FontWeight.ExtraBold,
                     color = Color.White,

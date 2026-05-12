@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.res.stringResource
 import com.pixeleye.einbuergerungstest.lebenindeutschland.R
 import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.theme.*
+import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.profile.getLocalizedStateName
 import kotlinx.coroutines.launch
 
 
@@ -246,10 +247,10 @@ fun StateSelectionGrid(
     onStateSelected: (String) -> Unit
 ) {
     val states = listOf(
-        "Baden-Württemberg", "Bavaria", "Berlin", "Brandenburg",
-        "Bremen", "Hamburg", "Hessen", "Lower Saxony",
-        "Mecklenburg-Vorpommern", "North Rhine-Westphalia", "Rhineland-Palatinate", "Saarland",
-        "Saxony", "Saxony-Anhalt", "Schleswig-Holstein", "Thuringia"
+        "Baden-Württemberg", "Bayern", "Berlin", "Brandenburg",
+        "Bremen", "Hamburg", "Hessen", "Mecklenburg-Vorpommern",
+        "Niedersachsen", "Nordrhein-Westfalen", "Rheinland-Pfalz", "Saarland",
+        "Sachsen", "Sachsen-Anhalt", "Schleswig-Holstein", "Thüringen"
     )
     
     androidx.compose.foundation.lazy.grid.LazyVerticalGrid(
@@ -276,7 +277,7 @@ fun StateSelectionGrid(
             ) {
                 Box(contentAlignment = Alignment.Center, modifier = Modifier.padding(8.dp)) {
                     Text(
-                        text = state,
+                        text = getLocalizedStateName(state),
                         color = if (isSelected) Color.White else MaterialTheme.colorScheme.onSurface,
                         style = MaterialTheme.typography.labelLarge,
                         textAlign = TextAlign.Center

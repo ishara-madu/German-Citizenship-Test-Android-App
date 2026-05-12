@@ -41,6 +41,7 @@ import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.theme.*
 
 import androidx.compose.material.icons.rounded.ViewCarousel
 import com.pixeleye.einbuergerungstest.lebenindeutschland.ads.findActivity
+import com.pixeleye.einbuergerungstest.lebenindeutschland.ui.profile.getLocalizedStateName
 
 @Composable
 fun MainDashboardScreen(
@@ -66,7 +67,7 @@ fun MainDashboardScreen(
     val user by authViewModel.currentUser.collectAsState()
     val overallProgress by mainViewModel.overallProgress.collectAsState()
     val levelTitleRes by mainViewModel.currentLevelTitle.collectAsState()
-    val selectedState = mainViewModel.getSelectedState() ?: "Bavaria"
+    val selectedState = mainViewModel.getSelectedState() ?: "Bayern"
     val isPremium by mainViewModel.isPremium.collectAsState()
 
 
@@ -125,7 +126,7 @@ fun MainDashboardScreen(
                 StateSpecificCard(
                     modifier = Modifier.weight(1f), 
                     isDark = isDark,
-                    stateName = selectedState ?: "Bavaria",
+                    stateName = selectedState ?: "Bayern",
                     onClick = onStateSelectionClick
                 )
                 ProgressTrackerCard(
@@ -601,7 +602,7 @@ fun StateSpecificCard(
             }
             Column {
                 Text(
-                    text = stateName,
+                    text = getLocalizedStateName(stateName),
                     style = MaterialTheme.typography.labelLarge.copy(color = RedAccent)
                 )
 

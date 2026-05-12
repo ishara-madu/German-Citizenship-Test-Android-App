@@ -171,6 +171,9 @@
     <string name="politics_democracy">سیاست در یک دموکراسی</string>
     <string name="history_responsibility">تاریخ و مسئولیت‌پذیری</string>
     <string name="people_society">مردم و جامعه</string>
+    <string name="economy_society">اقتصاد و جامعه</string>
+    <string name="geography">جغرافیا</string>
+    <string name="law_rights">قانون و حقوق</string>
     <string name="notification_title">زمان تمرین است!</string>
     <string name="notification_message">روند خود را زنده نگه دارید و امروز به چند سوال پاسخ دهید.</string>
     <string name="reminder_time_title">زمان یادآور</string>
@@ -211,4 +214,23 @@
     <string name="widget_setup_message">برنامه را برای تنظیم برنامه مطالعه باز کنید</string>
     <string name="widget_start_studying">شروع مطالعه</string>
     <string name="widget_streak_format">روند %1$d روزه!</string>
+
+    <!-- States -->
+    <string name="state_baden_wurttemberg">بادن-وورتمبرگ</string>
+    <string name="state_bayern">بایرن (باواریا)</string>
+    <string name="state_berlin">برلین</string>
+    <string name="state_brandenburg">براندنبورگ</string>
+    <string name="state_bremen">برمن</string>
+    <string name="state_hamburg">هامبورگ</string>
+    <string name="state_hessen">هسن</string>
+    <string name="state_mecklenburg_vorpommern">مکلنبورگ-فورپومرن</string>
+    <string name="state_niedersachsen">نیدرزاکسن (ساکسونی سفلی)</string>
+    <string name="state_nordrhein_westfalen">نوردراین-وستفالن</string>
+    <string name="state_rheinland_pfalz">راینلند-فالتس</string>
+    <string name="state_saarland">زارلند</string>
+    <string name="state_sachsen">زاکسن (ساکسونی)</string>
+    <string name="state_sachsen_anhalt">زاکسن-آنهالت</string>
+    <string name="state_schleswig_holstein">شلسویگ-هولشتاین</string>
+    <string name="state_thueringen">تورینگن</string>
+
 </resources>

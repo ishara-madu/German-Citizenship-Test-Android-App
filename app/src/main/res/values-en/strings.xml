@@ -171,6 +171,9 @@
     <string name="politics_democracy">Politics in a Democracy</string>
     <string name="history_responsibility">History and Responsibility</string>
     <string name="people_society">People and Society</string>
+    <string name="economy_society">Economy &amp; Society</string>
+    <string name="geography">Geography</string>
+    <string name="law_rights">Law &amp; Rights</string>
     <string name="notification_title">Time to Practice!</string>
     <string name="notification_message">Keep your streak alive and answer a few questions today.</string>
     <string name="reminder_time_title">Reminder Time</string>
@@ -211,5 +214,23 @@
     <string name="widget_setup_message">Open app to set up study plan</string>
     <string name="widget_start_studying">Start studying!</string>
     <string name="widget_streak_format">%1$d Day Streak!</string>
+
+    <!-- States -->
+    <string name="state_baden_wurttemberg">Baden-Württemberg</string>
+    <string name="state_bayern">Bavaria</string>
+    <string name="state_berlin">Berlin</string>
+    <string name="state_brandenburg">Brandenburg</string>
+    <string name="state_bremen">Bremen</string>
+    <string name="state_hamburg">Hamburg</string>
+    <string name="state_hessen">Hesse</string>
+    <string name="state_mecklenburg_vorpommern">Mecklenburg-Vorpommern</string>
+    <string name="state_niedersachsen">Lower Saxony</string>
+    <string name="state_nordrhein_westfalen">North Rhine-Westphalia</string>
+    <string name="state_rheinland_pfalz">Rhineland-Palatinate</string>
+    <string name="state_saarland">Saarland</string>
+    <string name="state_sachsen">Saxony</string>
+    <string name="state_sachsen_anhalt">Saxony-Anhalt</string>
+    <string name="state_schleswig_holstein">Schleswig-Holstein</string>
+    <string name="state_thueringen">Thuringia</string>
 
 </resources>

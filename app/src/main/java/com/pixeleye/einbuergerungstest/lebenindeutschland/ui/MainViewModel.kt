@@ -324,12 +324,14 @@ class MainViewModel @Inject constructor(
     private fun initializeData() {
         viewModelScope.launch {
             val count = repository.getQuestionCount().first()
+            val questions = QuestionJsonParser.parseQuestionsFromJson(context)
             if (!preferenceManager.isDataInitialized() || count == 0) {
-                val questions = QuestionJsonParser.parseQuestionsFromJson(context)
                 if (questions.isNotEmpty()) {
                     repository.insertQuestions(questions)
                     preferenceManager.setDataInitialized(true)
                 }
+            } else if (count < questions.size) {
+                repository.insertIgnoreExisting(questions)
             }
         }
     }

@@ -61,7 +61,7 @@ class DailyStudyWidget : GlanceAppWidget() {
             return
         }
 
-        val selectedState = pref.getSelectedState() ?: "Bavaria"
+        val selectedState = pref.getSelectedState() ?: "Bayern"
         val generalQuestions = db.questionDao().getGeneralQuestionsOnce()
         val stateQuestions = db.questionDao().getQuestionsByState(selectedState)
         val allQuestions = (generalQuestions + stateQuestions).filter { it.imageResName.isNullOrBlank() }

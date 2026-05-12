@@ -50,4 +50,8 @@ class QuestionRepository @Inject constructor(
     suspend fun insertQuestions(questions: List<QuestionEntity>) {
         questionDao.insertAll(questions)
     }
+
+    suspend fun insertIgnoreExisting(questions: List<QuestionEntity>) {
+        questionDao.insertIgnoreExisting(questions)
+    }
 }

@@ -188,6 +188,9 @@
     <string name="politics_democracy">Politik in der Demokratie</string>
     <string name="history_responsibility">Geschichte und Verantwortung</string>
     <string name="people_society">Mensch und Gesellschaft</string>
+    <string name="economy_society">Wirtschaft und Gesellschaft</string>
+    <string name="geography">Geografie</string>
+    <string name="law_rights">Recht und Gesetz</string>
     <string name="notification_title">Zeit zum Üben!</string>
     <string name="notification_message">Halte deinen Streak am Leben und beantworte heute ein paar Fragen.</string>
     <string name="reminder_time_title">Erinnerungszeit</string>
@@ -230,5 +233,23 @@
     <string name="widget_setup_message">App öffnen, um Lernplan einzurichten</string>
     <string name="widget_start_studying">Lernen starten!</string>
     <string name="widget_streak_format">%1$d Tage Streak!</string>
+
+    <!-- States -->
+    <string name="state_baden_wurttemberg">Baden-Württemberg</string>
+    <string name="state_bayern">Bayern</string>
+    <string name="state_berlin">Berlin</string>
+    <string name="state_brandenburg">Brandenburg</string>
+    <string name="state_bremen">Bremen</string>
+    <string name="state_hamburg">Hamburg</string>
+    <string name="state_hessen">Hessen</string>
+    <string name="state_mecklenburg_vorpommern">Mecklenburg-Vorpommern</string>
+    <string name="state_niedersachsen">Niedersachsen</string>
+    <string name="state_nordrhein_westfalen">Nordrhein-Westfalen</string>
+    <string name="state_rheinland_pfalz">Rheinland-Pfalz</string>
+    <string name="state_saarland">Saarland</string>
+    <string name="state_sachsen">Sachsen</string>
+    <string name="state_sachsen_anhalt">Sachsen-Anhalt</string>
+    <string name="state_schleswig_holstein">Schleswig-Holstein</string>
+    <string name="state_thueringen">Thüringen</string>
 
 </resources>

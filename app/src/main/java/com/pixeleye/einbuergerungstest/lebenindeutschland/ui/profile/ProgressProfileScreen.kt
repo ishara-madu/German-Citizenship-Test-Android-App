@@ -456,7 +456,7 @@ fun ProfileHeader(
                     modifier = Modifier.size(18.dp)
                 )
                 Text(
-                    text = selectedState,
+                    text = getLocalizedStateName(selectedState),
                     color = MaterialTheme.colorScheme.onSurface,
                     fontWeight = FontWeight.Medium,
                     style = labelLarge
@@ -651,6 +651,9 @@ fun getCategoryColor(category: String): Color {
         "Politics & Democracy" -> Color(0xFF3B82F6) // Blue
         "History & Culture" -> Color(0xFFF59E0B) // Amber
         "Society & Culture" -> Color(0xFF10B981) // Emerald
+        "Economy & Society" -> Color(0xFF06B6D4) // Cyan
+        "Geography" -> Color(0xFFEC4899) // Pink
+        "Law & Rights" -> Color(0xFFEF4444) // Red
         "State Specific" -> Color(0xFF8B5CF6) // Violet
         else -> Color(0xFF6B7280) // Gray
     }
@@ -662,8 +665,34 @@ fun getLocalizedCategoryName(category: String): String {
         "Politics & Democracy" -> stringResource(id = R.string.politics_democracy)
         "History & Culture" -> stringResource(id = R.string.history_responsibility)
         "Society & Culture" -> stringResource(id = R.string.people_society)
+        "Economy & Society" -> stringResource(id = R.string.economy_society)
+        "Geography" -> stringResource(id = R.string.geography)
+        "Law & Rights" -> stringResource(id = R.string.law_rights)
         "State Specific" -> stringResource(id = R.string.state_specific)
         else -> category
+    }
+}
+
+@Composable
+fun getLocalizedStateName(stateKey: String): String {
+    return when (stateKey) {
+        "Baden-Württemberg" -> stringResource(id = R.string.state_baden_wurttemberg)
+        "Bayern" -> stringResource(id = R.string.state_bayern)
+        "Berlin" -> stringResource(id = R.string.state_berlin)
+        "Brandenburg" -> stringResource(id = R.string.state_brandenburg)
+        "Bremen" -> stringResource(id = R.string.state_bremen)
+        "Hamburg" -> stringResource(id = R.string.state_hamburg)
+        "Hessen" -> stringResource(id = R.string.state_hessen)
+        "Mecklenburg-Vorpommern" -> stringResource(id = R.string.state_mecklenburg_vorpommern)
+        "Niedersachsen" -> stringResource(id = R.string.state_niedersachsen)
+        "Nordrhein-Westfalen" -> stringResource(id = R.string.state_nordrhein_westfalen)
+        "Rheinland-Pfalz" -> stringResource(id = R.string.state_rheinland_pfalz)
+        "Saarland" -> stringResource(id = R.string.state_saarland)
+        "Sachsen" -> stringResource(id = R.string.state_sachsen)
+        "Sachsen-Anhalt" -> stringResource(id = R.string.state_sachsen_anhalt)
+        "Schleswig-Holstein" -> stringResource(id = R.string.state_schleswig_holstein)
+        "Thüringen" -> stringResource(id = R.string.state_thueringen)
+        else -> stateKey
     }
 }
 
@@ -935,10 +964,10 @@ fun StateSelectionDialog(
     onStateSelected: (String) -> Unit
 ) {
     val states = listOf(
-        "Baden-Württemberg", "Bavaria", "Berlin", "Brandenburg",
-        "Bremen", "Hamburg", "Hessen", "Lower Saxony",
-        "Mecklenburg-Vorpommern", "North Rhine-Westphalia", "Rhineland-Palatinate", "Saarland",
-        "Saxony", "Saxony-Anhalt", "Schleswig-Holstein", "Thuringia"
+        "Baden-Württemberg", "Bayern", "Berlin", "Brandenburg",
+        "Bremen", "Hamburg", "Hessen", "Mecklenburg-Vorpommern",
+        "Niedersachsen", "Nordrhein-Westfalen", "Rheinland-Pfalz", "Saarland",
+        "Sachsen", "Sachsen-Anhalt", "Schleswig-Holstein", "Thüringen"
     )
     
     AlertDialog(
@@ -979,7 +1008,7 @@ fun StateSelectionDialog(
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Text(
-                                    text = state,
+                                    text = getLocalizedStateName(state),
                                     fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
                                     color = if (isSelected) PrimaryActionStart else MaterialTheme.colorScheme.onSurface
                                 )

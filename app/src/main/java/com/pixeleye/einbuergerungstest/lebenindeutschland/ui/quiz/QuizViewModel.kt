@@ -90,7 +90,7 @@ class QuizViewModel @Inject constructor(
             resetState()
             _uiState.update { it.copy(isLoading = true) }
             
-            val selectedState = preferenceManager.getSelectedState() ?: "Bavaria"
+            val selectedState = preferenceManager.getSelectedState() ?: "Bayern"
             
             val generalQuestions = repository.getGeneralQuestionsOnce().shuffled().take(30)
             val stateQuestions = repository.getQuestionsByState(selectedState).shuffled().take(3)
@@ -113,7 +113,7 @@ class QuizViewModel @Inject constructor(
             resetState()
             _uiState.update { it.copy(isLoading = true) }
             
-            val selectedState = preferenceManager.getSelectedState() ?: "Bavaria"
+            val selectedState = preferenceManager.getSelectedState() ?: "Bayern"
             val generalQuestions = repository.getGeneralQuestionsOnce()
             val stateQuestions = repository.getQuestionsByState(selectedState)
             
@@ -133,7 +133,7 @@ class QuizViewModel @Inject constructor(
             resetState()
             _uiState.update { it.copy(isLoading = true) }
             
-            val selectedState = preferenceManager.getSelectedState() ?: "Bavaria"
+            val selectedState = preferenceManager.getSelectedState() ?: "Bayern"
             val generalQuestions = repository.getGeneralQuestionsOnce()
             val stateQuestions = repository.getQuestionsByState(selectedState)
             
