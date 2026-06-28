@@ -2,6 +2,12 @@
 
 A modern, AI-powered solution for mastering the German Citizenship Test with precision and ease.
 
+<p align="center">
+  <a href="https://play.google.com/store/apps/details?id=com.pixeleye.einbuergerungstest.lebenindeutschland">
+    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" height="70" />
+  </a>
+</p>
+
 ## Overview
 
 Einbürgerungstest 2026 is a premium Android application designed to help users prepare for the official "Leben in Deutschland" (Living in Germany) exam. The app provides a comprehensive, gamified learning experience, integrating the complete BAMF question catalog with state-of-the-art AI explanations and seamless cloud synchronization. Built with a minimalist professional aesthetic, it caters to the high standards of the European market while remaining accessible to learners from all backgrounds.
@@ -72,9 +78,9 @@ REVENUECAT_API_KEY=your_revenuecat_api_key
 
 ## Screenshots
 
-| Dashboard | Exam Simulator | AI Explanations |
-| :---: | :---: | :---: |
-| [Placeholder] | [Placeholder] | [Placeholder] |
+| Dashboard | Swipe Flashcards | Exam Simulator | AI Explanations |
+| :---: | :---: | :---: | :---: |
+| <img src="portfolio_images/img1.jpg" width="200" alt="Dashboard" /> | <img src="portfolio_images/img2.jpg" width="200" alt="Swipe Flashcards" /> | <img src="portfolio_images/img3.jpg" width="200" alt="Exam Simulator" /> | <img src="portfolio_images/img4.jpg" width="200" alt="AI Explanations" /> |
 
 ## License
 
