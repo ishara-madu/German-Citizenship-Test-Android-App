@@ -112,14 +112,14 @@ nav {
   align-items: center;
 }
 
-.nav-links a {
+.nav-links a:not(.btn) {
   font-size: 0.9375rem;
   font-weight: 500;
   color: var(--zinc-600);
   transition: color var(--transition-fast);
 }
 
-.nav-links a:hover {
+.nav-links a:not(.btn):hover {
   color: var(--primary);
 }
 
@@ -137,15 +137,19 @@ nav {
   border: 1px solid transparent;
 }
 
-.btn-primary {
+.btn-primary,
+a.btn-primary,
+.nav-links a.btn-primary {
   background-color: var(--primary);
-  color: #ffffff;
+  color: #ffffff !important;
   box-shadow: 0 1px 2px rgba(29, 78, 216, 0.15);
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+a.btn-primary:hover,
+.nav-links a.btn-primary:hover {
   background-color: var(--primary-hover);
-  color: #ffffff;
+  color: #ffffff !important;
   box-shadow: 0 4px 12px rgba(29, 78, 216, 0.25);
   transform: translateY(-1px);
 }
