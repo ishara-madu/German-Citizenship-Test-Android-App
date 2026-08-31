@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://burgertest.app/sitemap.xml
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://ishara-madu.github.io/German-Citizenship-Test-Android-App/sitemap.xml

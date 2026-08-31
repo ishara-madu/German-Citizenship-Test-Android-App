@@ -2,13 +2,13 @@
   "name": "Bürgertest - Einbürgerungstest 2026",
   "short_name": "Bürgertest",
   "description": "Master the German Citizenship Test with official 300+ BAMF questions, state filtering, swipe flashcards, and AI explanations.",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1d4ed8",
   "icons": [
     {
-      "src": "/images/screen-hero.webp",
+      "src": "images/screen-hero.webp",
       "sizes": "288x512",
       "type": "image/webp"
     }
