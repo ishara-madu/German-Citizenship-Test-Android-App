@@ -1,44 +1,60 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Mobile Navigation Toggle
+    // Mobile Navigation Toggle with ARIA Support
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+            const isExpanded = navLinks.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
         });
     }
 
     // Smooth Scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
+                e.preventDefault();
                 targetElement.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
                 
                 // Close mobile menu if open
-                if (navLinks.classList.contains('active')) {
+                if (navLinks && navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
+                    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
                 }
             }
         });
     });
 
-    // Simple interaction for feature cards
-    const cards = document.querySelectorAll('.feature-card');
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-10px)';
-        });
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = '';
-        });
+    // FAQ Accordion Interaction with ARIA state updates
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const questionBtn = item.querySelector('.faq-question');
+        if (questionBtn) {
+            questionBtn.addEventListener('click', () => {
+                const isCurrentlyActive = item.classList.contains('active');
+                
+                // Close other open accordions
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        const otherBtn = otherItem.querySelector('.faq-question');
+                        if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                // Toggle current accordion
+                const willBeActive = !isCurrentlyActive;
+                item.classList.toggle('active', willBeActive);
+                questionBtn.setAttribute('aria-expanded', willBeActive ? 'true' : 'false');
+            });
+        }
     });
 });
